@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#eee6dc" />
+    <title>Discovery Room · Space Rescue</title>
+  </head>
+  <body>
+    <main id="discovery-game" aria-label="Discovery Room adventure">
+      <div id="world" aria-label="One room with six adventure tables"></div>
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Discovery Room home"
+          ><span class="brand-icon">✳</span
+          ><span>DISCOVERY ROOM<small>BIG IDEAS. LITTLE ADVENTURES.</small></span></a
+        >
+        <nav aria-label="Adventure controls">
+          <button data-intent="map">Mission map <kbd>M</kbd></button
+          ><button data-intent="journal">Memory journal</button
+          ><button data-intent="tutor">Room guide</button
+          ><button data-intent="settings" aria-label="Open comfort settings">Comfort</button
+          ><button id="vr-button" disabled>Checking VR…</button>
+        </nav>
+      </header>
+      <section id="welcome" aria-labelledby="welcome-title">
+        <div class="mission-tag"><span>01</span> THE DISCOVERY COLLECTION</div>
+        <p class="eyebrow">A SMALL MISSION. A BIG DISCOVERY.</p>
+        <h1 id="welcome-title">Curiosity is<br />your <em>superpower.</em></h1>
+        <p class="intro">
+          Choose an expedition. Solve six challenges, recover a treasure, and see what you remember.
+        </p>
+        <label
+          >Choose your adventure<select id="welcome-adventure">
+            <option value="space">Space Rescue</option>
+            <option value="ocean">Ocean Guardians</option>
+            <option value="workshop">Inventor’s Workshop</option>
+          </select></label
+        >
+        <div class="adventure-choice">
+          <span class="planet-icon" aria-hidden="true">🪐</span>
+          <div><strong>Space Rescue</strong><span>Six discoveries · One treasure hunt</span></div>
+          <span class="available">READY</span>
+        </div>
+        <div class="welcome-options">
+          <label
+            >How would you like to play?<select id="welcome-navigation">
+              <option value="walk">Walk & explore</option>
+              <option value="stationary">Stay seated · no walking</option>
+            </select></label
+          ><label
+            >Choose your hints<select id="welcome-mode">
+              <option value="guided">Guided · helpful labels</option>
+              <option value="explorer">Explorer · try it yourself</option>
+            </select></label
+          >
+        </div>
+        <div class="welcome-options">
+          <label
+            >Explorer emblem<select data-profile="emblem">
+              <option>Star</option>
+              <option>Leaf</option>
+              <option>Lightning</option>
+            </select></label
+          ><label
+            >Companion<select data-profile="companion">
+              <option>Robot</option>
+              <option>Owl</option>
+              <option>Cat</option>
+            </select></label
+          ><label
+            >Accent palette<select data-profile="palette">
+              <option>Plum</option>
+              <option>Teal</option>
+              <option>Copper</option>
+            </select></label
+          >
+        </div>
+        <button class="primary enter" id="enter-button">Let's explore <span>↗</span></button>
+        <p class="smallprint">
+          Tab moves between controls. Enter or Space selects. Escape closes a notebook. No-walking
+          mode offers every puzzle without movement.
+        </p>
+        <p class="smallprint">
+          Six interactive tables + three optional discoveries. Play at your pace, with hints
+          whenever you need them.
+        </p>
+      </section>
+      <aside id="objective" class="objective" hidden aria-label="Current mission">
+        <span class="eyebrow">YOUR MISSION</span>
+        <h2 id="objective-title">Follow your curiosity</h2>
+        <p id="objective-copy"></p>
+        <button class="route-button" data-intent="guide:cargo">Show me the way →</button>
+        <div class="fragment-row">
+          <span id="fragment-icon">✧</span
+          ><span
+            ><strong id="fragment-count">0 / 6 fragments</strong><small>Space Rescue</small></span
+          >
+        </div>
+      </aside>
+      <div id="room-badge" aria-hidden="true">
+        <span>SPACE RESCUE</span><small>EXPLORER LAB / 01</small>
+      </div>
+      <div id="reticle" aria-hidden="true" hidden>·</div>
+      <div id="game-footer" class="footer" hidden>
+        <p>
+          <kbd>W A S D</kbd> Walk <span>·</span> Drag mouse to look <span>·</span>
+          <kbd>E</kbd> Inspect
+        </p>
+        <div>
+          <button data-intent="help">How to play</button><button data-intent="pause">Pause</button>
+        </div>
+      </div>
+      <p id="notice" role="status" aria-live="polite" class="notice">Preparing your adventure…</p>
+      <dialog id="panel" aria-labelledby="panel-title">
+        <div class="panel-top">
+          <span class="eyebrow" id="panel-label">EXPLORER NOTEBOOK</span
+          ><button id="panel-close" aria-label="Close panel">×</button>
+        </div>
+        <h2 id="panel-title" tabindex="-1"></h2>
+        <div id="panel-content"></div>
+      </dialog>
+      <dialog id="memory" aria-labelledby="memory-title">
+        <div class="memory-page">
+          <span class="eyebrow">YOUR MEMORY JOURNAL / 01</span>
+          <h2 id="memory-title">Take a moment. Think back.</h2>
+          <p id="memory-question"></p>
+          <div id="memory-options"></div>
+          <p id="memory-feedback" role="status" aria-live="polite"></p>
+          <div id="memory-actions" class="buttons"></div>
+          <p class="smallprint">
+            No timer. No lost treasure. This is practice, not a memory assessment.
+          </p>
+        </div>
+      </dialog>
+    </main>
+    <script src="./vendor/aframe-1.8.0.min.js"></script>
+    <script type="module" src="/src/discovery/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#152634" />
+    <title>AI-MoL-VR · Learning route</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="site-header">
+        <div>
+          <p class="eyebrow">
+            Legacy mnemonic study tools · <a href="./index.html">Return to the learning game</a>
+          </p>
+          <h1>Build a six-stop memory route</h1>
+          <p class="intro">
+            Confirm six facts, connect each to a landmark, approve your cues, and rehearse them in
+            the fixed room.
+          </p>
+        </div>
+        <span class="stage-badge">AI-MoL-VR prototype</span>
+      </header>
+
+      <nav class="stage-nav" aria-label="Session stages">
+        <button type="button" data-stage="setup">1 · Facts</button>
+        <button type="button" data-stage="familiarize">2 · Route</button>
+        <button type="button" data-stage="author">3 · Cues</button>
+        <button type="button" data-stage="study">4 · Rehearse</button>
+        <button type="button" data-stage="results">5 · Results</button>
+      </nav>
+
+      <div class="session-actions" aria-label="Session storage and transfer">
+        <span id="save-state" class="save-state" role="status">Unsaved session</span>
+        <button id="save-button" type="button">Save locally</button>
+        <button id="backup-button" type="button">Download working backup</button>
+        <button id="prepared-button" type="button">Download prepared session</button>
+      </div>
+      <details id="evaluation-panel" class="transfer-panel">
+        <summary>Optional anonymous pilot record</summary>
+        <p>
+          Use one anonymous participant ID per person. Enter familiarity before cue preparation;
+          enter effort and meaningfulness after preparation, including for a failure at the time
+          cap. This record travels with working/prepared exports. Do not enter names or contact
+          details.
+        </p>
+        <form id="evaluation-form">
+          <div class="ai-metadata">
+            <label
+              >Anonymous participant ID<input id="evaluation-id" maxlength="120" placeholder="P01"
+            /></label>
+            <label
+              >Familiarity with the six facts before starting<input
+                id="evaluation-familiarity"
+                maxlength="500"
+                placeholder="e.g., 0 familiar; checked before timing"
+            /></label>
+            <label
+              >Preparation effort (1–7)<select id="evaluation-effort">
+                <option value="">Unavailable</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+              </select></label
+            >
+            <label
+              >Cues felt meaningful (1–7)<select id="evaluation-meaningfulness">
+                <option value="">Not applicable/unavailable</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+              </select></label
+            >
+          </div>
+          <label
+            >Assistance given<textarea
+              id="evaluation-assistance"
+              rows="2"
+              maxlength="500"
+            ></textarea>
+          </label>
+          <label
+            >What was confusing or unhelpful?<textarea
+              id="evaluation-feedback"
+              rows="2"
+              maxlength="500"
+            ></textarea>
+          </label>
+          <div class="form-actions"><button type="submit">Save pilot record fields</button></div>
+        </form>
+        <p id="evaluation-cap-status" class="section-note"></p>
+      </details>
+      <p id="app-message" class="app-message" role="status" aria-live="polite"></p>
+
+      <section id="stage-panel" class="stage-panel" aria-live="polite">
+        <div id="facts-view" hidden>
+          <div class="panel-heading">
+            <h2>Confirm six study facts</h2>
+            <span class="hint">Exactly six · fixed landmark assignments</span>
+          </div>
+          <p class="section-note">
+            You are responsible for checking each term and meaning against a trustworthy learning
+            source. Enter allowed term aliases before recall and a short fact-specific meaning
+            rubric for human scoring. Pilot sessions require all six rubrics. The bundled computing
+            set is demonstration content.
+          </p>
+          <label class="data-kind-label"
+            >Session use
+            <select id="data-kind">
+              <option value="fixture">Bundled demonstration fixture</option>
+              <option value="practice">Practice</option>
+              <option value="pilot">Pilot</option>
+            </select>
+          </label>
+          <form id="facts-form">
+            <div id="facts-fields" class="facts-grid"></div>
+            <div class="form-actions">
+              <button type="submit">Save facts and learn route</button
+              ><button id="discard-facts-button" type="button" class="secondary">
+                Discard unsaved edits
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div id="route-view" hidden>
+          <div class="panel-heading">
+            <h2>Learn the empty route</h2>
+            <span class="hint">Door → Desk → Bookshelf → Window → Plant → Lamp</span>
+          </div>
+          <p class="section-note">
+            Use the route controls below to inspect all six landmarks before attaching cues. The
+            room has no answers or props in this stage.
+          </p>
+          <div class="form-actions">
+            <button id="author-button" type="button">Create cues</button
+            ><button id="edit-facts-button" type="button" class="secondary">Edit facts</button
+            ><label id="recall-only-mode-label" class="inline-select" hidden
+              >Earlier rehearsal display mode
+              <select id="recall-only-display-mode">
+                <option value="desktop">Desktop</option>
+                <option value="vr">VR</option>
+              </select></label
+            ><button id="recall-only-button" type="button" class="secondary" hidden>
+              Enter hidden recall-only handoff
+            </button>
+          </div>
+          <div id="pilot-ready-controls" class="pilot-ready" hidden>
+            <p>
+              Approved pilot content is hidden until timed rehearsal starts. The preparation record
+              and setup gap are retained.
+            </p>
+            <label
+              >Display mode
+              <select id="pilot-display-mode">
+                <option value="desktop">Desktop</option>
+                <option value="vr">VR</option>
+              </select></label
+            >
+            <button id="pilot-start-study" type="button">Start timed rehearsal</button>
+          </div>
+          <p id="recall-only-note" class="section-note" hidden>
+            For a typed laptop recall after an external rehearsal: load the matching prepared
+            session before the participant sees this screen, select the earlier rehearsal display
+            mode, then enter hidden handoff. No approved cues are shown during handoff or recall;
+            the earlier rehearsal and interface change are recorded as not observed by this browser.
+          </p>
+        </div>
+
+        <div id="author-view" hidden>
+          <div class="panel-heading">
+            <h2>Write and approve cues</h2>
+            <span id="approval-count" class="hint"></span>
+          </div>
+          <p class="section-note">
+            Write cues yourself, or use AI-assisted cue authoring with manual transfer below. Check
+            each scene against the original meaning. The 3D object is a supporting symbol, not a
+            rendering of the whole sentence.
+          </p>
+          <div class="form-actions">
+            <button id="preparation-cap-button" type="button" class="secondary">
+              Record incomplete preparation at 6-minute cap
+            </button>
+          </div>
+          <details id="ai-transfer" class="ai-transfer">
+            <summary>AI-assisted cue authoring with manual transfer</summary>
+            <p>
+              Copy this prompt into an external GPT chat. Paste its complete six-cue JSON response
+              here or choose a JSON file. Import replaces the current cue drafts only after the
+              entire response validates; you must review and approve every cue.
+            </p>
+            <label for="ai-prompt">Prompt for the current six facts and revision</label>
+            <textarea id="ai-prompt" rows="8" readonly></textarea>
+            <div class="form-actions">
+              <button id="copy-ai-prompt" type="button">Copy AI prompt</button
+              ><button id="download-ai-prompt" type="button" class="secondary">
+                Download prompt
+              </button>
+            </div>
+            <label for="ai-response">AI response JSON</label>
+            <textarea
+              id="ai-response"
+              rows="6"
+              placeholder="Paste one complete JSON object for all six cues"
+            ></textarea>
+            <div class="ai-metadata">
+              <label
+                >Model name (optional; unknown if blank)<input
+                  id="ai-model-name"
+                  type="text"
+                  maxlength="120"
+                  placeholder="unknown"
+              /></label>
+              <label
+                >Generation date (optional; unknown if blank)<input
+                  id="ai-generation-date"
+                  type="date"
+              /></label>
+            </div>
+            <div class="form-actions">
+              <button id="import-ai-response" type="button">Import AI response</button
+              ><label class="file-label"
+                >Choose AI JSON file<input
+                  id="ai-response-file"
+                  type="file"
+                  accept=".json,application/json"
+              /></label>
+            </div>
+            <ul id="ai-errors" class="ai-errors" aria-live="polite" hidden></ul>
+            <div id="ai-repair" hidden>
+              <label for="ai-repair-prompt"
+                >Repair prompt with validation errors and expected schema</label
+              >
+              <textarea id="ai-repair-prompt" rows="6" readonly></textarea>
+              <div class="form-actions">
+                <button id="copy-ai-repair" type="button">Copy repair prompt</button>
+              </div>
+            </div>
+            <p class="fixture-note">
+              Offline demonstration only: the illustrative example below is authored sample content
+              for the bundled facts, not fresh AI output.
+            </p>
+            <div class="form-actions">
+              <button id="load-illustrative" type="button" class="secondary">
+                Load illustrative example
+              </button>
+            </div>
+          </details>
+          <div class="author-grid">
+            <div>
+              <div class="fact-reference">
+                <strong id="author-fact-term"></strong>
+                <p id="author-fact-meaning"></p>
+              </div>
+              <div id="original-suggestion" class="suggestion-card" hidden>
+                <h3>Original suggestion for review</h3>
+                <p><strong>Scene:</strong> <span id="suggested-scene"></span></p>
+                <p><strong>Meaning link:</strong> <span id="suggested-link"></span></p>
+                <p id="suggested-symbol"></p>
+                <p id="suggestion-source" class="symbol-note"></p>
+                <button id="replace-suggestion" type="button" class="secondary">
+                  Replace this suggestion manually
+                </button>
+              </div>
+              <form id="cue-form">
+                <label
+                  >Scene sentence <span class="limit">max 180 characters</span
+                  ><textarea id="cue-scene" maxlength="180" rows="3"></textarea>
+                </label>
+                <label
+                  >Meaning link <span class="limit">max 180 characters</span
+                  ><textarea id="cue-link" maxlength="180" rows="3"></textarea>
+                </label>
+                <div class="cue-options">
+                  <label>Supporting prop<select id="cue-prop"></select></label>
+                  <label>Animation<select id="cue-animation"></select></label>
+                  <label>Color<select id="cue-color"></select></label>
+                </div>
+                <div class="form-actions">
+                  <button id="approve-button" type="submit">Approve this cue</button
+                  ><span id="cue-approval" class="approval-state"></span>
+                </div>
+              </form>
+            </div>
+            <div class="preview-card">
+              <h3>Preview at <span id="preview-locus"></span></h3>
+              <p><strong>Imagined scene:</strong> <span id="preview-scene"></span></p>
+              <p><strong>Meaning link:</strong> <span id="preview-link"></span></p>
+              <p id="preview-symbol" class="symbol-note"></p>
+            </div>
+          </div>
+          <div class="form-actions">
+            <label class="inline-select"
+              >Display mode for this attempt
+              <select id="study-display-mode">
+                <option value="desktop">Desktop</option>
+                <option value="vr">VR</option>
+              </select></label
+            ><button id="study-button" type="button">Start rehearsal</button
+            ><button id="back-route-button" type="button" class="secondary">
+              Review empty route
+            </button>
+          </div>
+        </div>
+
+        <div id="study-view" hidden>
+          <div class="panel-heading">
+            <h2>Rehearse approved cues</h2>
+            <span id="study-progress" class="hint"></span>
+          </div>
+          <div id="study-content" class="study-content">
+            <p><strong>Term:</strong> <span id="study-term"></span></p>
+            <p><strong>Meaning:</strong> <span id="study-meaning"></span></p>
+            <p><strong>Imagined scene:</strong> <span id="study-scene"></span></p>
+            <p><strong>Meaning link:</strong> <span id="study-link"></span></p>
+            <p id="study-symbol" class="symbol-note"></p>
+          </div>
+          <p id="study-complete-message" class="success-note" hidden>
+            Rehearsal complete. Study content is hidden. Continue to the neutral distractor before
+            recall.
+          </p>
+          <div class="form-actions">
+            <button id="finish-study-button" type="button">Finish rehearsal</button
+            ><button id="start-distractor-button" type="button" hidden>Start distractor</button
+            ><button id="repeat-study-button" type="button" hidden>
+              Start another practice attempt</button
+            ><button id="edit-cues-button" type="button" class="secondary">Edit cues</button>
+          </div>
+        </div>
+
+        <div id="distractor-view" hidden>
+          <div class="panel-heading">
+            <h2>Hidden-content interval</h2>
+            <span class="hint">Facts and cues are concealed</span>
+          </div>
+          <p id="distractor-instruction" class="section-note"></p>
+          <p id="distractor-elapsed" class="section-note"></p>
+          <div class="form-actions">
+            <button id="begin-recall-button" type="button">Begin blank-landmark recall</button
+            ><button id="skip-recall-button" type="button" class="secondary">
+              Skip recall test</button
+            ><button id="exit-distractor-button" type="button" class="secondary">
+              Exit and invalidate attempt
+            </button>
+          </div>
+        </div>
+
+        <div id="recall-view" hidden>
+          <div class="panel-heading">
+            <h2>Blank-landmark recall</h2>
+            <span id="recall-progress" class="hint"></span>
+          </div>
+          <p class="section-note">
+            At each landmark, type the term and its meaning from memory. Use the route controls for
+            all six positions. Answers and cues appear only after you submit the whole set. Blank
+            answers score zero.
+          </p>
+          <div class="recall-card">
+            <h3 id="recall-locus"></h3>
+            <label
+              >Term recalled <input id="recall-term" type="text" maxlength="500" autocomplete="off"
+            /></label>
+            <label
+              >Meaning recalled <textarea id="recall-meaning" rows="3" maxlength="500"></textarea>
+            </label>
+          </div>
+          <div class="form-actions">
+            <button id="submit-recall-button" type="button">
+              Submit all six answers and reveal feedback</button
+            ><button id="exit-recall-button" type="button" class="secondary">
+              Exit and invalidate attempt
+            </button>
+          </div>
+        </div>
+
+        <div id="results-view" hidden>
+          <div class="panel-heading">
+            <h2>Attempt results</h2>
+            <span id="results-attempt" class="hint"></span>
+          </div>
+          <label class="data-kind-label"
+            >View recorded attempt
+            <select id="results-attempt-select"></select
+          ></label>
+          <p id="results-context" class="section-note"></p>
+          <div class="score-cards">
+            <p id="term-score" class="score-card"></p>
+            <p id="meaning-score" class="score-card"></p>
+          </div>
+          <p id="results-timing" class="section-note"></p>
+          <p id="results-warning" class="section-note"></p>
+          <label class="data-kind-label"
+            >Who is reviewing marks?
+            <select id="results-scorer">
+              <option value="self">Self (self-assessed)</option>
+              <option value="facilitator">Facilitator</option>
+            </select></label
+          >
+          <div id="results-facts" class="results-facts"></div>
+          <div class="form-actions">
+            <button id="export-result-json" type="button">Download result JSON</button
+            ><button id="export-result-csv" type="button">Download result CSV</button
+            ><button id="new-attempt-button" type="button" class="secondary">
+              Start another practice attempt
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <details id="external-panel" class="transfer-panel" hidden>
+        <summary>Record externally observed attempt from this prepared session</summary>
+        <p>
+          These values are entered by a person after an external rehearsal and recall; they are not
+          browser telemetry. Use the matching anonymous attempt ID. A duplicate ID is rejected.
+          Unavailable durations may stay blank.
+        </p>
+        <form id="external-form">
+          <div class="ai-metadata">
+            <label
+              >Anonymous attempt ID<input
+                id="external-attempt-id"
+                type="text"
+                maxlength="120"
+                required
+                placeholder="P01-run1"
+            /></label>
+            <label
+              >Display mode<select id="external-display-mode" required>
+                <option value="">Choose mode</option>
+                <option value="desktop">Desktop</option>
+                <option value="vr">VR</option>
+              </select></label
+            >
+            <label
+              >Who scored the meanings?<select id="external-scorer" required>
+                <option value="">Choose scorer</option>
+                <option value="self">Self (self-assessed)</option>
+                <option value="facilitator">Facilitator</option>
+              </select></label
+            >
+          </div>
+          <div id="external-answers" class="results-facts"></div>
+          <div class="duration-grid">
+            <label
+              >Setup/transfer gap (seconds)<input
+                id="external-setup"
+                type="number"
+                min="0"
+                max="604800"
+                step="1"
+                placeholder="unavailable"
+            /></label>
+            <label
+              >Rehearsal (seconds)<input
+                id="external-rehearsal"
+                type="number"
+                min="0"
+                max="604800"
+                step="1"
+                placeholder="unavailable"
+            /></label>
+            <label
+              >Distractor (seconds)<input
+                id="external-distractor"
+                type="number"
+                min="0"
+                max="604800"
+                step="1"
+                placeholder="unavailable"
+            /></label>
+            <label
+              >Recall (seconds)<input
+                id="external-recall"
+                type="number"
+                min="0"
+                max="604800"
+                step="1"
+                placeholder="unavailable"
+            /></label>
+          </div>
+          <label
+            >Protocol deviation or observation (optional)<textarea
+              id="external-deviation"
+              rows="2"
+              maxlength="500"
+            ></textarea>
+          </label>
+          <div class="form-actions">
+            <button type="submit">Save external observation and view results</button>
+          </div>
+        </form>
+      </details>
+
+      <main class="layout">
+        <section class="scene-panel" aria-labelledby="room-heading">
+          <div class="panel-heading">
+            <h2 id="room-heading">Fixed room</h2>
+            <span class="hint">Click a landmark, or use the route controls</span>
+          </div>
+          <div id="scene-mount" class="scene-mount" aria-label="3D room with six landmarks"></div>
+          <label class="motion-toggle"
+            ><input id="no-animation" type="checkbox" /> Stop prop animation</label
+          >
+          <label class="motion-toggle"
+            ><input id="preview-vr-panel" type="checkbox" /> Preview in-scene controls on desktop
+            (not a headset test)</label
+          >
+          <p id="vr-status" class="vr-status" role="status">Checking immersive VR availability…</p>
+        </section>
+
+        <aside class="route-panel" aria-labelledby="route-heading">
+          <div class="panel-heading">
+            <h2 id="route-heading">Route order</h2>
+            <span class="route-count">6 stops</span>
+          </div>
+          <ol id="route-list" class="route-list"></ol>
+          <div class="active-card" aria-live="polite">
+            <p id="active-position" class="eyebrow"></p>
+            <h3 id="active-name"></h3>
+            <p id="active-description"></p>
+          </div>
+          <div class="nav-actions">
+            <button id="previous-button" type="button">← Previous</button>
+            <button id="next-button" type="button">Next →</button>
+          </div>
+          <p class="keyboard-hint">
+            Keyboard: Left and Right arrows. The viewpoint stays fixed; the selected landmark is
+            highlighted.
+          </p>
+        </aside>
+      </main>
+
+      <details id="session-transfer" class="transfer-panel">
+        <summary>Import a working backup or prepared session</summary>
+        <p>
+          Import replaces this browser's active session only after the whole file validates.
+          Download a working backup first if you want to keep the current session.
+        </p>
+        <p>
+          For a headset demonstration without file transfer, load the bundled prepared example. Its
+          six cues are preapproved illustrative fixture content; no preparation time, fresh AI
+          generation, or participant outcome is claimed.
+        </p>
+        <div class="form-actions">
+          <button id="load-prepared-demo" type="button">Load prepared illustrative demo</button>
+        </div>
+        <label for="import-text">Paste session JSON</label>
+        <textarea
+          id="import-text"
+          rows="4"
+          placeholder="Paste a working backup or prepared-session JSON object"
+        ></textarea>
+        <div class="form-actions">
+          <button id="import-paste-button" type="button">Import pasted JSON</button
+          ><label class="file-label"
+            >Choose JSON file<input id="import-file" type="file" accept=".json,application/json"
+          /></label>
+        </div>
+      </details>
+
+      <footer>
+        <p>
+          AI-assisted cue authoring uses manual transfer to an external GPT chat; this page does not
+          call a live AI API. Imported suggestions require learner review.
+        </p>
+      </footer>
+    </div>
+    <script src="./vendor/aframe-1.8.0.min.js"></script>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

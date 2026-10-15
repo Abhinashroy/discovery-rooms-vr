@@ -1,0 +1,115 @@
+{
+  "creator": "Solar System Scope / INOVE",
+  "source": "https://www.solarsystemscope.com/textures/",
+  "license": "CC BY 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "notes": "Representative, colour-enhanced maps; some coverage is reconstructed. Low variants are resized copies. Neptune colour is moderated in the rendering material.",
+  "assets": [
+    {
+      "id": "mercury",
+      "file": "2k_mercury.jpg",
+      "low": "low_2k_mercury.jpg",
+      "source": "https://www.solarsystemscope.com/textures/download/2k_mercury.jpg",
+      "dimensions": [2048, 1024],
+      "bytes": 872555
+    },
+    {
+      "id": "venus",
+      "file": "2k_venus_atmosphere.jpg",
+      "low": "low_2k_venus_atmosphere.jpg",
+      "source": "https://www.solarsystemscope.com/textures/download/2k_venus_atmosphere.jpg",
+      "dimensions": [2048, 1024],
+      "bytes": 229696
+    },
+    {
+      "id": "earth",
+      "file": "2k_earth_daymap.jpg",
+      "low": "low_2k_earth_daymap.jpg",
+      "source": "https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg",
+      "dimensions": [2048, 1024],
+      "bytes": 463087
+    },
+    {
+      "id": "clouds",
+      "file": "2k_earth_clouds.jpg",
+      "low": "low_2k_earth_clouds.jpg",
+      "source": "https://www.solarsystemscope.com/textures/download/2k_earth_clouds.jpg",
+      "dimensions": [2048, 1024],
+      "bytes": 965676
+    },
+    {
+      "id": "mars",
+      "file": "2k_mars.jpg",
+      "low": "low_2k_mars.jpg",
+      "source": "https://www.solarsystemscope.com/textures/download/2k_mars.jpg",
+      "dimensions": [2048, 1024],
+      "bytes": 750547
+    },
+    {
+      "id": "jupiter",
+      "file": "2k_jupiter.jpg",
+      "low": "low_2k_jupiter.jpg",
+      "source": "https://www.solarsystemscope.com/textures/download/2k_jupiter.jpg",
+      "dimensions": [2048, 1024],
+      "bytes": 498976
+    },
+    {
+      "id": "saturn",
+      "file": "2k_saturn.jpg",
+      "low": "low_2k_saturn.jpg",
+      "source": "https://www.solarsystemscope.com/textures/download/2k_saturn.jpg",
+      "dimensions": [2048, 1024],
+      "bytes": 199916
+    },
+    {
+      "id": "rings",
+      "file": "2k_saturn_ring_alpha.png",
+      "low": "low_2k_saturn_ring_alpha.png",
+      "source": "https://www.solarsystemscope.com/textures/download/2k_saturn_ring_alpha.png",
+      "dimensions": [2048, 125],
+      "bytes": 12119
+    },
+    {
+      "id": "uranus",
+      "file": "2k_uranus.jpg",
+      "low": "low_2k_uranus.jpg",
+      "source": "https://www.solarsystemscope.com/textures/download/2k_uranus.jpg",
+      "dimensions": [2048, 1024],
+      "bytes": 77751
+    },
+    {
+      "id": "neptune",
+      "file": "2k_neptune.jpg",
+      "low": "low_2k_neptune.jpg",
+      "source": "https://www.solarsystemscope.com/textures/download/2k_neptune.jpg",
+      "dimensions": [2048, 1024],
+      "bytes": 241580
+    },
+    {
+      "id": "sun",
+      "file": "2k_sun.jpg",
+      "low": "low_2k_sun.jpg",
+      "source": "https://www.solarsystemscope.com/textures/download/2k_sun.jpg",
+      "dimensions": [2048, 1024],
+      "bytes": 822427
+    },
+    {
+      "id": "stars",
+      "file": "2k_stars_milky_way.jpg",
+      "low": "low_2k_stars_milky_way.jpg",
+      "source": "https://www.solarsystemscope.com/textures/download/2k_stars_milky_way.jpg",
+      "dimensions": [2048, 1024],
+      "bytes": 251454
+    }
+  ],
+  "scienceReferences": {
+    "bodyDiameters": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/",
+    "sunRadius": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/sunfact.html",
+    "saturnRings": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/satringfact.html",
+    "uranusRings": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/uranringfact.html",
+    "jupiterMainRing": "https://www.jpl.nasa.gov/images/pia01622-jupiters-main-ring-and-halo/",
+    "neptuneRings": "https://www.nasa.gov/solar-system/planets/neptune/rings-of-neptune/",
+    "iceGiantColours": "https://www.ox.ac.uk/news/2024-01-05-new-images-reveal-what-neptune-and-uranus-really-look-0"
+  },
+  "renderingNotes": "Base equatorial body-width scale for Sun/outer planets. Four inner planets enlarged together by 12756/4879 (2.61447x); their mutual ratios remain. Gallery spacing. Inner-planet inspection temporarily magnifies at the original exhibit; outer inspection retains size. Neptune colour moderated artistically, not spectrally calibrated. Faint rings simplified within representative radial extents. Sun glow, clouds, stars and fly-bys are exhibit effects."
+}

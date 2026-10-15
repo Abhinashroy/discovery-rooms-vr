@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "softwareVersion": "0.1.0",
+  "sessionId": "synthetic-complete",
+  "contentRevision": 1,
+  "sourcePreparationId": "synthetic-prep-complete",
+  "attemptId": "SYNTH-A-run1",
+  "dataKind": "pilot",
+  "condition": "ai-assisted",
+  "displayMode": "desktop",
+  "recallMode": "typed",
+  "source": "browser",
+  "rehearsalStatus": "complete",
+  "recallStatus": "submitted",
+  "invalidated": false,
+  "invalidationReason": null,
+  "protocolDeviations": [],
+  "evaluation": {
+    "participantId": "SYNTH-A",
+    "familiarity": "Synthetic: zero facts familiar",
+    "effortRating": 3,
+    "meaningfulnessRating": 5,
+    "feedback": "",
+    "assistanceGiven": "Synthetic fixture; no person was assisted",
+    "preparationCapSeconds": 360,
+    "preparationCappedAt": null,
+    "approvedAtCap": null
+  },
+  "preparedCueCount": 6,
+  "editedCueCount": 0,
+  "timing": {
+    "preparationStartedAt": "2026-09-29T10:00:00.000Z",
+    "preparationSeconds": 240,
+    "generationAndTransferSeconds": 45,
+    "setupGapSeconds": 60,
+    "rehearsalSeconds": 120,
+    "distractorSeconds": 60,
+    "recallSeconds": 120
+  },
+  "score": {
+    "term": 4,
+    "meaning": 3,
+    "meaningPending": 0,
+    "termPercent": 66.66666666666667,
+    "meaningPercent": 50
+  },
+  "facts": [
+    {
+      "itemId": "f1",
+      "locusId": "door",
+      "term": "Stack",
+      "meaning": "A collection where the last item added is the first item removed (last in, first out).",
+      "meaningRubric": "Credit an answer that says the most recently added item is removed first, or states last in, first out.",
+      "rawTerm": "Stack",
+      "rawMeaning": "A collection where the last item added is the first item removed (last in, first out).",
+      "automaticTermMark": 1,
+      "termOverride": null,
+      "finalTermMark": 1,
+      "meaningMark": {
+        "score": 1,
+        "scorer": "facilitator"
+      },
+      "cueReviewOutcome": "accepted-unchanged",
+      "suggestionProvenance": {
+        "source": "illustrative-example",
+        "modelName": "unknown",
+        "generatedAt": "unknown",
+        "importedAt": "2026-09-29T13:09:57.339Z",
+        "transfer": "manual-json"
+      }
+    },
+    {
+      "itemId": "f2",
+      "locusId": "desk",
+      "term": "Queue",
+      "meaning": "A collection where the first item added is the first item removed (first in, first out).",
+      "meaningRubric": "Credit an answer that says items are removed in arrival order, or states first in, first out.",
+      "rawTerm": "Queue",
+      "rawMeaning": "A collection where the first item added is the first item removed (first in, first out).",
+      "automaticTermMark": 1,
+      "termOverride": null,
+      "finalTermMark": 1,
+      "meaningMark": {
+        "score": 1,
+        "scorer": "facilitator"
+      },
+      "cueReviewOutcome": "accepted-unchanged",
+      "suggestionProvenance": {
+        "source": "illustrative-example",
+        "modelName": "unknown",
+        "generatedAt": "unknown",
+        "importedAt": "2026-09-29T13:09:57.339Z",
+        "transfer": "manual-json"
+      }
+    },
+    {
+      "itemId": "f3",
+      "locusId": "bookshelf",
+      "term": "Cache",
+      "meaning": "A fast, usually temporary store of reusable data so later requests can be served more quickly.",
+      "meaningRubric": "Credit storing a reusable copy of data for faster future access; exact storage technology is unnecessary.",
+      "rawTerm": "Cache",
+      "rawMeaning": "A fast, usually temporary store of reusable data so later requests can be served more quickly.",
+      "automaticTermMark": 1,
+      "termOverride": null,
+      "finalTermMark": 1,
+      "meaningMark": {
+        "score": 1,
+        "scorer": "facilitator"
+      },
+      "cueReviewOutcome": "accepted-unchanged",
+      "suggestionProvenance": {
+        "source": "illustrative-example",
+        "modelName": "unknown",
+        "generatedAt": "unknown",
+        "importedAt": "2026-09-29T13:09:57.339Z",
+        "transfer": "manual-json"
+      }
+    },
+    {
+      "itemId": "f4",
+      "locusId": "window",
+      "term": "Recursion",
+      "meaning": "A function solves a problem by calling itself on smaller cases until a stopping case is reached.",
+      "meaningRubric": "Credit self-calling on a smaller case and a base or stopping case; either equivalent wording is acceptable.",
+      "rawTerm": "Recursion",
+      "rawMeaning": "",
+      "automaticTermMark": 1,
+      "termOverride": null,
+      "finalTermMark": 1,
+      "meaningMark": {
+        "score": 0,
+        "scorer": "blank-rule"
+      },
+      "cueReviewOutcome": "accepted-unchanged",
+      "suggestionProvenance": {
+        "source": "illustrative-example",
+        "modelName": "unknown",
+        "generatedAt": "unknown",
+        "importedAt": "2026-09-29T13:09:57.339Z",
+        "transfer": "manual-json"
+      }
+    },
+    {
+      "itemId": "f5",
+      "locusId": "plant",
+      "term": "Deadlock",
+      "meaning": "Two or more threads cannot proceed because each is waiting for another to release a needed resource.",
+      "meaningRubric": "Credit mutual or circular waiting that stops all involved threads from progressing.",
+      "rawTerm": "",
+      "rawMeaning": "",
+      "automaticTermMark": 0,
+      "termOverride": null,
+      "finalTermMark": 0,
+      "meaningMark": {
+        "score": 0,
+        "scorer": "blank-rule"
+      },
+      "cueReviewOutcome": "accepted-unchanged",
+      "suggestionProvenance": {
+        "source": "illustrative-example",
+        "modelName": "unknown",
+        "generatedAt": "unknown",
+        "importedAt": "2026-09-29T13:09:57.339Z",
+        "transfer": "manual-json"
+      }
+    },
+    {
+      "itemId": "f6",
+      "locusId": "lamp",
+      "term": "Semaphore",
+      "meaning": "A synchronization tool that uses permits to limit how many threads can access a resource at once.",
+      "meaningRubric": "Credit permits or a counter controlling access to a shared resource; exact implementation detail is unnecessary.",
+      "rawTerm": "",
+      "rawMeaning": "",
+      "automaticTermMark": 0,
+      "termOverride": null,
+      "finalTermMark": 0,
+      "meaningMark": {
+        "score": 0,
+        "scorer": "blank-rule"
+      },
+      "cueReviewOutcome": "accepted-unchanged",
+      "suggestionProvenance": {
+        "source": "illustrative-example",
+        "modelName": "unknown",
+        "generatedAt": "unknown",
+        "importedAt": "2026-09-29T13:09:57.339Z",
+        "transfer": "manual-json"
+      }
+    }
+  ]
+}

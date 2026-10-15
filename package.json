@@ -1,0 +1,33 @@
+{
+  "name": "ai-mol-vr",
+  "private": true,
+  "version": "0.23.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/run.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/run.mjs --preview",
+    "test": "node --test --test-isolation=none",
+    "analyze": "node scripts/analyze-results.mjs",
+    "check:discovery-ai": "node scripts/check-discovery-ai.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "build:catalog": "node scripts/build-country-catalog.mjs"
+  },
+  "devDependencies": {
+    "prettier": "3.9.10",
+    "vite": "8.3.1"
+  },
+  "engines": {
+    "node": ">=24 <27"
+  },
+  "description": "Three interactive learning rooms for keyboard/mouse and WebXR: Classroom Detective, Planetarium Rescue and Earth Explorer.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Abhinashroy/discovery-rooms-vr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Abhinashroy/discovery-rooms-vr/issues"
+  },
+  "homepage": "https://github.com/Abhinashroy/discovery-rooms-vr#readme"
+}

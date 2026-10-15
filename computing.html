@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#0c1a23" />
+    <title>The Computing Room · AI Learning Lab</title>
+  </head>
+  <body>
+    <main id="game" aria-label="Interactive computing learning room">
+      <div id="world" aria-label="Walkable 3D learning room"></div>
+      <header class="hud topbar">
+        <div class="brand">
+          <span class="brand-mark">◈</span>
+          <div>
+            <strong>THE COMPUTING ROOM</strong><small>EXPLORE / EXPERIMENT / UNDERSTAND</small>
+          </div>
+        </div>
+        <nav aria-label="Game controls">
+          <button id="map-toggle">Room map <kbd>M</kbd></button
+          ><button id="tutor-toggle">Ask tutor <kbd>T</kbd></button
+          ><button id="quiz-toggle">Practice quiz</button
+          ><button id="vr-button" disabled>Checking VR…</button>
+        </nav>
+      </header>
+      <div id="welcome" class="welcome">
+        <p class="eyebrow">AN INTERACTIVE LEARNING SPACE</p>
+        <h1>Step inside.<br />Make ideas <em>move.</em></h1>
+        <p>
+          Walk around a computing lab. Push a stack, run a queue, break a deadlock. Learn what
+          happens by making it happen.
+        </p>
+        <div class="welcome-controls">
+          <span><kbd>W A S D</kbd> Walk</span><span><kbd>Mouse</kbd> Look</span
+          ><span><kbd>E</kbd> Interact</span>
+        </div>
+        <button id="enter-button" class="primary">Enter the room <span>→</span></button>
+        <p class="fine">
+          Desktop + WebXR · Six interactive exhibits<br />Live tutor connects through your local
+          server.
+        </p>
+      </div>
+      <div id="reticle" aria-hidden="true" hidden>+</div>
+      <section id="objective" class="hud objective" hidden>
+        <span class="eyebrow">YOUR EXPLORATION</span
+        ><strong id="objective-text">Explore the six exhibits</strong
+        ><span id="progress">0 / 6 tried</span>
+        <div class="progress-track"><i id="progress-bar"></i></div>
+      </section>
+      <section id="map-panel" class="hud floating-panel room-map" aria-label="Room map" hidden>
+        <div class="panel-heading">
+          <h2>Room map</h2>
+          <button id="map-close" aria-label="Close room map">×</button>
+        </div>
+        <canvas
+          id="minimap"
+          width="300"
+          height="260"
+          aria-label="Your location and selected exhibit"
+        ></canvas>
+        <div id="map-links"></div>
+        <p class="fine">
+          Choose an exhibit to light a path. Select a colored floor pad to teleport.
+        </p>
+      </section>
+      <section
+        id="exhibit-panel"
+        class="hud floating-panel exhibit-panel"
+        aria-label="Current exhibit"
+        hidden
+      >
+        <div class="panel-heading">
+          <span class="eyebrow" id="exhibit-number"></span
+          ><button id="exhibit-close" aria-label="Close exhibit details">×</button>
+        </div>
+        <h2 id="exhibit-title"></h2>
+        <p id="exhibit-meaning"></p>
+        <p id="exhibit-task" class="task"></p>
+        <div id="exhibit-actions" class="action-row"></div>
+        <p id="exhibit-message" role="status"></p>
+        <button id="exhibit-ask" class="text-button">Ask the tutor about this →</button>
+      </section>
+      <aside id="tutor-panel" class="hud floating-panel tutor-panel" aria-label="Room tutor" hidden>
+        <div class="panel-heading">
+          <div>
+            <span class="eyebrow">YOUR LEARNING COMPANION</span>
+            <h2>Room tutor</h2>
+          </div>
+          <button id="tutor-close" aria-label="Close tutor">×</button>
+        </div>
+        <p id="ai-status" class="connection">Checking AI connection…</p>
+        <div id="chat-log" role="log" aria-live="polite"></div>
+        <div class="quick-prompts">
+          <button data-prompt="Guide me to an exhibit I have not tried yet.">Guide me</button
+          ><button data-prompt="Explain the current exhibit and tell me something to try.">
+            Explain this</button
+          ><button data-prompt="Give me one quiz question about these computing concepts.">
+            Quiz me
+          </button>
+        </div>
+        <form id="chat-form">
+          <label for="chat-input" class="sr-only">Question for the tutor</label
+          ><textarea
+            id="chat-input"
+            maxlength="1200"
+            rows="2"
+            placeholder="Why does the last item leave first?"
+          ></textarea
+          ><button id="chat-send" type="submit" class="primary">Ask →</button>
+        </form>
+        <p class="fine">
+          With live AI connected, your question, recent chat and exhibit progress go to the
+          configured provider. Answers can be mistaken.
+        </p>
+      </aside>
+      <section
+        id="quiz-panel"
+        class="hud floating-panel quiz-panel"
+        aria-label="Concept quiz"
+        hidden
+      >
+        <div class="panel-heading">
+          <span id="quiz-source" class="eyebrow">PRACTICE QUESTION</span
+          ><button id="quiz-close" aria-label="Close quiz">×</button>
+        </div>
+        <h2 id="quiz-question"></h2>
+        <div id="quiz-options"></div>
+        <p id="quiz-feedback" role="status"></p>
+        <div class="action-row">
+          <button id="quiz-next">Next practice question →</button
+          ><button id="quiz-ai">Ask AI for another</button>
+        </div>
+        <p id="quiz-score" class="fine"></p>
+      </section>
+      <div class="hud bottom-bar" id="bottom-bar" hidden>
+        <p>
+          <kbd>WASD</kbd> move · drag mouse to look · <kbd>← →</kbd> turn · <kbd>E</kbd> interact ·
+          <kbd>T</kbd> tutor
+        </p>
+        <button id="mouse-lock">Capture mouse</button><button id="help-button">Controls</button
+        ><a href="./authoring.html">Legacy study tools</a>
+      </div>
+      <p id="game-message" class="hud toast" role="status" aria-live="polite">Loading the room…</p>
+    </main>
+    <script src="./vendor/aframe-1.8.0.min.js"></script>
+    <script type="module" src="/src/game/main.js"></script>
+  </body>
+</html>

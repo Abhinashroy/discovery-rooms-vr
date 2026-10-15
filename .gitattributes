@@ -1,0 +1,11 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.mp3 binary
+*.m4a binary
+*.wav binary
+*.zip binary
+public/vendor/** linguist-vendored=true
+public/earth-explorer/countries.geojson linguist-generated=true
+src/earth-explorer/data/catalog.json linguist-generated=true

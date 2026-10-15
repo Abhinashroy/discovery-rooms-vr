@@ -1,0 +1,578 @@
+[
+  {
+    "iso2": "PK",
+    "name": "Pakistan",
+    "continent": "Asia",
+    "lat": 30,
+    "lon": 69,
+    "fact": "At Taxila, ancient city ruins and monasteries tell the story of an early Buddhist learning centre.",
+    "factSource": "https://whc.unesco.org/en/list/139/"
+  },
+  {
+    "iso2": "PW",
+    "name": "Palau",
+    "continent": "Oceania",
+    "lat": 7.5,
+    "lon": 134.58,
+    "fact": "The Rock Islands include limestone islands shaped like mushrooms above turquoise lagoons.",
+    "factSource": "https://whc.unesco.org/en/list/1386/"
+  },
+  {
+    "iso2": "PS",
+    "name": "Palestine",
+    "continent": "Asia",
+    "lat": 31.9,
+    "lon": 35.21,
+    "fact": "Bethlehem's Church of the Nativity preserves floor mosaics from an earlier fourth-century church.",
+    "factSource": "https://whc.unesco.org/en/list/1433/"
+  },
+  {
+    "iso2": "PA",
+    "name": "Panama",
+    "continent": "North America",
+    "lat": 8.8,
+    "lon": -80,
+    "fact": "Darién National Park forms a natural bridge between North and South America, with rainforest and mangroves.",
+    "factSource": "https://whc.unesco.org/en/list/159/"
+  },
+  {
+    "iso2": "PG",
+    "name": "Papua New Guinea",
+    "continent": "Oceania",
+    "lat": -6,
+    "lon": 145,
+    "fact": "At Kuk, ancient farmers drained wetlands by digging ditches with wooden tools.",
+    "factSource": "https://whc.unesco.org/en/list/887/"
+  },
+  {
+    "iso2": "PY",
+    "name": "Paraguay",
+    "continent": "South America",
+    "lat": -23.4,
+    "lon": -58,
+    "fact": "The ruins at Trinidad de Paraná preserve a Jesuit mission settlement with churches and a central square.",
+    "factSource": "https://whc.unesco.org/en/list/648/"
+  },
+  {
+    "iso2": "PE",
+    "name": "Peru",
+    "continent": "South America",
+    "lat": -10,
+    "lon": -75,
+    "fact": "The Inca settlement Machu Picchu stands high in the Andes, among forested mountain slopes.",
+    "factSource": "https://whc.unesco.org/en/list/274/"
+  },
+  {
+    "iso2": "PH",
+    "name": "Philippines",
+    "continent": "Asia",
+    "lat": 16,
+    "lon": 121,
+    "fact": "Ifugao farmers shaped mountain slopes into stepped rice fields that follow the land's curves.",
+    "factSource": "https://whc.unesco.org/en/list/722/"
+  },
+  {
+    "iso2": "PL",
+    "name": "Poland",
+    "continent": "Europe",
+    "lat": 52,
+    "lon": 19,
+    "fact": "Wieliczka and Bochnia salt mines contain underground chapels and statues carved from rock salt.",
+    "factSource": "https://whc.unesco.org/en/list/32/"
+  },
+  {
+    "iso2": "PT",
+    "name": "Portugal",
+    "continent": "Europe",
+    "lat": 39.5,
+    "lon": -8,
+    "fact": "Lisbon's Belém Tower once helped defend the harbour and commemorates Vasco da Gama's voyage.",
+    "factSource": "https://whc.unesco.org/en/list/263/"
+  },
+  {
+    "iso2": "QA",
+    "name": "Qatar",
+    "continent": "Asia",
+    "lat": 25.3,
+    "lon": 51.2,
+    "fact": "Al Zubarah's ruins preserve a coastal town that grew through pearl diving and trade.",
+    "factSource": "https://whc.unesco.org/en/list/1402/"
+  },
+  {
+    "iso2": "RO",
+    "name": "Romania",
+    "continent": "Europe",
+    "lat": 46,
+    "lon": 25,
+    "fact": "The Danube Delta's lakes and marshes shelter hundreds of bird species before the river reaches the Black Sea.",
+    "factSource": "https://whc.unesco.org/en/list/588/"
+  },
+  {
+    "iso2": "RU",
+    "name": "Russia",
+    "continent": "Europe / Asia",
+    "lat": 60,
+    "lon": 100,
+    "fact": "Siberia's Lake Baikal holds about one fifth of Earth's unfrozen freshwater reserve.",
+    "factSource": "https://whc.unesco.org/en/list/754/"
+  },
+  {
+    "iso2": "RW",
+    "name": "Rwanda",
+    "continent": "Africa",
+    "lat": -2,
+    "lon": 30,
+    "fact": "Nyungwe National Park protects rainforest habitat for eastern chimpanzees and golden monkeys.",
+    "factSource": "https://whc.unesco.org/en/list/1697/"
+  },
+  {
+    "iso2": "KN",
+    "name": "Saint Kitts and Nevis",
+    "continent": "North America",
+    "lat": 17.32,
+    "lon": -62.75,
+    "fact": "Brimstone Hill Fortress records the skilled work of enslaved Africans who built this Caribbean stronghold.",
+    "factSource": "https://whc.unesco.org/en/list/910/"
+  },
+  {
+    "iso2": "LC",
+    "name": "Saint Lucia",
+    "continent": "North America",
+    "lat": 13.9,
+    "lon": -60.97,
+    "fact": "Two steep volcanic peaks, Gros Piton and Petit Piton, rise beside the sea.",
+    "factSource": "https://whc.unesco.org/en/list/1161/"
+  },
+  {
+    "iso2": "VC",
+    "name": "Saint Vincent and the Grenadines",
+    "continent": "North America",
+    "lat": 13.25,
+    "lon": -61.2,
+    "fact": "La Soufrière is an active volcano rising above the forested interior of Saint Vincent.",
+    "factSource": "https://tourism.gov.vc/tourism/index.php?Itemid=71&catid=20&id=72&option=com_content&view=article"
+  },
+  {
+    "iso2": "WS",
+    "name": "Samoa",
+    "continent": "Oceania",
+    "lat": -13.83,
+    "lon": -171.77,
+    "fact": "On Upolu, To Sua is a deep natural swimming hole with a cave connected to the sea.",
+    "factSource": "https://www.samoa.travel/plan-book/activities/to-sua-ocean-trench/"
+  },
+  {
+    "iso2": "SM",
+    "name": "San Marino",
+    "continent": "Europe",
+    "lat": 43.94,
+    "lon": 12.45,
+    "fact": "A historic town and its fortification towers stand high on Mount Titano.",
+    "factSource": "https://whc.unesco.org/en/list/1245/"
+  },
+  {
+    "iso2": "ST",
+    "name": "São Tomé and Príncipe",
+    "continent": "Africa",
+    "lat": 0.24,
+    "lon": 6.6,
+    "fact": "These volcanic Gulf of Guinea islands shelter bird species found nowhere else.",
+    "factSource": "https://whc.unesco.org/en/tentativelists/6645/"
+  },
+  {
+    "iso2": "SA",
+    "name": "Saudi Arabia",
+    "continent": "Asia",
+    "lat": 24,
+    "lon": 45,
+    "fact": "At Hegra, Nabataean builders carved grand tombs with decorated entrances into rock.",
+    "factSource": "https://whc.unesco.org/en/list/1293/"
+  },
+  {
+    "iso2": "SN",
+    "name": "Senegal",
+    "continent": "Africa",
+    "lat": 14.5,
+    "lon": -14.5,
+    "fact": "Gorée Island's historic buildings help people remember enslavement and work toward reconciliation.",
+    "factSource": "https://whc.unesco.org/en/list/26/"
+  },
+  {
+    "iso2": "RS",
+    "name": "Serbia",
+    "continent": "Europe",
+    "lat": 44,
+    "lon": 21,
+    "fact": "Studenica Monastery has white-marble churches containing centuries-old Byzantine wall paintings.",
+    "factSource": "https://whc.unesco.org/en/list/389/"
+  },
+  {
+    "iso2": "SC",
+    "name": "Seychelles",
+    "continent": "Africa",
+    "lat": -4.65,
+    "lon": 55.46,
+    "fact": "Aldabra's coral islands surround a lagoon and provide a home for giant tortoises.",
+    "factSource": "https://whc.unesco.org/en/list/185/"
+  },
+  {
+    "iso2": "SL",
+    "name": "Sierra Leone",
+    "continent": "Africa",
+    "lat": 8.5,
+    "lon": -11.5,
+    "fact": "The Gola-Tiwai forests shelter pygmy hippopotamuses and white-necked rockfowl.",
+    "factSource": "https://whc.unesco.org/en/list/1746/"
+  },
+  {
+    "iso2": "SG",
+    "name": "Singapore",
+    "continent": "Asia",
+    "lat": 1.35,
+    "lon": 103.82,
+    "fact": "A botanic garden founded in 1859 became an important centre for scientific research into rubber cultivation.",
+    "factSource": "https://whc.unesco.org/en/list/1483/"
+  },
+  {
+    "iso2": "SK",
+    "name": "Slovakia",
+    "continent": "Europe",
+    "lat": 48.7,
+    "lon": 19.5,
+    "fact": "The Slovak Karst's limestone caves preserve clues to both tropical and icy ancient climates.",
+    "factSource": "https://whc.unesco.org/en/list/725/"
+  },
+  {
+    "iso2": "SI",
+    "name": "Slovenia",
+    "continent": "Europe",
+    "lat": 46.1,
+    "lon": 14.8,
+    "fact": "The Škocjan cave system contains underground passages, waterfalls and enormous limestone chambers.",
+    "factSource": "https://whc.unesco.org/en/list/390/"
+  },
+  {
+    "iso2": "SB",
+    "name": "Solomon Islands",
+    "continent": "Oceania",
+    "lat": -9.5,
+    "lon": 160.1,
+    "fact": "On Rennell Island, Lake Tegano was once the lagoon of a coral atoll raised above the sea.",
+    "factSource": "https://whc.unesco.org/en/list/854/"
+  },
+  {
+    "iso2": "SO",
+    "name": "Somalia",
+    "continent": "Africa",
+    "lat": 6,
+    "lon": 46,
+    "fact": "Laas Geel's rock shelters hold colourful ancient paintings, including cows with decorated necks.",
+    "factSource": "https://www.britishmuseum.org/collection/object/E_2013-2034-15766"
+  },
+  {
+    "iso2": "ZA",
+    "name": "South Africa",
+    "continent": "Africa",
+    "lat": -29,
+    "lon": 25,
+    "fact": "The Taung skull, discovered in 1924, is a fossil of an early human relative.",
+    "factSource": "https://whc.unesco.org/en/list/915/"
+  },
+  {
+    "iso2": "KR",
+    "name": "South Korea",
+    "continent": "Asia",
+    "lat": 36,
+    "lon": 128,
+    "fact": "Jeju Island has tunnels left by flowing lava and a volcanic mountain with a crater lake.",
+    "factSource": "https://whc.unesco.org/en/list/1264/"
+  },
+  {
+    "iso2": "SS",
+    "name": "South Sudan",
+    "continent": "Africa",
+    "lat": 7,
+    "lon": 30,
+    "fact": "The White Nile feeds the Sudd, a vast wetland that expands and shrinks with seasonal flooding.",
+    "factSource": "https://whc.unesco.org/en/tentativelists/6276/"
+  },
+  {
+    "iso2": "ES",
+    "name": "Spain",
+    "continent": "Europe",
+    "lat": 40,
+    "lon": -4,
+    "fact": "Granada's Alhambra is a hilltop fortress and palace beside the gardens of the Generalife.",
+    "factSource": "https://whc.unesco.org/en/list/314/"
+  },
+  {
+    "iso2": "LK",
+    "name": "Sri Lanka",
+    "continent": "Asia",
+    "lat": 7.5,
+    "lon": 80.7,
+    "fact": "At Sigiriya, stairs lead up Lion's Rock to the ruins of a city on a granite summit.",
+    "factSource": "https://whc.unesco.org/en/list/202/"
+  },
+  {
+    "iso2": "SD",
+    "name": "Sudan",
+    "continent": "Africa",
+    "lat": 16,
+    "lon": 30,
+    "fact": "Meroe preserves pyramids and temples from the ancient Kingdom of Kush.",
+    "factSource": "https://whc.unesco.org/en/list/1336/"
+  },
+  {
+    "iso2": "SR",
+    "name": "Suriname",
+    "continent": "South America",
+    "lat": 4,
+    "lon": -56,
+    "fact": "A rainforest reserve protects the upper Coppename River basin and shelters giant river otters.",
+    "factSource": "https://whc.unesco.org/en/list/1017/"
+  },
+  {
+    "iso2": "SE",
+    "name": "Sweden",
+    "continent": "Europe",
+    "lat": 62,
+    "lon": 15,
+    "fact": "Drottningholm's royal palace stands on a lake island beside a theatre built in 1766.",
+    "factSource": "https://whc.unesco.org/en/list/559/"
+  },
+  {
+    "iso2": "CH",
+    "name": "Switzerland",
+    "continent": "Europe",
+    "lat": 46.8,
+    "lon": 8.2,
+    "fact": "The Jungfrau-Aletsch region reveals how glaciers and mountain-building have shaped the Swiss Alps.",
+    "factSource": "https://whc.unesco.org/en/list/1037/"
+  },
+  {
+    "iso2": "SY",
+    "name": "Syria",
+    "continent": "Asia",
+    "lat": 35,
+    "lon": 38,
+    "fact": "Palmyra grew around a desert oasis, where ancient builders blended local, Greek, Roman and Persian influences.",
+    "factSource": "https://whc.unesco.org/en/list/23/"
+  },
+  {
+    "iso2": "TJ",
+    "name": "Tajikistan",
+    "continent": "Asia",
+    "lat": 38.8,
+    "lon": 71,
+    "fact": "Tajik National Park's Pamir mountains shelter snow leopards among glaciers and hundreds of lakes.",
+    "factSource": "https://whc.unesco.org/en/list/1252/"
+  },
+  {
+    "iso2": "TZ",
+    "name": "Tanzania",
+    "continent": "Africa",
+    "lat": -6,
+    "lon": 35,
+    "fact": "The Serengeti's migrating herds include wildebeest, zebras and gazelles searching for water.",
+    "factSource": "https://whc.unesco.org/en/list/156/"
+  },
+  {
+    "iso2": "TH",
+    "name": "Thailand",
+    "continent": "Asia",
+    "lat": 15,
+    "lon": 101,
+    "fact": "Ayutthaya's surviving towers and monasteries recall its past as a Siamese capital.",
+    "factSource": "https://whc.unesco.org/en/list/576/"
+  },
+  {
+    "iso2": "TL",
+    "name": "Timor-Leste",
+    "continent": "Asia",
+    "lat": -8.8,
+    "lon": 125.7,
+    "fact": "Tais is a handwoven cotton textile whose colours and patterns express Timorese community identities.",
+    "factSource": "https://ich.unesco.org/en/USL/tais-traditional-textile-01688"
+  },
+  {
+    "iso2": "TG",
+    "name": "Togo",
+    "continent": "Africa",
+    "lat": 8.5,
+    "lon": 1.1,
+    "fact": "In Koutammakou, Batammariba families build distinctive tower-shaped homes from earth.",
+    "factSource": "https://whc.unesco.org/en/list/1140/"
+  },
+  {
+    "iso2": "TO",
+    "name": "Tonga",
+    "continent": "Oceania",
+    "lat": -21.15,
+    "lon": -175.2,
+    "fact": "Tongatapu's coastline has blowholes where ocean waves send water upward through openings in coral rock.",
+    "factSource": "https://www.tongatourism.travel/our-islands/tongatapu"
+  },
+  {
+    "iso2": "TT",
+    "name": "Trinidad and Tobago",
+    "continent": "North America",
+    "lat": 10.4,
+    "lon": -61.3,
+    "fact": "At La Brea's Pitch Lake, natural bitumen reaches the surface and cools into asphalt.",
+    "factSource": "https://visittrinidad.tt/attractions/la-brea-pitch-lake/"
+  },
+  {
+    "iso2": "TN",
+    "name": "Tunisia",
+    "continent": "Africa",
+    "lat": 34,
+    "lon": 9,
+    "fact": "El Jem has a huge Roman amphitheatre built to hold tens of thousands of spectators.",
+    "factSource": "https://whc.unesco.org/en/list/38/"
+  },
+  {
+    "iso2": "TR",
+    "name": "Turkey",
+    "continent": "Europe / Asia",
+    "lat": 39,
+    "lon": 35,
+    "fact": "At Pamukkale, mineral-rich spring water builds pale terraces and pools along a hillside.",
+    "factSource": "https://whc.unesco.org/en/list/485/"
+  },
+  {
+    "iso2": "TM",
+    "name": "Turkmenistan",
+    "continent": "Asia",
+    "lat": 39,
+    "lon": 59,
+    "fact": "Ancient Merv was an oasis city on the Silk Road; its ruins span thousands of years.",
+    "factSource": "https://whc.unesco.org/en/list/886/"
+  },
+  {
+    "iso2": "TV",
+    "name": "Tuvalu",
+    "continent": "Oceania",
+    "lat": -8.52,
+    "lon": 179.2,
+    "fact": "Nine widely separated, low-lying island and atoll groups make up this Pacific nation.",
+    "factSource": "https://pacific.un.org/en/about/tuvalu"
+  },
+  {
+    "iso2": "UG",
+    "name": "Uganda",
+    "continent": "Africa",
+    "lat": 1,
+    "lon": 32,
+    "fact": "Bwindi's forest protects mountain gorillas alongside many kinds of ferns and butterflies.",
+    "factSource": "https://whc.unesco.org/en/list/682/"
+  },
+  {
+    "iso2": "UA",
+    "name": "Ukraine",
+    "continent": "Europe",
+    "lat": 49,
+    "lon": 32,
+    "fact": "Kyiv's Saint-Sophia Cathedral was designed in the eleventh century to rival Constantinople's Hagia Sophia.",
+    "factSource": "https://whc.unesco.org/en/list/527/"
+  },
+  {
+    "iso2": "AE",
+    "name": "United Arab Emirates",
+    "continent": "Asia",
+    "lat": 24.2,
+    "lon": 54.5,
+    "fact": "Al Ain's ancient settlements include irrigation channels that brought water to desert communities.",
+    "factSource": "https://whc.unesco.org/en/list/1343/"
+  },
+  {
+    "iso2": "GB",
+    "name": "United Kingdom",
+    "continent": "Europe",
+    "lat": 54,
+    "lon": -2,
+    "fact": "Stonehenge and nearby Avebury preserve prehistoric circles of enormous standing stones.",
+    "factSource": "https://whc.unesco.org/en/list/373/"
+  },
+  {
+    "iso2": "US",
+    "name": "United States",
+    "continent": "North America",
+    "lat": 39,
+    "lon": -100,
+    "fact": "Yellowstone has geysers that shoot hot water upward, along with other volcanic heat features.",
+    "factSource": "https://whc.unesco.org/en/list/28/"
+  },
+  {
+    "iso2": "UY",
+    "name": "Uruguay",
+    "continent": "South America",
+    "lat": -33,
+    "lon": -56,
+    "fact": "Fray Bentos preserves factories that once prepared and exported meat products across the world.",
+    "factSource": "https://whc.unesco.org/en/list/1464/"
+  },
+  {
+    "iso2": "UZ",
+    "name": "Uzbekistan",
+    "continent": "Asia",
+    "lat": 41,
+    "lon": 64,
+    "fact": "Samarkand's historic monuments include Ulugh Beg's observatory, a place for studying the sky.",
+    "factSource": "https://whc.unesco.org/en/list/603/"
+  },
+  {
+    "iso2": "VU",
+    "name": "Vanuatu",
+    "continent": "Oceania",
+    "lat": -17.73,
+    "lon": 168.32,
+    "fact": "Chief Roi Mata's Domain connects three islands through archaeology and stories passed down by voice.",
+    "factSource": "https://whc.unesco.org/en/list/1280/"
+  },
+  {
+    "iso2": "VE",
+    "name": "Venezuela",
+    "continent": "South America",
+    "lat": 7,
+    "lon": -65,
+    "fact": "Canaima National Park contains tepuis: flat-topped mountains with sheer cliffs and waterfalls.",
+    "factSource": "https://whc.unesco.org/en/list/701/"
+  },
+  {
+    "iso2": "VN",
+    "name": "Vietnam",
+    "continent": "Asia",
+    "lat": 16,
+    "lon": 107.5,
+    "fact": "Ha Long Bay and Cat Ba have limestone islands rising from the sea like stone towers.",
+    "factSource": "https://whc.unesco.org/en/list/672/"
+  },
+  {
+    "iso2": "YE",
+    "name": "Yemen",
+    "continent": "Asia",
+    "lat": 15.5,
+    "lon": 47.5,
+    "fact": "Socotra's isolated islands shelter many plants, reptiles and land snails found nowhere else.",
+    "factSource": "https://whc.unesco.org/en/list/1263/"
+  },
+  {
+    "iso2": "ZM",
+    "name": "Zambia",
+    "continent": "Africa",
+    "lat": -13,
+    "lon": 28,
+    "fact": "At Victoria Falls, the Zambezi plunges into basalt gorges and throws mist high into the air.",
+    "factSource": "https://whc.unesco.org/en/list/509/"
+  },
+  {
+    "iso2": "ZW",
+    "name": "Zimbabwe",
+    "continent": "Africa",
+    "lat": -19,
+    "lon": 30,
+    "fact": "A ruined medieval city preserves the remains of an important Shona trading centre.",
+    "factSource": "https://whc.unesco.org/en/list/364/"
+  }
+]

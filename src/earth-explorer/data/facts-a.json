@@ -1,0 +1,596 @@
+[
+  {
+    "iso2": "AF",
+    "name": "Afghanistan",
+    "continent": "Asia",
+    "lat": 34,
+    "lon": 65,
+    "fact": "The Minaret of Jam is a 65-metre brick tower standing in a deep mountain river valley.",
+    "factSource": "https://whc.unesco.org/en/list/211/"
+  },
+  {
+    "iso2": "AL",
+    "name": "Albania",
+    "continent": "Europe",
+    "lat": 41,
+    "lon": 20,
+    "fact": "Butrint preserves layers of an ancient Greek colony and a later Roman city at the same site.",
+    "factSource": "https://whc.unesco.org/en/list/570/"
+  },
+  {
+    "iso2": "DZ",
+    "name": "Algeria",
+    "continent": "Africa",
+    "lat": 28,
+    "lon": 3,
+    "fact": "Tassili n'Ajjer has thousands of prehistoric rock pictures among sandstone formations shaped like a stone forest.",
+    "factSource": "https://whc.unesco.org/en/list/179/"
+  },
+  {
+    "iso2": "AD",
+    "name": "Andorra",
+    "continent": "Europe",
+    "lat": 42.55,
+    "lon": 1.58,
+    "fact": "The Madriu-Perafita-Claror Valley preserves stone shepherd huts and mountain paths high in the Pyrenees.",
+    "factSource": "https://whc.unesco.org/en/list/1160/"
+  },
+  {
+    "iso2": "AO",
+    "name": "Angola",
+    "continent": "Africa",
+    "lat": -12,
+    "lon": 18,
+    "fact": "Mbanza Kongo stands on a plateau and was the royal capital of the historic Kingdom of Kongo.",
+    "factSource": "https://whc.unesco.org/en/list/1511/"
+  },
+  {
+    "iso2": "AG",
+    "name": "Antigua and Barbuda",
+    "continent": "North America",
+    "lat": 17.064,
+    "lon": -61.8,
+    "fact": "Antigua's naval dockyard was built beside deep, narrow bays that sheltered and helped repair sailing ships.",
+    "factSource": "https://whc.unesco.org/en/list/1499/"
+  },
+  {
+    "iso2": "AR",
+    "name": "Argentina",
+    "continent": "South America",
+    "lat": -35,
+    "lon": -65,
+    "fact": "In Los Glaciares National Park, huge glaciers end in lakes and break off floating icebergs.",
+    "factSource": "https://whc.unesco.org/en/list/145/"
+  },
+  {
+    "iso2": "AM",
+    "name": "Armenia",
+    "continent": "Asia",
+    "lat": 40.25,
+    "lon": 44.95,
+    "fact": "Several churches and tombs at Geghard monastery were carved directly into the surrounding rock.",
+    "factSource": "https://whc.unesco.org/en/list/960/"
+  },
+  {
+    "iso2": "AU",
+    "name": "Australia",
+    "continent": "Oceania",
+    "lat": -25,
+    "lon": 134,
+    "fact": "The Great Barrier Reef is an enormous coral reef ecosystem off the country's north-east coast.",
+    "factSource": "https://whc.unesco.org/en/list/154/"
+  },
+  {
+    "iso2": "AT",
+    "name": "Austria",
+    "continent": "Europe",
+    "lat": 47.5,
+    "lon": 14,
+    "fact": "People were mining salt around Hallstatt thousands of years ago; salt helped the town become prosperous.",
+    "factSource": "https://whc.unesco.org/en/list/806/"
+  },
+  {
+    "iso2": "AZ",
+    "name": "Azerbaijan",
+    "continent": "Asia",
+    "lat": 40.3,
+    "lon": 47.7,
+    "fact": "Gobustan has more than 6,000 rock engravings showing traces of people across thousands of years.",
+    "factSource": "https://whc.unesco.org/en/list/1076/"
+  },
+  {
+    "iso2": "BS",
+    "name": "Bahamas",
+    "continent": "North America",
+    "lat": 24.5,
+    "lon": -77.8,
+    "fact": "Dean's Blue Hole on Long Island is a deep underwater sinkhole beside a white-sand beach.",
+    "factSource": "https://www.bahamas.com/natural-wonders/deans-blue-hole"
+  },
+  {
+    "iso2": "BH",
+    "name": "Bahrain",
+    "continent": "Asia",
+    "lat": 26,
+    "lon": 50.55,
+    "fact": "An ancient fort called Qal'at stands on a mound built up by many layers of earlier human settlements.",
+    "factSource": "https://whc.unesco.org/en/list/1192/"
+  },
+  {
+    "iso2": "BD",
+    "name": "Bangladesh",
+    "continent": "Asia",
+    "lat": 24,
+    "lon": 90,
+    "fact": "Bengal tigers live in the Sundarbans, a mangrove forest threaded by tidal waterways.",
+    "factSource": "https://whc.unesco.org/en/list/798/"
+  },
+  {
+    "iso2": "BB",
+    "name": "Barbados",
+    "continent": "North America",
+    "lat": 13.16,
+    "lon": -59.55,
+    "fact": "Old Bridgetown has winding streets, unlike the straight grid used by many other Caribbean colonial towns.",
+    "factSource": "https://whc.unesco.org/en/list/1376/"
+  },
+  {
+    "iso2": "BY",
+    "name": "Belarus",
+    "continent": "Europe",
+    "lat": 53.5,
+    "lon": 28,
+    "fact": "Mir Castle combines Gothic, Renaissance and Baroque styles because it was rebuilt and extended over centuries.",
+    "factSource": "https://whc.unesco.org/en/list/625/"
+  },
+  {
+    "iso2": "BE",
+    "name": "Belgium",
+    "continent": "Europe",
+    "lat": 50.8,
+    "lon": 4.6,
+    "fact": "The Grand-Place in Brussels is a historic square ringed by ornate public buildings and guild houses.",
+    "factSource": "https://whc.unesco.org/en/list/857/"
+  },
+  {
+    "iso2": "BZ",
+    "name": "Belize",
+    "continent": "North America",
+    "lat": 17.2,
+    "lon": -88.7,
+    "fact": "The coastal reef reserve includes coral reefs, sand islands and mangroves that shelter turtles and manatees.",
+    "factSource": "https://whc.unesco.org/en/list/764/"
+  },
+  {
+    "iso2": "BJ",
+    "name": "Benin",
+    "continent": "Africa",
+    "lat": 9.5,
+    "lon": 2.3,
+    "fact": "At Abomey, generations of kings built their royal palaces inside a shared earthen-walled area.",
+    "factSource": "https://whc.unesco.org/en/list/323/"
+  },
+  {
+    "iso2": "BT",
+    "name": "Bhutan",
+    "continent": "Asia",
+    "lat": 27.5,
+    "lon": 90.5,
+    "fact": "Paro Taktsang, nicknamed Tiger's Nest, is a monastery built on a steep cliff above the Paro valley.",
+    "factSource": "https://dcdd.moha.gov.bt/collection/paro-taktshang/"
+  },
+  {
+    "iso2": "BO",
+    "name": "Bolivia",
+    "continent": "South America",
+    "lat": -17,
+    "lon": -64,
+    "fact": "Salar de Uyuni is a vast salt flat left behind by ancient lakes high in the Andes.",
+    "factSource": "https://en.wikipedia.org/wiki/Salar_de_Uyuni"
+  },
+  {
+    "iso2": "BA",
+    "name": "Bosnia and Herzegovina",
+    "continent": "Europe",
+    "lat": 44,
+    "lon": 18,
+    "fact": "Mostar is named after its famous Old Bridge, which crosses the Neretva River and was rebuilt after war.",
+    "factSource": "https://whc.unesco.org/en/list/946/"
+  },
+  {
+    "iso2": "BW",
+    "name": "Botswana",
+    "continent": "Africa",
+    "lat": -22,
+    "lon": 24,
+    "fact": "The Okavango Delta spreads inland instead of reaching the sea, and its flood arrives during the dry season.",
+    "factSource": "https://whc.unesco.org/en/list/1432/"
+  },
+  {
+    "iso2": "BR",
+    "name": "Brazil",
+    "continent": "South America",
+    "lat": -12,
+    "lon": -52,
+    "fact": "The planned capital Brasilia has a layout often compared to a bird with its wings spread.",
+    "factSource": "https://whc.unesco.org/en/list/445/"
+  },
+  {
+    "iso2": "BN",
+    "name": "Brunei",
+    "continent": "Asia",
+    "lat": 4.6,
+    "lon": 114.55,
+    "fact": "Kampong Ayer is a water settlement where many houses stand on stilts above the river.",
+    "factSource": "https://www.bruneitourism.com/places/kampong-ayer/"
+  },
+  {
+    "iso2": "BG",
+    "name": "Bulgaria",
+    "continent": "Europe",
+    "lat": 42.7,
+    "lon": 25.3,
+    "fact": "Rila Monastery began in the tenth century and was rebuilt after a major fire in the nineteenth century.",
+    "factSource": "https://whc.unesco.org/en/list/216/"
+  },
+  {
+    "iso2": "BF",
+    "name": "Burkina Faso",
+    "continent": "Africa",
+    "lat": 12.3,
+    "lon": -1.6,
+    "fact": "Loropeni's tall stone walls are the remains of a fortress connected with historic gold trading.",
+    "factSource": "https://whc.unesco.org/en/list/1225/"
+  },
+  {
+    "iso2": "BI",
+    "name": "Burundi",
+    "continent": "Africa",
+    "lat": -3.4,
+    "lon": 29.9,
+    "fact": "This country shares Lake Tanganyika with Tanzania, Zambia and the Democratic Republic of the Congo.",
+    "factSource": "https://en.wikipedia.org/wiki/Lake_Tanganyika"
+  },
+  {
+    "iso2": "CV",
+    "name": "Cabo Verde",
+    "continent": "Africa",
+    "lat": 15.07,
+    "lon": -23.62,
+    "fact": "Cidade Velha on Santiago Island preserves old streets and a hilltop royal fortress from its port-town past.",
+    "factSource": "https://whc.unesco.org/en/list/1310/"
+  },
+  {
+    "iso2": "KH",
+    "name": "Cambodia",
+    "continent": "Asia",
+    "lat": 12.8,
+    "lon": 104.9,
+    "fact": "Angkor Wat is part of a huge archaeological landscape containing former capitals of the Khmer Empire.",
+    "factSource": "https://whc.unesco.org/en/list/668/"
+  },
+  {
+    "iso2": "CM",
+    "name": "Cameroon",
+    "continent": "Africa",
+    "lat": 5.8,
+    "lon": 12.8,
+    "fact": "The Dja River almost completely surrounds Dja Faunal Reserve, forming a natural rainforest boundary.",
+    "factSource": "https://whc.unesco.org/en/list/407/"
+  },
+  {
+    "iso2": "CA",
+    "name": "Canada",
+    "continent": "North America",
+    "lat": 55,
+    "lon": -105,
+    "fact": "Dinosaur Provincial Park in Alberta preserves dinosaur fossils about 75 million years old.",
+    "factSource": "https://whc.unesco.org/en/list/71/"
+  },
+  {
+    "iso2": "CF",
+    "name": "Central African Republic",
+    "continent": "Africa",
+    "lat": 6.5,
+    "lon": 20.5,
+    "fact": "Manovo-Gounda St Floris National Park combines broad savannahs with northern floodplains used by water birds.",
+    "factSource": "https://whc.unesco.org/en/list/475/"
+  },
+  {
+    "iso2": "TD",
+    "name": "Chad",
+    "continent": "Africa",
+    "lat": 15.5,
+    "lon": 18.5,
+    "fact": "Wind and water carved the Ennedi sandstone into natural arches, cliffs and canyons in the Sahara.",
+    "factSource": "https://whc.unesco.org/en/list/1475/"
+  },
+  {
+    "iso2": "CL",
+    "name": "Chile",
+    "continent": "South America",
+    "lat": -33,
+    "lon": -71,
+    "fact": "Rapa Nui, also called Easter Island, is famous for the enormous carved stone figures called moai.",
+    "factSource": "https://whc.unesco.org/en/list/715/"
+  },
+  {
+    "iso2": "CN",
+    "name": "China",
+    "continent": "Asia",
+    "lat": 35,
+    "lon": 105,
+    "fact": "The Great Wall joined and extended older defensive walls over many centuries.",
+    "factSource": "https://whc.unesco.org/en/list/438/"
+  },
+  {
+    "iso2": "CO",
+    "name": "Colombia",
+    "continent": "South America",
+    "lat": 4,
+    "lon": -73,
+    "fact": "In the coffee-growing landscape, farmers grow coffee on small plots along steep Andean mountain slopes.",
+    "factSource": "https://whc.unesco.org/en/list/1121/"
+  },
+  {
+    "iso2": "KM",
+    "name": "Comoros",
+    "continent": "Africa",
+    "lat": -11.75,
+    "lon": 43.35,
+    "fact": "Karthala is a volcano on Grande Comore with a summit caldera several kilometres across.",
+    "factSource": "https://volcano.si.edu/volcano.cfm?vn=233010&vtab=Weekly"
+  },
+  {
+    "iso2": "CG",
+    "name": "Congo (Republic)",
+    "continent": "Africa",
+    "lat": -1,
+    "lon": 15,
+    "fact": "Congo shares the Sangha Trinational forest site with Cameroon and the Central African Republic.",
+    "factSource": "https://whc.unesco.org/en/list/1380/"
+  },
+  {
+    "iso2": "CR",
+    "name": "Costa Rica",
+    "continent": "North America",
+    "lat": 9.8,
+    "lon": -84.1,
+    "fact": "Cocos Island has tropical rainforest above water and ocean habitats visited by sharks, rays and dolphins below.",
+    "factSource": "https://whc.unesco.org/en/list/820/"
+  },
+  {
+    "iso2": "HR",
+    "name": "Croatia",
+    "continent": "Europe",
+    "lat": 45.2,
+    "lon": 16.4,
+    "fact": "At Plitvice Lakes, flowing water deposits mineral barriers that form natural dams, lakes and waterfalls.",
+    "factSource": "https://whc.unesco.org/en/list/98/"
+  },
+  {
+    "iso2": "CU",
+    "name": "Cuba",
+    "continent": "North America",
+    "lat": 22,
+    "lon": -79.5,
+    "fact": "The old city of Trinidad preserves grand houses built during its eighteenth- and nineteenth-century sugar-trading era.",
+    "factSource": "https://whc.unesco.org/en/list/460/"
+  },
+  {
+    "iso2": "CY",
+    "name": "Cyprus",
+    "continent": "Asia",
+    "lat": 34.95,
+    "lon": 33.05,
+    "fact": "Ancient Paphos preserves Roman-era villas with detailed mosaic floors.",
+    "factSource": "https://whc.unesco.org/en/list/79/"
+  },
+  {
+    "iso2": "CZ",
+    "name": "Czechia",
+    "continent": "Europe",
+    "lat": 49.8,
+    "lon": 15.5,
+    "fact": "Kutna Hora grew wealthy from silver mines, helping pay for its remarkable Gothic church of St Barbara.",
+    "factSource": "https://whc.unesco.org/en/list/732/"
+  },
+  {
+    "iso2": "CD",
+    "name": "Democratic Republic of the Congo",
+    "continent": "Africa",
+    "lat": -3,
+    "lon": 23,
+    "fact": "Virunga National Park includes mountain-gorilla habitat, volcano slopes and even high mountain snowfields.",
+    "factSource": "https://whc.unesco.org/en/list/63/"
+  },
+  {
+    "iso2": "DK",
+    "name": "Denmark",
+    "continent": "Europe",
+    "lat": 56.1,
+    "lon": 9.5,
+    "fact": "Kronborg Castle is known as Elsinore, the setting of Shakespeare's play Hamlet.",
+    "factSource": "https://whc.unesco.org/en/list/696/"
+  },
+  {
+    "iso2": "DJ",
+    "name": "Djibouti",
+    "continent": "Africa",
+    "lat": 11.8,
+    "lon": 42.6,
+    "fact": "Lake Assal is an extremely salty lake whose surface lies about 155 metres below sea level.",
+    "factSource": "https://doi.org/10.1016/0031-0182(89)90156-9"
+  },
+  {
+    "iso2": "DM",
+    "name": "Dominica",
+    "continent": "North America",
+    "lat": 15.426,
+    "lon": -61.35,
+    "fact": "Morne Trois Pitons National Park contains hot springs, volcanoes and a steaming feature named Boiling Lake.",
+    "factSource": "https://whc.unesco.org/en/list/814/"
+  },
+  {
+    "iso2": "DO",
+    "name": "Dominican Republic",
+    "continent": "North America",
+    "lat": 19,
+    "lon": -70.5,
+    "fact": "Santo Domingo's old town used a street grid that became a model for later colonial towns in the Americas.",
+    "factSource": "https://whc.unesco.org/en/list/526/"
+  },
+  {
+    "iso2": "EC",
+    "name": "Ecuador",
+    "continent": "South America",
+    "lat": -1.5,
+    "lon": -78.5,
+    "fact": "The Galapagos Islands' giant tortoises and unusual finches helped inspire Charles Darwin's ideas about evolution.",
+    "factSource": "https://whc.unesco.org/en/list/1/"
+  },
+  {
+    "iso2": "EG",
+    "name": "Egypt",
+    "continent": "Africa",
+    "lat": 26,
+    "lon": 30,
+    "fact": "The pyramid fields around ancient Memphis include the giant royal tombs at Giza.",
+    "factSource": "https://whc.unesco.org/en/list/86/"
+  },
+  {
+    "iso2": "SV",
+    "name": "El Salvador",
+    "continent": "North America",
+    "lat": 13.8,
+    "lon": -88.9,
+    "fact": "Joya de Ceren is a farming village preserved beneath volcanic ash from an eruption around AD 600.",
+    "factSource": "https://whc.unesco.org/en/list/675/"
+  },
+  {
+    "iso2": "GQ",
+    "name": "Equatorial Guinea",
+    "continent": "Africa",
+    "lat": 1.6,
+    "lon": 10.4,
+    "fact": "On Bioko Island, lowland rainforest gives way to mountain forests as the land rises.",
+    "factSource": "https://www.unesco.org/en/mab/isla-de-bioko"
+  },
+  {
+    "iso2": "ER",
+    "name": "Eritrea",
+    "continent": "Africa",
+    "lat": 15.5,
+    "lon": 38.8,
+    "fact": "Asmara sits more than 2,000 metres above sea level and is known for its early modernist buildings.",
+    "factSource": "https://whc.unesco.org/en/list/1550/"
+  },
+  {
+    "iso2": "EE",
+    "name": "Estonia",
+    "continent": "Europe",
+    "lat": 58.7,
+    "lon": 25.5,
+    "fact": "Tallinn's old town preserves medieval merchants' houses from its days in the Hanseatic trading network.",
+    "factSource": "https://whc.unesco.org/en/list/822/"
+  },
+  {
+    "iso2": "SZ",
+    "name": "Eswatini",
+    "continent": "Africa",
+    "lat": -26.5,
+    "lon": 31.5,
+    "fact": "Sibebe Rock near Mbabane is a huge exposed granite dome that walkers can climb.",
+    "factSource": "https://thekingdomofeswatini.com/wp-content/uploads/2018/07/Swaziland-Community-Tourism.pdf"
+  },
+  {
+    "iso2": "ET",
+    "name": "Ethiopia",
+    "continent": "Africa",
+    "lat": 9,
+    "lon": 40,
+    "fact": "Lalibela has eleven medieval churches hewn from solid rock rather than assembled from separate stone blocks.",
+    "factSource": "https://whc.unesco.org/en/list/18/"
+  },
+  {
+    "iso2": "FJ",
+    "name": "Fiji",
+    "continent": "Oceania",
+    "lat": -17.82,
+    "lon": 178.1,
+    "fact": "Levuka, the country's first colonial capital, is a waterfront town with low buildings among coconut and mango trees.",
+    "factSource": "https://whc.unesco.org/en/list/1399/"
+  },
+  {
+    "iso2": "FI",
+    "name": "Finland",
+    "continent": "Europe",
+    "lat": 64,
+    "lon": 26,
+    "fact": "Suomenlinna is a sea fortress built across a group of islands at the entrance to Helsinki's harbour.",
+    "factSource": "https://whc.unesco.org/en/list/583/"
+  },
+  {
+    "iso2": "FR",
+    "name": "France",
+    "continent": "Europe",
+    "lat": 47,
+    "lon": 2,
+    "fact": "Mont-Saint-Michel is an abbey and village on a rocky islet surrounded by sandbanks and strong tides.",
+    "factSource": "https://whc.unesco.org/en/list/80/"
+  },
+  {
+    "iso2": "GA",
+    "name": "Gabon",
+    "continent": "Africa",
+    "lat": -1,
+    "lon": 11.8,
+    "fact": "Lope-Okanda brings dense rainforest and ancient savannah together in the same protected landscape.",
+    "factSource": "https://whc.unesco.org/en/list/1147/"
+  },
+  {
+    "iso2": "GM",
+    "name": "Gambia",
+    "continent": "Africa",
+    "lat": 13.45,
+    "lon": -15.5,
+    "fact": "Wassu's ancient stone circles are part of the Senegambian landscape of upright stone pillars and burial mounds.",
+    "factSource": "https://whc.unesco.org/en/list/1226/"
+  },
+  {
+    "iso2": "GE",
+    "name": "Georgia",
+    "continent": "Asia",
+    "lat": 42.2,
+    "lon": 43.5,
+    "fact": "Upper Svaneti has mountain villages with stone tower-houses once used as both homes and defensive shelters.",
+    "factSource": "https://whc.unesco.org/en/list/709/"
+  },
+  {
+    "iso2": "DE",
+    "name": "Germany",
+    "continent": "Europe",
+    "lat": 51,
+    "lon": 10,
+    "fact": "Cologne Cathedral was started in 1248 but was not completed until 1880, more than six centuries later.",
+    "factSource": "https://whc.unesco.org/en/list/292/"
+  },
+  {
+    "iso2": "GH",
+    "name": "Ghana",
+    "continent": "Africa",
+    "lat": 7.8,
+    "lon": -1.2,
+    "fact": "The coast preserves stone forts and castles built as trading posts between the fifteenth and eighteenth centuries.",
+    "factSource": "https://whc.unesco.org/en/list/34/"
+  },
+  {
+    "iso2": "GR",
+    "name": "Greece",
+    "continent": "Europe",
+    "lat": 39,
+    "lon": 22,
+    "fact": "The Parthenon stands on the Acropolis, the rocky hill above Athens with ancient temples and monuments.",
+    "factSource": "https://whc.unesco.org/en/list/404/"
+  }
+]

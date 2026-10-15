@@ -1,0 +1,60 @@
+{
+  "label": "Demonstration computing facts — may be too familiar for evaluation",
+  "reviewedOn": "2026-09-29",
+  "facts": [
+    {
+      "itemId": "f1",
+      "locusId": "door",
+      "term": "Stack",
+      "meaning": "A collection where the last item added is the first item removed (last in, first out).",
+      "termAliases": [],
+      "meaningRubric": "Credit an answer that says the most recently added item is removed first, or states last in, first out.",
+      "source": "https://opendsa.cs.vt.edu/ODSA/Books/wmu/cs3310/fall-2018/TR_100pm/html/StackArray.html"
+    },
+    {
+      "itemId": "f2",
+      "locusId": "desk",
+      "term": "Queue",
+      "meaning": "A collection where the first item added is the first item removed (first in, first out).",
+      "termAliases": [],
+      "meaningRubric": "Credit an answer that says items are removed in arrival order, or states first in, first out.",
+      "source": "https://opendsa.cs.vt.edu/ODSA/Books/park-u/cs352-8c4e86db-183b-4e83-9e36-4b5e63f13d4a/fall-2025/Fall_F2F/html/Queue.html"
+    },
+    {
+      "itemId": "f3",
+      "locusId": "bookshelf",
+      "term": "Cache",
+      "meaning": "A fast, usually temporary store of reusable data so later requests can be served more quickly.",
+      "termAliases": [],
+      "meaningRubric": "Credit storing a reusable copy of data for faster future access; exact storage technology is unnecessary.",
+      "source": "https://aws.amazon.com/caching/"
+    },
+    {
+      "itemId": "f4",
+      "locusId": "window",
+      "term": "Recursion",
+      "meaning": "A function solves a problem by calling itself on smaller cases until a stopping case is reached.",
+      "termAliases": [],
+      "meaningRubric": "Credit self-calling on a smaller case and a base or stopping case; either equivalent wording is acceptable.",
+      "source": "https://developer.mozilla.org/en-US/docs/Glossary/Recursion"
+    },
+    {
+      "itemId": "f5",
+      "locusId": "plant",
+      "term": "Deadlock",
+      "meaning": "Two or more threads cannot proceed because each is waiting for another to release a needed resource.",
+      "termAliases": [],
+      "meaningRubric": "Credit mutual or circular waiting that stops all involved threads from progressing.",
+      "source": "https://docs.oracle.com/javase/tutorial/essential/concurrency/deadlock.html"
+    },
+    {
+      "itemId": "f6",
+      "locusId": "lamp",
+      "term": "Semaphore",
+      "meaning": "A synchronization tool that uses permits to limit how many threads can access a resource at once.",
+      "termAliases": [],
+      "meaningRubric": "Credit permits or a counter controlling access to a shared resource; exact implementation detail is unnecessary.",
+      "source": "https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/Semaphore.html"
+    }
+  ]
+}

@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#061425" />
+    <title>Earth Explorer · Orbit and discover</title>
+  </head>
+  <body>
+    <main>
+      <div id="room" aria-label="Earth, Sun and Moon learning environment"></div>
+      <div id="fade" aria-hidden="true"></div>
+      <header>
+        <a href="./" class="brand">◉ EARTH EXPLORER</a><span id="mode-label">ORBIT OBSERVATORY</span
+        ><button id="sound" data-action="muted">Sound on</button
+        ><button id="vr" data-action="vr" disabled>Checking VR…</button>
+      </header>
+      <section id="mission" class="mission">
+        <p class="eyebrow" id="chapter">ONE EARTH · TWO PERSPECTIVES</p>
+        <h1 id="goal" tabindex="-1">See Earth in motion.</h1>
+        <p id="feedback" role="status" aria-live="polite">
+          Watch our planet orbit the Sun, then explore its countries.
+        </p>
+        <div class="actions">
+          <button class="primary" id="explore-here" data-action="mode:globe">Explore here ↗</button
+          ><button id="pause" data-action="play">Play time</button>
+        </div>
+        <small id="focus-country"></small>
+      </section>
+      <section id="time-panel" class="time-panel" aria-label="Time controls">
+        <button data-action="hide-time" class="close" aria-label="Minimize simulation clock">
+          ×
+        </button>
+        <p class="eyebrow">ONE SHARED SIMULATION CLOCK</p>
+        <h2><span id="date-readout"></span> <span id="time-readout"></span></h2>
+        <div class="time-top">
+          <label
+            >Year
+            <select id="year" aria-label="Year"></select></label
+          ><label
+            >Date <input type="date" id="date" aria-label="Date" min="1900-01-01" max="2100-12-31"
+          /></label>
+        </div>
+        <label for="day-range">Calendar year <strong id="day-readout"></strong></label
+        ><input
+          id="day-range"
+          type="range"
+          min="1"
+          max="365"
+          value="172"
+          step="1"
+          aria-label="Day of year"
+        />
+        <div class="month-ticks" aria-hidden="true">
+          Jan · Feb · Mar · Apr · May · Jun · Jul · Aug · Sep · Oct · Nov · Dec
+        </div>
+        <label for="hour-range">UTC simulation time <strong id="hour-readout"></strong></label
+        ><input
+          id="hour-range"
+          type="range"
+          min="0"
+          max="1440"
+          value="720"
+          step="15"
+          aria-label="UTC time of day"
+        />
+        <div class="hour-ticks" aria-hidden="true">
+          <span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span>
+        </div>
+        <div class="actions">
+          <button data-action="step-day:-1">− Day</button
+          ><button data-action="step-day:1">+ Day</button
+          ><button id="time-play" data-action="play">Play</button
+          ><label
+            >Speed
+            <select id="speed" aria-label="Playback speed">
+              <option value="4320000">Day / 20 seconds</option>
+              <option value="10800000" selected>Day / 8 seconds</option>
+              <option value="86400000">1 day / second</option>
+              <option value="259200000">3 days / second</option>
+            </select></label
+          >
+        </div>
+        <p id="moon-readout" class="note"></p>
+      </section>
+      <button
+        id="clock-mini"
+        class="clock-mini"
+        data-action="time"
+        aria-label="Expand simulation clock"
+        hidden
+      >
+        <small>SIMULATION CLOCK</small><span id="compact-clock"></span><b aria-hidden="true">⌃</b>
+      </button>
+      <section id="country-card" class="country-card" hidden aria-label="Country learning card">
+        <button data-action="close-card" class="close" aria-label="Close country card">×</button>
+        <p class="eyebrow" id="country-continent"></p>
+        <h2 id="country-name"></h2>
+        <p id="country-fact"></p>
+        <a id="country-source" target="_blank" rel="noreferrer">Fact source</a
+        ><button class="primary" id="land-country">Visit this country</button>
+      </section>
+      <aside id="map-overview" hidden aria-label="Location overview">
+        <canvas
+          id="mini-globe"
+          width="180"
+          height="180"
+          aria-label="Small globe showing your location"
+        ></canvas
+        ><span id="current-place"></span><span id="coordinates"></span
+        ><span id="light-readout"></span>
+      </aside>
+      <nav class="dock" aria-label="Room controls">
+        <button data-action="mode-panel">Mode</button
+        ><button data-action="time" id="time-button">Time</button
+        ><button data-action="countries">Countries</button
+        ><button data-action="quiz-start" id="quiz-button">Quiz · 0 / 5 explored</button
+        ><button data-action="menu">Menu / M</button>
+      </nav>
+      <small class="scale-note"
+        >Educational scale · Distances compressed · Boundaries generalised · Decorative sky</small
+      >
+      <p id="sound-status" role="status" hidden></p>
+      <p id="load-status" role="status">Loading local globe and country map…</p>
+      <dialog id="menu" aria-labelledby="menu-title">
+        <div class="menu-heading">
+          <div>
+            <p class="eyebrow">EARTH EXPLORER</p>
+            <h2 id="menu-title" tabindex="-1">Room menu</h2>
+          </div>
+          <button data-action="close" aria-label="Close menu">×</button>
+        </div>
+        <div class="grid">
+          <button class="primary" data-action="close">Continue</button
+          ><button data-action="room:main">Main room</button>
+        </div>
+        <h3>Your view</h3>
+        <div class="grid">
+          <button data-action="mode:orbit">Orbit Observatory</button
+          ><button data-action="mode:globe">Globe Explorer</button
+          ><button data-action="view:system">System view</button
+          ><button data-action="view:earth">Earth close view</button>
+        </div>
+        <h3>Comfort & display</h3>
+        <div class="grid">
+          <button id="map-light" data-action="mapLight">Map light on</button
+          ><button id="stationary" data-action="stationary">Walking enabled</button
+          ><button id="reduced" data-action="reduced">Reduced motion off</button
+          ><button id="large" data-action="large">Larger text off</button
+          ><button id="paths" data-action="paths">Orbit paths on</button
+          ><button id="sound-menu" data-action="muted">Sound on</button
+          ><button id="axis" data-action="axis">Earth axis off</button>
+        </div>
+        <button id="last-result" data-action="last-result" hidden>View last completed quiz</button>
+        <details>
+          <summary>How to play</summary>
+          <p>
+            Orbit: drag the scene to orbit the model; scroll to zoom. Time opens the date and
+            24-hour controls.
+          </p>
+          <p>
+            Globe: WASD / Up & Down travel, drag look, Left & Right turn, E selects ahead. You can
+            cross oceans on the learning surface. Countries offers searchable country destinations
+            and cards.
+          </p>
+          <p>
+            Quest: left stick takes short steps with fades; right stick snap-turns. Left trigger on
+            Earth teleports, right trigger opens country information. B/Y toggles controls. Country
+            destinations support seated play.
+          </p>
+          <p>
+            You are a giant traveller: the globe is smaller and the eye viewpoint is raised. The
+            gold locator ring identifies small countries without enlarging their borders. Stars and
+            occasional distant comets are decorative. Sound can be muted.
+          </p>
+          <p>Switching views preserves discoveries and time. Main room ends this run.</p>
+        </details>
+        <details>
+          <summary>Map, science & credits</summary>
+          <p>
+            Approximate teaching model: orbital timing, tilt and sunlight share one clock. Bodies,
+            distances and walking scale are adjusted; this is not an eclipse or sunrise prediction
+            tool.
+          </p>
+          <p>
+            Country cards use world regions, including Oceania for Australia and Pacific islands.
+            Countries spanning Europe and Asia have a combined label and paired-continent quiz
+            questions. Antarctica has no sovereign countries. Natural Earth 50m boundaries use its
+            de facto policy, omit small features and are not a resolution of territorial claims.
+          </p>
+          <p>
+            Textures: Solar System Scope / INOVE, CC BY 4.0. Country facts: original summaries of
+            UNESCO, government, tourism and educational sources.
+          </p>
+          <a href="./earth-explorer/credits.json" target="_blank"
+            >Full sources, licenses & map release</a
+          >
+        </details>
+      </dialog>
+      <dialog id="mode-dialog" aria-labelledby="mode-title">
+        <p class="eyebrow">ONE EARTH · TWO PERSPECTIVES</p>
+        <h2 id="mode-title" tabindex="-1">Choose your view</h2>
+        <div class="mode-grid">
+          <button data-action="mode:orbit">
+            <strong>Orbit Observatory</strong
+            ><span>See Earth, Sun and Moon. Explore a year and a day.</span></button
+          ><button data-action="mode:globe">
+            <strong>Globe Explorer</strong><span>Walk across countries on a miniature Earth.</span>
+          </button>
+        </div>
+        <button data-action="close">Continue</button>
+      </dialog>
+      <dialog id="countries" aria-labelledby="countries-title">
+        <div class="menu-heading">
+          <div>
+            <p class="eyebrow">ALL 195 COUNTRIES</p>
+            <h2 id="countries-title" tabindex="-1">Where will you explore?</h2>
+          </div>
+          <button data-action="close" aria-label="Close country list">×</button>
+        </div>
+        <label for="country-search">Search countries</label
+        ><input type="search" id="country-search" placeholder="Country or continent" />
+        <p id="explored-count" class="note"></p>
+        <div id="country-list"></div>
+        <p id="no-countries" hidden>No countries match that search.</p>
+      </dialog>
+      <dialog id="activity" aria-labelledby="activity-title">
+        <div class="activity-top">
+          <p class="eyebrow" id="activity-chapter"></p>
+          <button data-action="menu">Menu</button>
+        </div>
+        <h2 id="activity-title" tabindex="-1"></h2>
+        <p id="activity-text" role="status" aria-live="polite"></p>
+        <blockquote id="quiz-fact" hidden></blockquote>
+        <div id="quiz-options"></div>
+        <div id="quiz-review"></div>
+        <div class="actions">
+          <button class="primary" id="confirm" hidden>Confirm answer</button
+          ><button class="primary" id="next" hidden>Next question</button
+          ><button id="explore" data-action="explore" hidden>Continue exploring</button
+          ><button id="leave-quiz" data-action="leave-request" hidden>Leave unfinished quiz</button>
+        </div>
+        <div id="leave-warning" hidden>
+          <p>
+            Leave this unfinished quiz? Its answers will not count as a completed score. Your
+            discoveries stay.
+          </p>
+          <button data-action="leave-quiz">Leave quiz</button
+          ><button data-action="activity">Keep answering</button>
+        </div>
+      </dialog>
+    </main>
+    <script src="./vendor/aframe-1.8.0.min.js"></script>
+    <script type="module" src="/src/earth-explorer/main.js"></script>
+  </body>
+</html>

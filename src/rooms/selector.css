@@ -1,0 +1,313 @@
+:root {
+  font-family: 'Segoe UI', sans-serif;
+  color: #edf2fb;
+  background: #0b1429;
+  color-scheme: dark;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 85% 15%, #27375d 0, transparent 45%),
+    radial-gradient(ellipse at 5% 80%, #123939 0, transparent 40%), #0b1429;
+  min-height: 100vh;
+}
+main {
+  max-width: 1120px;
+  margin: auto;
+  padding: 30px 42px;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ffffff20;
+  padding-bottom: 25px;
+}
+header span {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+header small {
+  color: #8da6bd;
+}
+.intro {
+  margin: 55px 0 32px;
+  max-width: 620px;
+}
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  color: #8fd9d2;
+}
+h1 {
+  font-size: clamp(38px, 5vw, 62px);
+  letter-spacing: -2px;
+  line-height: 1.05;
+  margin: 15px 0 20px;
+}
+.intro > p:last-child {
+  color: #b0c3d7;
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 540px;
+}
+.rooms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.card {
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid #ffffff26;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #122139b0;
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: #9be1d0;
+}
+.card:focus-visible {
+  outline: 3px solid #8be4de;
+  outline-offset: 5px;
+}
+.art {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+.copy {
+  padding: 26px;
+}
+.copy small {
+  color: #a9d8d4;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+.copy h2 {
+  font-size: 26px;
+  margin: 12px 0;
+}
+.copy p {
+  color: #bccbd9;
+  line-height: 1.7;
+  min-height: 56px;
+}
+.enter {
+  display: block;
+  border-top: 1px solid #ffffff20;
+  padding-top: 18px;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 750;
+  color: #9de3d9;
+}
+.classroom-art {
+  background: linear-gradient(#a9c0b2, #d0c6a8);
+}
+.board {
+  position: absolute;
+  left: 20%;
+  top: 22px;
+  width: 60%;
+  height: 86px;
+  background: #245548;
+  border: 9px solid #947554;
+  color: #efe8cf;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.desk {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 15px;
+  height: 42px;
+  background: #b98b59;
+  box-shadow: 0 9px #755743;
+}
+.book {
+  position: absolute;
+  bottom: 60px;
+  left: 28%;
+  width: 80px;
+  height: 10px;
+  background: #6d9bac;
+  box-shadow:
+    0 -10px #cc795c,
+    0 -20px #b5a255;
+  transform: rotate(-7deg);
+}
+.bottle {
+  position: absolute;
+  right: 28%;
+  bottom: 60px;
+  width: 22px;
+  height: 50px;
+  border-radius: 8px;
+  background: #5aafc4;
+  border-top: 8px solid #304867;
+}
+.cosmos-art {
+  background: radial-gradient(ellipse at 85% 90%, #41478c, transparent 70%), #081127;
+}
+.sun {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  top: 5px;
+  left: -35px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #fff4b0, #ffcb5b 50%, #f0842e 80%);
+  box-shadow: 0 0 45px #ffd06566;
+}
+.earth {
+  position: absolute;
+  width: 58px;
+  height: 58px;
+  top: 100px;
+  left: 40%;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at 30% 30%, #d1e4d8 0 8%, #62a582 10% 30%, transparent 32%),
+    radial-gradient(ellipse at 75% 70%, #74a976 0 17%, transparent 19%),
+    radial-gradient(circle at 30% 30%, #69aed6, #14396e);
+}
+.saturn {
+  position: absolute;
+  width: 95px;
+  height: 95px;
+  top: 35px;
+  right: 45px;
+  border-radius: 50%;
+  background: repeating-linear-gradient(175deg, #c3ab74 0 9px, #d5c28d 10px 15px);
+}
+.saturn:after {
+  content: '';
+  position: absolute;
+  inset: 27px -42px;
+  border: 10px solid #b6a27b;
+  border-radius: 50%;
+  transform: rotate(-25deg);
+}
+.stars {
+  position: absolute;
+  top: 155px;
+  left: 20px;
+  color: #c8e8ff;
+  font-size: 22px;
+  letter-spacing: 40px;
+  white-space: nowrap;
+}
+footer {
+  margin: 26px 0 16px;
+  color: #91aac0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+@media (max-width: 650px) {
+  main {
+    padding: 22px;
+  }
+  .rooms {
+    grid-template-columns: 1fr;
+  }
+  .intro {
+    margin-top: 35px;
+  }
+  header small {
+    display: none;
+  }
+  .art {
+    height: 180px;
+  }
+  .copy p {
+    min-height: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+  .card:hover {
+    transform: none;
+  }
+}
+
+.art-caption {
+  position: absolute;
+  right: 14px;
+  bottom: 10px;
+  color: #a5bbd2;
+  font-size: 9px;
+  letter-spacing: 0.5px;
+}
+
+.rooms {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.earth-art {
+  background: radial-gradient(ellipse at 65% 65%, #174b64, transparent 65%), #061323;
+}
+.mini-earth {
+  position: absolute;
+  left: 32%;
+  top: 35px;
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  background: #2782a8 url('/planetarium/2k_earth_daymap.jpg') 55% 50% / cover;
+  box-shadow:
+    inset -24px -6px 28px #000c,
+    0 0 20px #6ad4ef44;
+}
+.mini-sun {
+  position: absolute;
+  left: -25px;
+  top: 15px;
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #fff5ac, #f4ae43 70%);
+  box-shadow: 0 0 30px #ffc76755;
+}
+.mini-moon {
+  position: absolute;
+  right: 20px;
+  top: 28px;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #d6d8d8, #546673);
+  box-shadow: inset -7px -4px 10px #0008;
+}
+.orbit-line {
+  position: absolute;
+  left: 17%;
+  top: 25px;
+  width: 78%;
+  height: 145px;
+  border: 1px solid #80c6cf55;
+  border-radius: 50%;
+  transform: rotate(-20deg);
+}
+@media (max-width: 950px) {
+  .rooms {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 650px) {
+  .rooms {
+    grid-template-columns: 1fr;
+  }
+}

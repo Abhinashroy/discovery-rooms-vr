@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#091126" />
+    <title>Planetarium Rescue · Learn the planets</title>
+  </head>
+  <body>
+    <main>
+      <div id="room" aria-label="Cosmos observatory with eight planet exhibits"></div>
+      <header>
+        <a class="brand" href="./">✦ PLANETARIUM RESCUE</a><span id="phase-label">EXPLORE</span
+        ><button id="vr" data-action="vr" disabled>Checking VR…</button
+        ><button id="sound" data-action="muted">Sound on</button
+        ><button data-action="menu">Menu / M</button>
+      </header>
+      <section class="mission" aria-label="Current activity">
+        <p class="eyebrow" id="chapter">YOUR SOLAR SYSTEM</p>
+        <h1 id="instruction" tabindex="-1">Explore the eight planets.</h1>
+        <p id="feedback" role="status" aria-live="polite"></p>
+        <div id="progress"></div>
+        <div class="actions">
+          <button id="primary" data-action="ready">Start naming challenge</button
+          ><button id="cards-open" data-action="cards" hidden>Edit selected name</button
+          ><button id="submit-names" data-action="submit-names" hidden>
+            Submit all eight names</button
+          ><button id="activity-open" data-action="activity" hidden>Open results / quiz</button>
+        </div>
+      </section>
+      <section id="detail" class="detail" hidden aria-label="Planet inspection">
+        <button data-action="dismiss-detail" class="close" aria-label="Close planet information">
+          ×
+        </button>
+        <h2 id="detail-title"></h2>
+        <p id="detail-text"></p>
+        <div class="actions">
+          <button id="inspect" data-action="inspect">Inspect in detail</button
+          ><button data-action="view:mercury" id="inspect-view" hidden>View this planet</button
+          ><button data-action="close-inspect" id="inspect-close" hidden>Close inspection</button
+          ><button data-action="rotate:left" id="rotate-left" hidden>Rotate left</button
+          ><button data-action="rotate:right" id="rotate-right" hidden>Rotate right</button>
+        </div>
+        <small id="detail-scale"></small>
+      </section>
+      <footer>
+        <button data-action="previous">← Previous exhibit</button
+        ><button data-action="next-view">Next exhibit →</button>
+      </footer>
+      <div id="load-status" role="status">Loading local planet maps…</div>
+      <small class="scale-note"
+        >Inner planets enlarged ×2.61 · Outer planets & Sun share original scale · Spacing
+        arranged</small
+      >
+      <dialog id="menu" aria-labelledby="menu-title">
+        <div class="menu-heading">
+          <div>
+            <p class="eyebrow">PLANETARIUM RESCUE</p>
+            <h2 id="menu-title" tabindex="-1">Room menu</h2>
+          </div>
+          <button data-action="close" aria-label="Close menu">×</button>
+        </div>
+        <div class="actions menu-navigation">
+          <button class="continue" data-action="close">Continue playing</button
+          ><button data-action="room:main">Main room</button>
+        </div>
+        <p id="menu-status" role="status" aria-live="polite"></p>
+        <h3>Comfort & sound</h3>
+        <div class="actions">
+          <button data-action="stationary" id="stationary">Use stationary views</button
+          ><button data-action="reduced" id="reduced">Reduced motion</button
+          ><button data-action="large" id="large">Larger text</button
+          ><button data-action="muted" id="mute-menu">Sound on</button>
+        </div>
+        <h3>Viewpoints</h3>
+        <div class="actions"><button data-action="view:entrance">Entrance view</button></div>
+        <details>
+          <summary>Planet viewpoints & keyboard selection</summary>
+          <div id="exhibit-buttons" class="grid"></div>
+        </details>
+        <details>
+          <summary>How to play</summary>
+          <p id="walk-hint"></p>
+          <p>
+            VR: left stick walks, right stick snap-turns, either trigger selects. B/Y shows or hides
+            the menu.
+          </p>
+        </details>
+        <p class="note">
+          Returning to the main room ends this run. Choose a room there to start fresh.
+        </p>
+        <details>
+          <summary>Solar system learning notes</summary>
+          <p>
+            The Sun is a star. Eight planets orbit it; Pluto is a dwarf planet. To orbit means to
+            travel around another body. Mercury, Venus, Earth and Mars are rocky planets. Jupiter
+            and Saturn are gas giants; Uranus and Neptune are ice giants.
+          </p>
+        </details>
+        <details>
+          <summary>Credits & model information</summary>
+          <p>
+            Planet maps:
+            <a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noreferrer"
+              >Solar System Scope / INOVE</a
+            >,
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer"
+              >CC BY 4.0</a
+            >. Representative enhanced maps with reconstructed coverage; local lower-resolution
+            copies. Neptune's enhanced blue is moderated in the rendering material.
+          </p>
+          <p>
+            Diameters and learning facts: NASA Planetary Fact Sheets. The four inner planets are
+            enlarged together by 2.61× for visibility. Their ratios to one another are preserved;
+            Sun and outer planets retain the original scale. Inspect keeps the planet at its own
+            exhibit; the four inner planets temporarily enlarge for detail. Fly-by spacecraft are
+            fictional observatory decoration.
+          </p>
+          <a href="./planetarium/credits.json" target="_blank">Full asset credits</a>
+        </details>
+      </dialog>
+      <dialog id="cards" aria-labelledby="cards-title">
+        <button data-action="close" class="close" aria-label="Close name cards">×</button>
+        <h2 id="cards-title" tabindex="-1">Choose a planet name</h2>
+        <p id="cards-instruction">Select a planet first, then assign an unused name.</p>
+        <div id="name-cards" class="grid"></div>
+        <button id="unassign" data-action="unassign" hidden>Remove this name</button>
+      </dialog>
+      <dialog id="activity" aria-labelledby="activity-title">
+        <div class="activity-top">
+          <span id="activity-chapter" class="eyebrow"></span
+          ><button data-action="menu">Menu</button>
+        </div>
+        <h2 id="activity-title" tabindex="-1"></h2>
+        <p id="activity-text" role="status" aria-live="polite"></p>
+        <div id="naming-review"></div>
+        <div id="quiz-options" class="quiz-options"></div>
+        <div id="quiz-review"></div>
+        <div class="actions">
+          <button id="quiz-start" data-action="quiz-start" hidden>Start quiz — 5 questions</button
+          ><button id="confirm-answer" hidden>Confirm answer</button
+          ><button id="next-question" hidden>Next question</button
+          ><button id="restart" data-action="restart" hidden>Explore and try again</button>
+        </div>
+      </dialog>
+      <div id="sound-status" role="status" aria-live="polite"></div>
+    </main>
+    <script src="./vendor/aframe-1.8.0.min.js"></script>
+    <script type="module" src="/src/planetarium/main.js"></script>
+  </body>
+</html>

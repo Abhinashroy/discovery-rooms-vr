@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#152c3b" />
+    <title>Discovery Room · The room comes alive</title>
+  </head>
+  <body>
+    <main>
+      <div id="world" aria-label="Interactive discovery room"></div>
+      <header>
+        <a href="./" class="brand"
+          ><span>✳</span> DISCOVERY ROOM <small>THE EXPLORER COLLECTION</small></a
+        >
+        <nav aria-label="Room controls">
+          <button data-action="map">Map <kbd>M</kbd></button
+          ><button data-action="journal">Journal</button
+          ><button data-action="settings">Comfort</button
+          ><button id="vr" disabled>Checking VR…</button>
+        </nav>
+      </header>
+      <section id="welcome">
+        <p class="eyebrow">ONE ROOM. MANY POSSIBILITIES.</p>
+        <h1>A little curiosity.<br /><em>A whole new world.</em></h1>
+        <p class="intro">
+          Your goal: repair the room by solving five short tasks. Learn from two experiments, use
+          their clues together, and unlock the treasure.
+        </p>
+        <label
+          >Your expedition<select id="theme">
+            <option value="space">01 / The Silent Observatory</option>
+            <option value="ocean">02 / The Missing Reef Signal</option>
+            <option value="workshop">03 / The Sleeping Machine</option>
+          </select></label
+        >
+        <p id="welcome-mission" class="intro"></p>
+        <div class="welcome-grid">
+          <label
+            >Navigation<select id="navigation">
+              <option value="walk">Explore with keys / sticks</option>
+              <option value="stationary">Stationary · accessible controls</option>
+            </select></label
+          ><label
+            >Hints<select id="mode">
+              <option value="guided">Guided</option>
+              <option value="explorer">Explorer</option>
+            </select></label
+          ><label
+            >Your emblem<select id="emblem">
+              <option>Star</option>
+              <option>Leaf</option>
+              <option>Lightning</option>
+            </select></label
+          >
+        </div>
+        <button class="primary" id="start">Enter the discovery room ↗</button>
+        <p class="small">
+          5 main discoveries · 2 optional quests · A treasure worth finding<br />No timer. Play
+          seated or standing. Ages 10–15.
+        </p>
+        <a class="classic" href="./classic.html">Open the classic adventures</a>
+      </section>
+      <aside id="mission" hidden>
+        <p class="eyebrow" id="theme-name"></p>
+        <h2 id="objective"></h2>
+        <p id="objective-detail"></p>
+        <button id="open-next" data-action="open-next">Open my next task</button
+        ><button data-action="next">Show walking route →</button
+        ><button data-action="briefing">What is my mission?</button>
+        <div class="progress"><span id="progress"></span><span id="side-progress"></span></div>
+      </aside>
+      <footer id="controls" hidden>
+        <span><kbd>W A S D</kbd> move · Drag to look · <kbd>E</kbd> investigate</span
+        ><button data-action="menu">Explorer menu</button>
+      </footer>
+      <p id="notice" role="status" aria-live="polite"></p>
+      <dialog id="notebook" aria-labelledby="panel-title">
+        <div class="panel-head">
+          <span class="eyebrow">EXPLORER JOURNAL</span
+          ><button data-action="close" id="close" aria-label="Close notebook">×</button>
+        </div>
+        <h2 id="panel-title" tabindex="-1"></h2>
+        <p id="panel-text"></p>
+        <div id="panel-extra"></div>
+        <div id="panel-actions"></div>
+      </dialog>
+    </main>
+    <script src="./vendor/aframe-1.8.0.min.js"></script>
+    <script type="module" src="/src/exploration/main.js"></script>
+  </body>
+</html>

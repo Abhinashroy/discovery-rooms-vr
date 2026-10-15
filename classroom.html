@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#eee6d3" />
+    <title>Classroom Detective · Explore and remember</title>
+  </head>
+  <body>
+    <main>
+      <div id="room" aria-label="Walkable classroom"></div>
+      <header>
+        <span class="brand">⌕ CLASSROOM DETECTIVE</span><span class="stage" id="phase-label"></span
+        ><button id="mute" data-action="mute" aria-pressed="false">Sound: on</button
+        ><button id="vr" data-action="vr" disabled>Checking VR…</button>
+      </header>
+      <section id="welcome">
+        <p class="eyebrow">A CLASSROOM FULL OF POSSIBILITIES</p>
+        <h1>What moved?</h1>
+        <p>
+          Explore the classroom and remember where things are.<br />When you're ready, four things
+          will move. Find them!
+        </p>
+        <button class="primary" id="play" data-action="start">Play</button>
+        <p class="hint">
+          WASD to walk · Drag to look around.<br />No timer. Take as long as you want.
+        </p>
+      </section>
+      <section id="play-controls" hidden aria-label="Case controls">
+        <h2 id="instruction" tabindex="-1"></h2>
+        <div id="progress"></div>
+        <p id="feedback" role="status" aria-live="polite"></p>
+        <button class="primary" id="ready" data-action="ready">Ready — change the room</button
+        ><button class="primary" id="again" data-action="restart" hidden>Play again</button
+        ><button id="restart" data-action="restart">Start over</button>
+      </section>
+      <footer id="walk-controls" hidden>
+        <button data-action="menu" id="menu-button">Menu / M</button>
+      </footer>
+      <dialog id="menu" aria-labelledby="menu-title">
+        <div class="menu-heading">
+          <div>
+            <p class="eyebrow">CLASSROOM DETECTIVE</p>
+            <h2 id="menu-title" tabindex="-1">Room menu</h2>
+          </div>
+          <button data-action="close" aria-label="Close menu">×</button>
+        </div>
+        <div class="menu-actions menu-navigation">
+          <button class="primary" data-action="close">Continue playing</button
+          ><button data-action="room:main">Main room</button>
+        </div>
+        <p id="menu-feedback" role="status" aria-live="polite"></p>
+        <h3>Viewpoints</h3>
+        <div class="menu-actions">
+          <button data-action="view:back">Back viewpoint</button
+          ><button data-action="view:middle">Middle viewpoint</button
+          ><button data-action="view:front">Front viewpoint</button>
+        </div>
+        <h3>Comfort & sound</h3>
+        <div class="menu-actions">
+          <button data-action="stationary" id="stationary">Use stationary views</button
+          ><button data-action="reduced" id="reduced">Reduced motion</button
+          ><button data-action="large" id="large">Larger text</button
+          ><button data-action="mute" id="mute-menu">Sound: on</button>
+        </div>
+        <button class="primary" data-action="ready" id="menu-ready">Ready — change the room</button>
+        <details>
+          <summary>How to play</summary>
+          <p id="walk-hint"></p>
+          <p>
+            VR: left stick moves, right stick snap-turns, either trigger selects. B/Y shows or hides
+            the menu.
+          </p>
+        </details>
+        <details>
+          <summary>Keyboard selection · all classroom objects</summary>
+          <p>This list names everything you can select, without identifying what moved.</p>
+          <div id="object-controls"></div>
+        </details>
+        <p class="menu-note">
+          Returning to the main room ends this run. Choose a room there to start fresh.
+        </p>
+      </dialog>
+      <div id="cover" hidden role="status">The classroom is changing…</div>
+      <span id="sound-status" role="status"></span>
+    </main>
+    <script src="./vendor/aframe-1.8.0.min.js"></script>
+    <script type="module" src="/src/detective/main.js"></script>
+  </body>
+</html>

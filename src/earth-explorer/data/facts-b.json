@@ -1,0 +1,587 @@
+[
+  {
+    "iso2": "GD",
+    "name": "Grenada",
+    "continent": "North America",
+    "lat": 12.1165,
+    "lon": -61.679,
+    "fact": "A nutmeg symbol appears on the national flag, celebrating the island's connection with spices.",
+    "factSource": "https://www.gov.gd/national-symbols"
+  },
+  {
+    "iso2": "GT",
+    "name": "Guatemala",
+    "continent": "North America",
+    "lat": 15.5,
+    "lon": -90.25,
+    "fact": "Ancient Maya temples and palaces rise among the jungle trees at Tikal.",
+    "factSource": "https://whc.unesco.org/en/list/64/"
+  },
+  {
+    "iso2": "GN",
+    "name": "Guinea",
+    "continent": "Africa",
+    "lat": 10.5,
+    "lon": -10.8,
+    "fact": "Mount Nimba shelters a rare toad that gives birth to live young.",
+    "factSource": "https://whc.unesco.org/en/list/155/"
+  },
+  {
+    "iso2": "GW",
+    "name": "Guinea-Bissau",
+    "continent": "Africa",
+    "lat": 12,
+    "lon": -15,
+    "fact": "Green sea turtles come ashore to lay eggs on the beaches of the Bijagos islands.",
+    "factSource": "https://whc.unesco.org/en/list/1431/"
+  },
+  {
+    "iso2": "GY",
+    "name": "Guyana",
+    "continent": "South America",
+    "lat": 5,
+    "lon": -59,
+    "fact": "Kaieteur Falls sends water plunging 226 metres into a rainforest gorge.",
+    "factSource": "https://www.pac.gov.gy/kaieteur-national-park/"
+  },
+  {
+    "iso2": "HT",
+    "name": "Haiti",
+    "continent": "North America",
+    "lat": 19,
+    "lon": -72.4,
+    "fact": "The mountain-top Citadelle Henry was built to protect a newly independent republic.",
+    "factSource": "https://whc.unesco.org/en/list/180/"
+  },
+  {
+    "iso2": "VA",
+    "name": "Holy See",
+    "continent": "Europe",
+    "lat": 41.9029,
+    "lon": 12.4534,
+    "fact": "The Sistine Chapel's ceiling was painted by Michelangelo.",
+    "factSource": "https://whc.unesco.org/en/list/286/"
+  },
+  {
+    "iso2": "HN",
+    "name": "Honduras",
+    "continent": "North America",
+    "lat": 14.8,
+    "lon": -86.5,
+    "fact": "The ancient Maya city of Copan has a ruined citadel and grand public squares.",
+    "factSource": "https://whc.unesco.org/en/list/129/"
+  },
+  {
+    "iso2": "HU",
+    "name": "Hungary",
+    "continent": "Europe",
+    "lat": 47,
+    "lon": 19.5,
+    "fact": "Budapest preserves both the Roman city of Aquincum and the Gothic castle of Buda.",
+    "factSource": "https://whc.unesco.org/en/list/400/"
+  },
+  {
+    "iso2": "IS",
+    "name": "Iceland",
+    "continent": "Europe",
+    "lat": 64.9,
+    "lon": -18.5,
+    "fact": "Surtsey is a new island created by volcanic eruptions between 1963 and 1967.",
+    "factSource": "https://whc.unesco.org/en/list/1267/"
+  },
+  {
+    "iso2": "IN",
+    "name": "India",
+    "continent": "Asia",
+    "lat": 22,
+    "lon": 79,
+    "fact": "The Taj Mahal in Agra is a white-marble monument built in memory of Mumtaz Mahal.",
+    "factSource": "https://whc.unesco.org/en/list/252/"
+  },
+  {
+    "iso2": "ID",
+    "name": "Indonesia",
+    "continent": "Asia",
+    "lat": -7.5,
+    "lon": 110,
+    "fact": "Borobudur has 72 openwork stupas around its circular platforms, each holding a Buddha statue.",
+    "factSource": "https://whc.unesco.org/en/list/592/"
+  },
+  {
+    "iso2": "IR",
+    "name": "Iran",
+    "continent": "Asia",
+    "lat": 32,
+    "lon": 54,
+    "fact": "Persepolis was built on a huge terrace that is partly natural and partly human-made.",
+    "factSource": "https://whc.unesco.org/en/list/114/"
+  },
+  {
+    "iso2": "IQ",
+    "name": "Iraq",
+    "continent": "Asia",
+    "lat": 33,
+    "lon": 44,
+    "fact": "The ruins of Babylon include ancient city walls, gates, palaces and temples.",
+    "factSource": "https://whc.unesco.org/en/list/278/"
+  },
+  {
+    "iso2": "IE",
+    "name": "Ireland",
+    "continent": "Europe",
+    "lat": 53.4,
+    "lon": -8,
+    "fact": "Newgrange, Knowth and Dowth are prehistoric monuments beside the River Boyne.",
+    "factSource": "https://whc.unesco.org/en/list/659/"
+  },
+  {
+    "iso2": "IL",
+    "name": "Israel",
+    "continent": "Asia",
+    "lat": 31.5,
+    "lon": 34.8,
+    "fact": "Haifa's Baha'i shrine is surrounded by gardens and is an important pilgrimage place.",
+    "factSource": "https://whc.unesco.org/en/list/1220/"
+  },
+  {
+    "iso2": "IT",
+    "name": "Italy",
+    "continent": "Europe",
+    "lat": 43,
+    "lon": 12,
+    "fact": "Pisa's famous Leaning Tower is the bell tower of its cathedral.",
+    "factSource": "https://whc.unesco.org/en/list/395/"
+  },
+  {
+    "iso2": "CI",
+    "name": "Ivory Coast",
+    "continent": "Africa",
+    "lat": 7.5,
+    "lon": -5.5,
+    "fact": "Tai National Park protects tropical forest that is home to 11 species of monkeys.",
+    "factSource": "https://whc.unesco.org/en/list/195/"
+  },
+  {
+    "iso2": "JM",
+    "name": "Jamaica",
+    "continent": "North America",
+    "lat": 18.1,
+    "lon": -77.3,
+    "fact": "The Blue and John Crow Mountains sheltered Maroon communities who escaped slavery.",
+    "factSource": "https://whc.unesco.org/en/list/1356/"
+  },
+  {
+    "iso2": "JP",
+    "name": "Japan",
+    "continent": "Asia",
+    "lat": 36,
+    "lon": 138,
+    "fact": "Mount Fuji is a volcano that has inspired artists and pilgrims for centuries.",
+    "factSource": "https://whc.unesco.org/en/list/1418/"
+  },
+  {
+    "iso2": "JO",
+    "name": "Jordan",
+    "continent": "Asia",
+    "lat": 31,
+    "lon": 36,
+    "fact": "Petra's ancient buildings were partly built and partly carved directly into rock.",
+    "factSource": "https://whc.unesco.org/en/list/326/"
+  },
+  {
+    "iso2": "KZ",
+    "name": "Kazakhstan",
+    "continent": "Europe / Asia",
+    "lat": 48,
+    "lon": 68,
+    "fact": "Tanbaly's rocky landscape contains about 5,000 ancient rock carvings called petroglyphs.",
+    "factSource": "https://whc.unesco.org/en/list/1145/"
+  },
+  {
+    "iso2": "KE",
+    "name": "Kenya",
+    "continent": "Africa",
+    "lat": 0.5,
+    "lon": 37.5,
+    "fact": "Lake Turkana's parks protect important Nile crocodile breeding grounds.",
+    "factSource": "https://whc.unesco.org/en/list/801/"
+  },
+  {
+    "iso2": "KI",
+    "name": "Kiribati",
+    "continent": "Australia",
+    "lat": 1.3295,
+    "lon": 172.979,
+    "fact": "The Phoenix Islands Protected Area includes underwater mountains and coral island ecosystems.",
+    "factSource": "https://whc.unesco.org/en/list/1325/"
+  },
+  {
+    "iso2": "KW",
+    "name": "Kuwait",
+    "continent": "Asia",
+    "lat": 29.3759,
+    "lon": 47.9774,
+    "fact": "The landmark seaside towers include a viewing platform that makes a full turn every 30 minutes.",
+    "factSource": "https://www.restaurants.kuwaittowers.com/"
+  },
+  {
+    "iso2": "KG",
+    "name": "Kyrgyzstan",
+    "continent": "Asia",
+    "lat": 41.3,
+    "lon": 74.8,
+    "fact": "Sulaiman-Too is a sacred mountain with five peaks, caves and ancient rock carvings.",
+    "factSource": "https://whc.unesco.org/en/list/1230/"
+  },
+  {
+    "iso2": "LA",
+    "name": "Laos",
+    "continent": "Asia",
+    "lat": 19.8,
+    "lon": 102.3,
+    "fact": "Luang Prabang blends traditional Lao buildings with European colonial architecture.",
+    "factSource": "https://whc.unesco.org/en/list/479/"
+  },
+  {
+    "iso2": "LV",
+    "name": "Latvia",
+    "continent": "Europe",
+    "lat": 56.9,
+    "lon": 24.6,
+    "fact": "Riga grew wealthy as a trading centre of the medieval Hanseatic League.",
+    "factSource": "https://whc.unesco.org/en/list/852/"
+  },
+  {
+    "iso2": "LB",
+    "name": "Lebanon",
+    "continent": "Asia",
+    "lat": 33.9,
+    "lon": 35.9,
+    "fact": "Baalbek preserves enormous Roman religious buildings, including a sanctuary of Jupiter.",
+    "factSource": "https://whc.unesco.org/en/list/294/"
+  },
+  {
+    "iso2": "LS",
+    "name": "Lesotho",
+    "continent": "Africa",
+    "lat": -29.6,
+    "lon": 28.3,
+    "fact": "Sehlabathebe National Park shelters the rare Maloti minnow, a fish found only in that park.",
+    "factSource": "https://whc.unesco.org/en/list/985/"
+  },
+  {
+    "iso2": "LR",
+    "name": "Liberia",
+    "continent": "Africa",
+    "lat": 6.4,
+    "lon": -9.3,
+    "fact": "Sapo National Park's rainforest is a home for the rare pygmy hippopotamus.",
+    "factSource": "https://enjoyliberia.travel/pages/sapo-national-park/"
+  },
+  {
+    "iso2": "LY",
+    "name": "Libya",
+    "continent": "Africa",
+    "lat": 27,
+    "lon": 17,
+    "fact": "Roman emperor Septimius Severus was born in Leptis Magna and later enlarged the city.",
+    "factSource": "https://whc.unesco.org/en/list/183/"
+  },
+  {
+    "iso2": "LI",
+    "name": "Liechtenstein",
+    "continent": "Europe",
+    "lat": 47.141,
+    "lon": 9.521,
+    "fact": "Vaduz Castle stands about 120 metres above the capital town.",
+    "factSource": "https://en.tourismus.li/map/poi/schloss-vaduz-8fb7e6cf-99b5-4ffb-b600-9e4c66398e1f.html"
+  },
+  {
+    "iso2": "LT",
+    "name": "Lithuania",
+    "continent": "Europe",
+    "lat": 55.2,
+    "lon": 24,
+    "fact": "Vilnius preserves a medieval street layout alongside Gothic, Renaissance and Baroque buildings.",
+    "factSource": "https://whc.unesco.org/en/list/541/"
+  },
+  {
+    "iso2": "LU",
+    "name": "Luxembourg",
+    "continent": "Europe",
+    "lat": 49.8,
+    "lon": 6.1,
+    "fact": "The capital's old fortress was strengthened for centuries before its walls were partly dismantled in 1867.",
+    "factSource": "https://whc.unesco.org/en/list/699/"
+  },
+  {
+    "iso2": "MG",
+    "name": "Madagascar",
+    "continent": "Africa",
+    "lat": -19,
+    "lon": 47,
+    "fact": "The Atsinanana rainforests protect species that evolved during millions of years of island isolation.",
+    "factSource": "https://whc.unesco.org/en/list/1257/"
+  },
+  {
+    "iso2": "MW",
+    "name": "Malawi",
+    "continent": "Africa",
+    "lat": -13.5,
+    "lon": 34,
+    "fact": "A national park on a large freshwater lake shelters hundreds of fish species, many found nowhere else.",
+    "factSource": "https://whc.unesco.org/en/list/289/"
+  },
+  {
+    "iso2": "MY",
+    "name": "Malaysia",
+    "continent": "Asia",
+    "lat": 4.2,
+    "lon": 102,
+    "fact": "Kinabalu Park's habitats stretch from tropical rainforest to high mountain scrub.",
+    "factSource": "https://whc.unesco.org/en/list/1012/"
+  },
+  {
+    "iso2": "MV",
+    "name": "Maldives",
+    "continent": "Asia",
+    "lat": 4.1755,
+    "lon": 73.5093,
+    "fact": "The English word 'atoll' comes from the local word 'atholhu' for a ring-shaped island group.",
+    "factSource": "https://old.visitmaldives.com/geography-location/"
+  },
+  {
+    "iso2": "ML",
+    "name": "Mali",
+    "continent": "Africa",
+    "lat": 17,
+    "lon": -4,
+    "fact": "Timbuktu was a famous centre of learning, with the historic Sankore University.",
+    "factSource": "https://whc.unesco.org/en/list/119/"
+  },
+  {
+    "iso2": "MT",
+    "name": "Malta",
+    "continent": "Europe",
+    "lat": 35.89,
+    "lon": 14.44,
+    "fact": "Seven giant-stone temples survive across two Mediterranean islands, including Gozo.",
+    "factSource": "https://whc.unesco.org/en/list/132/"
+  },
+  {
+    "iso2": "MH",
+    "name": "Marshall Islands",
+    "continent": "Australia",
+    "lat": 7.0897,
+    "lon": 171.3803,
+    "fact": "Traditional sailors studied stick-and-shell charts to remember ocean wave patterns before voyages.",
+    "factSource": "https://ocean.si.edu/human-connections/history-cultures/navigating-waters-micronesian-stick-charts"
+  },
+  {
+    "iso2": "MR",
+    "name": "Mauritania",
+    "continent": "Africa",
+    "lat": 20.5,
+    "lon": -10.5,
+    "fact": "At Banc d'Arguin, desert dunes meet Atlantic shallows where migrating birds spend the winter.",
+    "factSource": "https://whc.unesco.org/en/list/506/"
+  },
+  {
+    "iso2": "MU",
+    "name": "Mauritius",
+    "continent": "Africa",
+    "lat": -20.25,
+    "lon": 57.55,
+    "fact": "Le Morne mountain sheltered people who escaped slavery in its caves and on its summit.",
+    "factSource": "https://whc.unesco.org/en/list/1259/"
+  },
+  {
+    "iso2": "MX",
+    "name": "Mexico",
+    "continent": "North America",
+    "lat": 23,
+    "lon": -102,
+    "fact": "Chichen-Itza contains a round observatory called El Caracol.",
+    "factSource": "https://whc.unesco.org/en/list/483/"
+  },
+  {
+    "iso2": "FM",
+    "name": "Micronesia",
+    "continent": "Australia",
+    "lat": 6.9167,
+    "lon": 158.25,
+    "fact": "Nan Madol's stone ruins stand on more than 100 artificial islets built with basalt and coral boulders.",
+    "factSource": "https://whc.unesco.org/en/list/1503/"
+  },
+  {
+    "iso2": "MD",
+    "name": "Moldova",
+    "continent": "Europe",
+    "lat": 47.2,
+    "lon": 28.6,
+    "fact": "A survey point here belongs to the Struve Arc, a chain used to measure Earth's size and shape.",
+    "factSource": "https://whc.unesco.org/en/list/1187/"
+  },
+  {
+    "iso2": "MC",
+    "name": "Monaco",
+    "continent": "Europe",
+    "lat": 43.7384,
+    "lon": 7.4246,
+    "fact": "The Exotic Garden grows cacti and other succulent plants on a steep cliff above the sea.",
+    "factSource": "https://www.visitmonaco.com/en/enjoy/parks-and-gardens/exotic-garden-of-monaco-and-observatory-cave"
+  },
+  {
+    "iso2": "MN",
+    "name": "Mongolia",
+    "continent": "Asia",
+    "lat": 46,
+    "lon": 103,
+    "fact": "The Orkhon Valley contains Kharkhorum, a former capital of the Mongol Empire.",
+    "factSource": "https://whc.unesco.org/en/list/1081/"
+  },
+  {
+    "iso2": "ME",
+    "name": "Montenegro",
+    "continent": "Europe",
+    "lat": 42.8,
+    "lon": 19.2,
+    "fact": "Kotor's medieval harbour town was restored after a damaging earthquake in 1979.",
+    "factSource": "https://whc.unesco.org/en/list/125/"
+  },
+  {
+    "iso2": "MA",
+    "name": "Morocco",
+    "continent": "Africa",
+    "lat": 32,
+    "lon": -6,
+    "fact": "Fez's old medina contains historic schools, palaces, mosques and fountains.",
+    "factSource": "https://whc.unesco.org/en/list/170/"
+  },
+  {
+    "iso2": "MZ",
+    "name": "Mozambique",
+    "continent": "Africa",
+    "lat": -18.5,
+    "lon": 35,
+    "fact": "A fortified island trading post off the coast was a stop on the historic sea route to India.",
+    "factSource": "https://whc.unesco.org/en/list/599/"
+  },
+  {
+    "iso2": "MM",
+    "name": "Myanmar",
+    "continent": "Asia",
+    "lat": 21,
+    "lon": 96,
+    "fact": "Bagan's river plain is filled with Buddhist temples, stupas and monasteries.",
+    "factSource": "https://whc.unesco.org/en/list/1588/"
+  },
+  {
+    "iso2": "NA",
+    "name": "Namibia",
+    "continent": "Africa",
+    "lat": -22,
+    "lon": 17,
+    "fact": "Fog influences the enormous coastal dunes of the Namib Sand Sea.",
+    "factSource": "https://whc.unesco.org/en/list/1430/"
+  },
+  {
+    "iso2": "NR",
+    "name": "Nauru",
+    "continent": "Australia",
+    "lat": -0.5228,
+    "lon": 166.9315,
+    "fact": "Buada Lagoon was traditionally used for farming milkfish.",
+    "factSource": "https://www.spc.int/sites/default/files/tenderfiles/2022-07/Annex%20I-%20pre%20feasability%20study.pdf"
+  },
+  {
+    "iso2": "NP",
+    "name": "Nepal",
+    "continent": "Asia",
+    "lat": 28,
+    "lon": 84,
+    "fact": "Sagarmatha National Park contains Mount Everest, glaciers and deep Himalayan valleys.",
+    "factSource": "https://whc.unesco.org/en/list/120/"
+  },
+  {
+    "iso2": "NL",
+    "name": "Netherlands",
+    "continent": "Europe",
+    "lat": 52.2,
+    "lon": 5.3,
+    "fact": "Kinderdijk's windmills form part of a system for draining water from low-lying land.",
+    "factSource": "https://whc.unesco.org/en/list/818/"
+  },
+  {
+    "iso2": "NZ",
+    "name": "New Zealand",
+    "continent": "Australia",
+    "lat": -43.5,
+    "lon": 171,
+    "fact": "The kea, an alpine parrot, lives among the glacier-shaped landscapes of Te Wahipounamu.",
+    "factSource": "https://whc.unesco.org/en/list/551/"
+  },
+  {
+    "iso2": "NI",
+    "name": "Nicaragua",
+    "continent": "North America",
+    "lat": 12.8,
+    "lon": -85,
+    "fact": "Leon Viejo's ruins preserve the layout of an early Spanish colonial settlement.",
+    "factSource": "https://whc.unesco.org/en/list/613/"
+  },
+  {
+    "iso2": "NE",
+    "name": "Niger",
+    "continent": "Africa",
+    "lat": 17,
+    "lon": 9,
+    "fact": "The Air and Tenere reserves bring volcanic mountains and Saharan desert together.",
+    "factSource": "https://whc.unesco.org/en/list/573/"
+  },
+  {
+    "iso2": "NG",
+    "name": "Nigeria",
+    "continent": "Africa",
+    "lat": 9,
+    "lon": 8,
+    "fact": "The Osun-Osogbo forest grove contains sculptures and shrines beside a winding river.",
+    "factSource": "https://whc.unesco.org/en/list/1118/"
+  },
+  {
+    "iso2": "KP",
+    "name": "North Korea",
+    "continent": "Asia",
+    "lat": 40,
+    "lon": 127,
+    "fact": "Some ancient Koguryo tombs preserve colourful paintings on their walls.",
+    "factSource": "https://whc.unesco.org/en/list/1091/"
+  },
+  {
+    "iso2": "MK",
+    "name": "North Macedonia",
+    "continent": "Europe",
+    "lat": 41.6,
+    "lon": 21.7,
+    "fact": "Lake Ohrid shelters freshwater plants and animals found nowhere else.",
+    "factSource": "https://whc.unesco.org/en/list/99/"
+  },
+  {
+    "iso2": "NO",
+    "name": "Norway",
+    "continent": "Europe",
+    "lat": 62,
+    "lon": 9,
+    "fact": "Bryggen's old wooden harbour buildings were rebuilt using traditional designs after fires.",
+    "factSource": "https://whc.unesco.org/en/list/59/"
+  },
+  {
+    "iso2": "OM",
+    "name": "Oman",
+    "continent": "Asia",
+    "lat": 21,
+    "lon": 56,
+    "fact": "Aflaj channels use gravity to carry water from springs or underground sources to farms and homes.",
+    "factSource": "https://whc.unesco.org/en/list/1207/"
+  }
+]

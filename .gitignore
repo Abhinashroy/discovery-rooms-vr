@@ -1,0 +1,36 @@
+node_modules/
+dist/
+.vite/
+.npm-cache/
+*.log
+coverage/
+test-results/
+playwright-report/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Machine-specific tools, caches, hosting checkouts and recovery copies.
+tools/
+sites/
+backups/
+releases/
+tmp/
+.local/
+.openai/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Learner records and credentials must never enter source control.
+data/real/*
+!data/real/README.md
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
