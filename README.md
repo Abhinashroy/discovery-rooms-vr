@@ -4,6 +4,10 @@ Interactive learning games for ages **10–15**, playable with keyboard and mous
 
 [![Checks](https://github.com/Abhinashroy/discovery-rooms-vr/actions/workflows/ci.yml/badge.svg)](https://github.com/Abhinashroy/discovery-rooms-vr/actions/workflows/ci.yml)
 
+## Play online
+
+[**Open Discovery Rooms**](https://abhinashroy.github.io/discovery-rooms-vr/) — keyboard/mouse or Quest Browser.
+
 ## Explore the rooms
 
 | Classroom Detective                                                      | Planetarium Rescue                                                               | Earth Explorer                                                               |
@@ -54,7 +58,7 @@ npm run build
 npm run preview
 ```
 
-The current suite has **101 tests**. The production build includes the selector, three rooms and four retained legacy entry pages. GitHub Actions runs formatting, tests and build on pushes and pull requests, and saves `dist/` as a downloadable build artifact.
+The current suite has **101 tests**. The production build includes the selector, three rooms and four retained legacy entry pages. GitHub Actions runs formatting, tests and build on pushes and pull requests, and saves `dist/` as a downloadable build artifact. The separate **Deploy website** workflow publishes validated `main` builds to GitHub Pages.
 
 Run `npm run format` to apply formatting. Country fact edits are regenerated with `npm run build:catalog`. See [Contributing](CONTRIBUTING.md) for the workflow.
 

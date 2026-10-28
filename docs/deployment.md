@@ -1,5 +1,11 @@
 # Run, build and use Quest
 
+## Public website
+
+[Open Discovery Rooms](https://abhinashroy.github.io/discovery-rooms-vr/).
+
+The **Deploy website** GitHub Actions workflow checks formatting, runs all tests, builds `dist/` and publishes it to GitHub Pages on pushes to `main`. It can also be started manually from Actions. Deployment is restricted to the repository's `github-pages` environment.
+
 ## Local development
 
 Install Node.js 24–26, then clone the repository and install its pinned dependencies:
@@ -26,7 +32,7 @@ The eight-entry build writes `dist/`. Preview usually runs at <http://127.0.0.1:
 
 Host the **contents of `dist/`** on a static HTTPS service. Preserve `audio/`, `planetarium/`, `earth-explorer/`, `vendor/` and `assets/` together. Do not upload source credentials, `.env`, learner records, backups or downloaded USB tools. The current rooms require no AI provider.
 
-GitHub Actions builds on push and pull requests. Its `discovery-rooms-dist` artifact contains the static output. The workflow does not publish a website automatically. The earlier separately hosted prototype is not updated by pushing this repository; its local checkout/hosting metadata is excluded from Git.
+GitHub Actions builds on push and pull requests. Its `discovery-rooms-dist` artifact contains the static output. The separate **Deploy website** workflow publishes successful main-branch builds. The earlier separately hosted prototype remains unchanged because its saved Sites project returns project-not-found; its local checkout/hosting metadata is excluded from Git.
 
 ## Quest 3 over USB
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## Website publication — 28 October 2026
+
+- Added GitHub Pages publication of the latest three-room build, with formatting/tests/build gates and manual re-deployment.
+- Added the playable website link to the README and deployment documentation. The old Sites project could not be accessed, so its original URL remains unchanged.
+
 ## Repository preparation — 15 October 2026
 
 - Prepared the public `Abhinashroy/discovery-rooms-vr` repository.

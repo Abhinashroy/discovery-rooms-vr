@@ -1,6 +1,8 @@
 # Project status
 
-Updated **15 October 2026**. Current application: **0.23.0**.
+Updated **28 October 2026**. Current application: **0.23.0**.
+
+Public website: [https://abhinashroy.github.io/discovery-rooms-vr/](https://abhinashroy.github.io/discovery-rooms-vr/).
 
 ## Implemented
 
@@ -30,7 +32,7 @@ Updated **15 October 2026**. Current application: **0.23.0**.
 3. Observe an unfamiliar learner aged 10–15 navigating each learning flow. Record confusion/help needed without claiming proven memory improvement.
 4. Live AI remains deferred for the three current rooms. The optional tutor and earlier prototypes are retained legacy code.
 
-Use [the headset checklist](docs/headset-smoke-check.md) for device observations. Source publication on GitHub is separate from game hosting; CI produces a static artifact and does not automatically deploy the game.
+Use [the headset checklist](docs/headset-smoke-check.md) for device observations. The **Deploy website** workflow validates and publishes the static build to GitHub Pages after pushes to `main`. The earlier Sites project still returns project-not-found; its original link has not been updated.
 
 ## Commands
 
