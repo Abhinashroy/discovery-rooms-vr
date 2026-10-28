@@ -305,8 +305,11 @@ test('global quiz handles Oceania, tiny countries and paired transcontinental an
   }
 });
 
-test('Earth VR respects tracked eye height without the desktop giant viewpoint lift', () => {
-  assert.equal(globeEyeLift(true), 0);
+test('Earth VR adds a modest lift to tracked eye height while retaining the desktop viewpoint', () => {
+  assert.equal(globeEyeLift(true), 0.35);
   assert.equal(globeEyeLift(false), GLOBE_EYE_LIFT);
-  assert.equal(GLOBE_RADIUS + globeEyeLift(false) - (GLOBE_RADIUS + globeEyeLift(true)), 1.5);
+  assert.ok(
+    Math.abs(GLOBE_RADIUS + globeEyeLift(false) - (GLOBE_RADIUS + globeEyeLift(true)) - 1.15) <
+      1e-9,
+  );
 });

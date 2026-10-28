@@ -1,4 +1,4 @@
-# Discovery Rooms — architecture R10 / 0.24.0
+# Discovery Rooms — architecture R10 / 0.24.1
 
 ## Three-room entry and lifecycle
 
@@ -24,17 +24,19 @@ Eight production entries include four preserved legacy pages. No live AI endpoin
 
 Date/year/day/hour controls update one UTC timestamp. Approximate continuous periods do not change with leap-year date counts. Earth orientation includes the annual component needed for a mean solar day. A compact clock button can reopen the shared controls in either mode without changing views. A 2,400-point star field and one occasional distant comet are decorative and unrelated to the astronomical model. Comets stop during quiz, menus, hidden tabs and reduced motion. Native country panels paginate ten destinations per page. Both views transform the same Sun/Moon directions into their display frames; this is a teaching model with compressed geometry, not an ephemeris.
 
-The 10 m Globe surface stays centred beneath an upright rig with a 1.5 m eye-origin lift on desktop. VR uses no artificial lift and respects the headset's tracked eye height. Movement updates latitude/longitude and transports the tangent heading; the globe and celestial directions transform into that frame. Desktop travel is continuous; Quest uses short faded steps or point teleport. No tracked headset roll is imposed. Actual comfort/performance is unvalidated.
+The 10 m Globe surface stays centred beneath an upright rig with a 1.5 m eye-origin lift on desktop. VR adds a modest 0.35 m lift to the headset's tracked eye height. Movement updates latitude/longitude and transports the tangent heading; the globe and celestial directions transform into that frame. Desktop travel is continuous; Quest uses short faded steps or point teleport. No tracked headset roll is imposed. Actual comfort/performance is unvalidated.
 
 Natural Earth 50m polygons retain holes and dateline handling. Border geometry is merged, selected polygons triangulated/subdivided and replaced on selection, labels limited to three nearby countries and occluded by Earth. All 195 landing points are verified against their map feature; source coordinates that miss land are replaced with a validated map-label/interior point. Other mapped names are selectable without inventing learning facts.
 
 Quiz targets come only from opened cards: five distinct countries, 2 location + 2 continent + 1 fact prompt. Four choices, fact/source/version snapshots, question-ID guards and Confirm/Next prevent duplicate/stale scoring. Quiz pauses time and hides answer-bearing cards/labels/location cues. A side panel leaves the outlined globe visible. Completed review survives map revisits; abandoned attempts remain unfinished. There is no AI grading. Earth reuses the tested two-clip audio engine for distance-based thuds, short-step sounds and one quiz-completion Hooray; mute/menu/blur/hidden/departure cancel pending sounds. No music is added.
 
-Page departure clears transition timers/listeners and disposes textures/geometries/materials; shared room routing exits XR/releases the renderer. Earth state resets on re-entry. Current package passes 109 tests and the eight-entry build; device/learner gates are in the validation document.
+Page departure clears transition timers/listeners and disposes textures/geometries/materials; shared room routing exits XR/releases the renderer. Earth state resets on re-entry. Current package passes 115 tests and the eight-entry build; device/learner gates are in the validation document.
 
 ## Shared native VR menus
 
 `src/rooms/xr-menu.js` paints proportioned canvas labels, places upright world-space panels once per opening, and prunes label resources only after collecting both attached objects and pending A-Frame entities. This prevents immediate pruning from erasing new option names. Each button has one textured mesh, so text cannot fight with a coplanar background plane. Head turns and content redraws leave the anchor unchanged; reopening or an intentional scene/view change resets it. Both rooms remove controller UI boxes and keep native head tracking enabled during menus. Unit tests cover resource ownership, readable wrapping and anchor lifecycle. Desktop native-mesh previews verify rendering and selection; hardware comfort remains unverified.
+
+Information cards capture a bounded selection-gaze pitch, allowing downward country selection without losing the card at the horizon. Ordinary menus remain upright. Reused opaque backings cover the full panel including row gaps; the backing and faces render after world transparency at alpha 1. Earth excludes the globe from controller targets while menus are open. Earth menu pausing affects travel, not the playing simulation clock; the state reducer still owns explicit Play/Pause and quiz/mode guards.
 
 ## Planetarium modules
 
@@ -43,6 +45,7 @@ Page departure clears transition timers/listeners and disposes textures/geometri
 | src/planetarium/content.js            | Names/order/learning notes, reference diameters, common base scale plus inner enlargement, seeded shuffle                                    |
 | src/planetarium/quiz.js               | Pool of 30 authored sourced questions; seeded five-question selection and four shuffled options                                              |
 | src/planetarium/state.js              | Explore → naming → naming-review → quiz → result; unique editable assignments, guarded submission/answers, score and celebration transitions |
+| src/planetarium/presentation.js       | Native planet-information routing and authored facts, with naming/quiz information guards                                                    |
 | src/planetarium/audio.js              | Two local Web Audio clips, gesture unlock, cancellable channels and shared distance cadence                                                  |
 | src/planetarium/layout.js             | Hall/footprints, safe viewpoints, substep collision                                                                                          |
 | src/planetarium/materials.js          | Shared local maps, layered bodies/rings/clouds, spin and inspection-copy cleanup                                                             |

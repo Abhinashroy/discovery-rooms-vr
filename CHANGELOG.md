@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.24.1 — VR information and Earth menu corrections — 28 October 2026
+
+- Selecting a planet in VR now opens its facts immediately; a close-up is an optional separate action. Naming and quiz answers stay protected.
+- Country selection uses the controller ray against the globe surface, avoiding decorative map layers. Right trigger reads; left trigger teleports.
+- Information cards open near the selection gaze and remain fixed after opening. Both space rooms have solid opaque menu backings, including the gaps between buttons.
+- Opening an Earth menu keeps a playing simulation running; movement stays paused and the clock's explicit Pause still works.
+- Raised Globe Explorer's VR player by 35 cm from 0.24.0, preserving tracked head movement and the desktop viewpoint.
+- Six new information/gaze regressions bring the suite to 115 tests. Actual Quest retest remains pending.
+
 ## 0.24.0 — VR menu fixes — 28 October 2026
 
 - Fixed blank native planet/country options by preserving pending label resources and removing coplanar button layers.

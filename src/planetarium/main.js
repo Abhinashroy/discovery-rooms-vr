@@ -12,6 +12,7 @@ import {
 } from './state.js';
 import { createPlanetarium } from './world.js';
 import { createPlanetAudio } from './audio.js';
+import { planetPanelAfter } from './presentation.js';
 import { freshEntry, changeRoom } from '../rooms/routes.js';
 const $ = (id) => document.getElementById(id),
   seed = () => crypto.getRandomValues(new Uint32Array(1))[0];
@@ -58,6 +59,7 @@ const room = createPlanetarium($('room'), {
   immersive(value) {
     document.body.classList.toggle('immersive', value);
     hideDialogs();
+    if (value && state.phase === 'explore' && state.focus && !menu) open('detail');
     if (!value && menu) $(activityPhase() ? 'activity' : 'menu').showModal();
   },
 });
@@ -107,6 +109,10 @@ function act(action) {
   }
   if (type === 'cards') {
     if (state.phase === 'naming' && state.focus) open('cards');
+    return;
+  }
+  if (type === 'detail') {
+    if (state.phase === 'explore' && state.focus) open('detail');
     return;
   }
   if (['views', 'comfort', 'learning', 'menu-home'].includes(type)) {
@@ -178,7 +184,7 @@ function act(action) {
     hideDialogs();
     room.pause(false);
   }
-  if (['inspect', 'close-inspect'].includes(type)) {
+  if (['inspect', 'close-inspect'].includes(type) && !room.immersive) {
     menu = false;
     hideDialogs();
     room.pause(false);
@@ -189,8 +195,8 @@ function act(action) {
     room.moveTo('entrance');
   }
   render();
-  if (type === 'planet' && state.phase === 'naming') open('cards');
-  else if (type === 'unassign') open('cards');
+  const nextPanel = planetPanelAfter(type, state, room.immersive);
+  if (nextPanel) open(nextPanel);
   else if (activityPhase()) open('activity');
 }
 function button(text, action) {

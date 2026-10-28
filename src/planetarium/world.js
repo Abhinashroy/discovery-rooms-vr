@@ -1,10 +1,17 @@
-import { createMenuAnchor, paintMenuLabel, pruneLabelResources } from '../rooms/xr-menu.js';
+import {
+  createMenuAnchor,
+  createMenuBackdrop,
+  MENU_RENDER_ORDER,
+  paintMenuLabel,
+  pruneLabelResources,
+} from '../rooms/xr-menu.js';
 import { PLANETS, BY_ID, LEARNING_FACTS, SOLAR_NOTES } from './content.js';
 import { HALL, SUN, VIEWS, canStand, movePlayer, inspectionPlacement } from './layout.js';
 import { createMaterials } from './materials.js';
 import { createSchedule } from './ambience.js';
 import { hiddenName, activeQuestion, availableNames, namingScore, quizScore } from './state.js';
 import { readVRInput } from '../discovery/vr-input.js';
+import { planetInformation } from './presentation.js';
 const el = (tag, attrs = {}) => {
   const n = document.createElement(tag);
   for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
@@ -108,6 +115,7 @@ export function createPlanetarium(mount, callbacks) {
         side: T.DoubleSide,
         depthTest: !overlay,
         depthWrite: !overlay,
+        transparent: overlay,
       });
       ownMaterial.push(m);
       labelMaterials.set(key, m);
@@ -120,7 +128,7 @@ export function createPlanetarium(mount, callbacks) {
       labelGeometry.set(shape, g);
     }
     const label = new T.Mesh(g, labelMaterials.get(key));
-    label.renderOrder = overlay ? 1000 : 0;
+    label.renderOrder = overlay ? MENU_RENDER_ORDER + 1 : 0;
     return label;
   }
   // A stable observatory shell with cosmic panels and visible architecture.
@@ -358,6 +366,10 @@ export function createPlanetarium(mount, callbacks) {
     flyRoot = new T.Group();
   root.add(flyRoot);
   const panel = el('a-entity', { id: 'planet-vr-menu', visible: false });
+  const backdrop = createMenuBackdrop(T);
+  ownGeometry.push(backdrop.geometry);
+  ownMaterial.push(backdrop.material);
+  panel.setObject3D('backdrop', backdrop);
   scene.append(panel);
   const menuAnchor = createMenuAnchor(
     () => {
@@ -388,10 +400,10 @@ export function createPlanetarium(mount, callbacks) {
       menuAnchor.hide();
       return;
     }
-    menuAnchor.show();
+    menuAnchor.show(panelMode === 'detail' ? { gaze: true } : undefined);
     panel.object3D.scale.setScalar(settings.large ? 1.12 : 1);
     const q = activeQuestion(state),
-      activity = ['activity', 'learning'].includes(panelMode);
+      activity = ['activity', 'learning', 'detail'].includes(panelMode);
     let title =
         panelMode === 'cards'
           ? 'NAME EXHIBIT ' + BY_ID[state.focus]?.order
@@ -399,7 +411,19 @@ export function createPlanetarium(mount, callbacks) {
             ? 'EXHIBIT VIEWPOINTS'
             : 'PLANETARIUM CONTROLS',
       options = [];
-    if (panelMode === 'learning') {
+    if (panelMode === 'detail' && planetInformation(state)) {
+      const info = planetInformation(state);
+      title = info.title + ' · PLANET INFORMATION';
+      options = info.facts.map((text) => [text, null]);
+      options.push(
+        [
+          info.inspection ? 'End close-up' : 'Close-up at this exhibit',
+          info.inspection ? 'close-inspect' : 'inspect',
+        ],
+        ['Continue exploring', 'close'],
+        ['Menu', 'menu'],
+      );
+    } else if (panelMode === 'learning') {
       title = state.focus ? BY_ID[state.focus].name + ' · LEARNING NOTES' : 'SOLAR SYSTEM NOTES';
       options = [...(state.focus ? LEARNING_FACTS[state.focus] : []), ...SOLAR_NOTES].map(
         (text) => [text, null],
@@ -483,6 +507,7 @@ export function createPlanetarium(mount, callbacks) {
       options = [
         primary,
         state.phase === 'explore' ? ['Learning notes', 'learning'] : null,
+        state.phase === 'explore' && state.focus ? ['Selected planet information', 'detail'] : null,
         ['Exhibit viewpoints', 'views'],
         state.phase === 'explore'
           ? [
@@ -499,6 +524,15 @@ export function createPlanetarium(mount, callbacks) {
     }
     if (!activity && panelMode !== 'menu')
       options.push(['Back to menu', 'menu-home'], ['Continue in room', 'close']);
+    const compact = activity && state.phase === 'naming-review';
+    const bottom = activity
+      ? (compact ? 0.7 : 0.55) -
+        (options.length - 1) * (compact ? 0.18 : 0.26) -
+        (compact ? 0.08 : 0.115) -
+        0.1
+      : Math.min(-1.12, 0.6 - Math.floor((options.length - 1) / 2) * 0.25 - 0.2);
+    backdrop.scale.set(activity ? 2.94 : 2.3, 1.3 - bottom, 1);
+    backdrop.position.y = (1.3 + bottom) / 2;
     const heading = el('a-entity', { position: '0 1.0 0' });
     heading.setObject3D(
       'title',
@@ -506,7 +540,6 @@ export function createPlanetarium(mount, callbacks) {
     );
     panel.append(heading);
     if (activity) {
-      const compact = state.phase === 'naming-review';
       options.forEach(([text, action], i) =>
         button(
           text,

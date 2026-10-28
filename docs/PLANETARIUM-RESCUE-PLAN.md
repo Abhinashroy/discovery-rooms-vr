@@ -1,6 +1,8 @@
 # Planetarium Rescue — Room 2 plan and implementation
 
-Revision R4 · 28 October 2026 · **Room 2 behavior implemented in 0.21.0 and preserved in the 0.24.0 three-room checkpoint; actual Quest/learner validation pending.**
+Revision R5 · 28 October 2026 · **Room 2 behavior implemented in 0.21.0 and preserved in the 0.24.1 three-room checkpoint; actual Quest/learner validation pending.**
+
+In VR Explore, selecting a planet opens its name and learning facts immediately in a static native card. Close-up is a separate optional action at the exhibit. The information card follows the initial selection gaze with bounded tilt, then remains fixed. Opaque menu backings cover gaps and world transparency. Naming still opens name choices, and quiz mode cannot expose these learning facts.
 
 This revision incorporates the owner's new size, naming, quiz and sound instructions. It supersedes R1's strict inner-body scale, grouped card-first restoration, assisted adaptive recall and silent room. Classroom Detective remains the accepted implementation. Keep the hall, planet materials, navigation, room selector and fresh-entry behavior. R3 adds grouped Main room menus, compact corner controls and inspection at each planet’s own exhibit.
 
@@ -105,7 +107,7 @@ Actual Quest 3 ergonomics, text/ray readability and frame stability must be meas
 | R3 menus/inspection   | 0.21.0 complete   | Main room navigation, compact corner controls, empty containers hidden, local inspection without player movement |
 | P5 hardware/learner   | Pending           | Quest controls/readability/comfort, unfamiliar learner observations and fixes                                    |
 
-Run npm test (109 checks across all rooms) and npm run build (eight entries). Browser evidence in PROJECT_STATUS.md covers 6/8 and 8/8 naming, edit/shrinking choices, all eight direct E targets, a complete 4/5 quiz, footsteps/celebration and room departure. Run npm run build for the current production output; Earth Explorer is the separate third room. Local historical packages are excluded from Git. GitHub source publication does not update game hosting.
+Run npm test (115 checks across all rooms) and npm run build (eight entries). Browser evidence in PROJECT_STATUS.md covers 6/8 and 8/8 naming, edit/shrinking choices, all eight direct E targets, a complete 4/5 quiz, footsteps/celebration and room departure. Run npm run build for the current production output; Earth Explorer is the separate third room. Local historical packages are excluded from Git. GitHub source publication does not update game hosting.
 
 ## 8. Commands and checkpoint
 

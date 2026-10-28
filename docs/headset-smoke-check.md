@@ -1,5 +1,15 @@
 # Discovery Rooms — validation R10
 
+## VR information, opaque menus and Earth height — 0.24.1
+
+On Quest, select a planet during Explore and verify its name and facts appear without requiring a close-up. Try optional close-up/end close-up, close the card, then select another planet. Naming must still show name choices rather than giving away facts.
+
+In Globe Explorer, look down at land and press the right trigger: a country card should open near that gaze, then stay fixed when looking around. Left trigger should teleport. Close and repeat; country/card/menu choices must remain clickable. The player is 35 cm higher than 0.24.0, with normal tracked head movement.
+
+In Orbit Observatory, press Play, open the menu and confirm Earth's rotation/orbit continues. The entire menu, including button gaps, must be opaque; no clouds, stars or objects should show through it. Closing the menu resumes travel without resetting playback. Explicit clock Pause must keep time still even when opening menus.
+
+115 tests pass. Desktop production-app rendering/controller-event checks are recorded in PROJECT_STATUS.md; these do not replace actual headset validation.
+
 ## Native VR corrections — 0.24.0
 
 The owner reported blank choices, controller boxes obscuring the view and menus following the head. Corrections are implemented in Planetarium and Earth and checked with actual menu meshes in a desktop rendering preview. These checks do not replace hardware validation. On Quest verify:

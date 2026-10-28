@@ -1,4 +1,10 @@
-import { createMenuAnchor, paintMenuLabel, pruneLabelResources } from '../rooms/xr-menu.js';
+import {
+  createMenuAnchor,
+  createMenuBackdrop,
+  MENU_RENDER_ORDER,
+  paintMenuLabel,
+  pruneLabelResources,
+} from '../rooms/xr-menu.js';
 import { createCometSchedule } from './ambience.js';
 import { modelAt, geoVector, vectorGeo, dot, scale as scaleVector } from './astronomy.js';
 import {
@@ -266,6 +272,7 @@ export function createEarthWorld(mount, callbacks) {
         side: T.DoubleSide,
         depthTest: false,
         depthWrite: false,
+        transparent: true,
       });
       textCache.set(key, t);
       textMaterials.set(key, mat);
@@ -605,6 +612,9 @@ export function createEarthWorld(mount, callbacks) {
   }
 
   const panel = el('a-entity', { id: 'earth-vr-menu', visible: false });
+  const backdrop = createMenuBackdrop(T);
+  owned.push(backdrop.geometry, backdrop.material);
+  panel.setObject3D('backdrop', backdrop);
   scene.append(panel);
   const menuAnchor = createMenuAnchor(
     () => {
@@ -633,10 +643,13 @@ export function createEarthWorld(mount, callbacks) {
       'aria-label': text,
       ...(action ? { class: 'xr-button', 'data-action': action } : {}),
     });
-    b.setObject3D('mesh', textMesh(text, width, height));
+    const face = textMesh(text, width, height);
+    face.renderOrder = MENU_RENDER_ORDER + 1;
+    b.setObject3D('mesh', face);
     panel.append(b);
   }
   function drawPanel() {
+    earthEntity.classList.toggle('earth-target', !paused && state?.phase === 'explore');
     panel.object3D.scale.setScalar(settings.large ? 1.12 : 1);
     panel.replaceChildren();
     panel.setAttribute('visible', immersive && paused);
@@ -645,7 +658,13 @@ export function createEarthWorld(mount, callbacks) {
       pruneText();
       return;
     }
-    menuAnchor.show(state.phase === 'quiz' ? { distance: 3, lateral: 1.6 } : undefined);
+    menuAnchor.show(
+      state.phase === 'quiz'
+        ? { distance: 3, lateral: 1.6 }
+        : panelMode === 'country'
+          ? { gaze: true }
+          : undefined,
+    );
     let title = 'EARTH EXPLORER',
       rows = [],
       full = false;
@@ -773,7 +792,9 @@ export function createEarthWorld(mount, callbacks) {
     if (panelMode !== 'menu') rows.push(['Menu', 'menu']);
     if (!full && panelMode !== 'menu') rows.push(['Continue', 'close']);
     const heading = el('a-entity', { position: '0 1.03 0' });
-    heading.setObject3D('label', textMesh(title, 2.7, 0.35, '#a5f1dc'));
+    const titleFace = textMesh(title, 2.7, 0.35, '#a5f1dc');
+    titleFace.renderOrder = MENU_RENDER_ORDER + 1;
+    heading.setObject3D('label', titleFace);
     panel.append(heading);
     let rowTop = 0.82;
     rows.forEach(([text, action], i) => {
@@ -791,6 +812,9 @@ export function createEarthWorld(mount, callbacks) {
           0.21,
         );
     });
+    const bottom = full ? rowTop - 0.08 : 0.65 - Math.floor((rows.length - 1) / 2) * 0.235 - 0.2;
+    backdrop.scale.set(2.94, 1.3 - bottom, 1);
+    backdrop.position.y = (1.3 + bottom) / 2;
     pruneText();
   }
   function render(s, options) {
@@ -924,17 +948,12 @@ export function createEarthWorld(mount, callbacks) {
       callbacks.action(target.dataset.action);
       return;
     }
-    if (immersive && !paused && e.target.closest?.('.earth-target') && e.detail?.intersection) {
+    if (immersive && !paused && e.target.closest?.('.earth-target')) {
+      const cursor = e.detail?.cursorEl,
+        ray = cursor?.components?.raycaster?.raycaster;
+      if (!ray) return;
       callbacks.gesture?.();
-      const point = e.detail.intersection.point.clone(),
-        local = earth.worldToLocal(point),
-        location = vectorGeo([local.x, local.y, local.z]),
-        hand = e.detail.cursorEl?.getAttribute('laser-controls')?.hand;
-      if (hand === 'left' && state.mode === 'globe') callbacks.teleport?.(location);
-      else {
-        const f = countryAt(features, location.lat, location.lon);
-        if (f) callbacks.pick?.(f.properties);
-      }
+      selectRay(ray, cursor.getAttribute('laser-controls')?.hand === 'left');
     }
   });
   const controllers = [];
@@ -975,7 +994,7 @@ export function createEarthWorld(mount, callbacks) {
     wasMenu = input.menu;
     if (Math.abs(input.turn) < 0.3) snapReady = true;
     stepCooldown = Math.max(0, stepCooldown - dt);
-    if (!paused || panelMode === 'time') callbacks.tick?.(dt);
+    callbacks.tick?.(dt);
     updateModel();
     updateSky(Math.min((delta || 0) / 1000, 1));
     let travelled = 0;

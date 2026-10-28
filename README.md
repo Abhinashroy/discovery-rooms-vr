@@ -45,7 +45,7 @@ Open the printed address, usually <http://127.0.0.1:5173/>. Refresh an old tab w
 | Earth travel      | WASD across the spherical surface           | Short faded steps; left trigger on Earth teleports |
 | Earth information | Select a country or use the searchable list | Right trigger; paginated country destinations      |
 
-In Planetarium and Earth VR, menus stay at their opening position while you look around. Close and reopen with B/Y to place them in front of you again. Controller-mounted menu/status boxes have been removed. Earth uses the headset's tracked eye height without the extra 1.5 m desktop lift. For country information, point at land and press the **right trigger**; the **left trigger** teleports.
+In Planetarium and Earth VR, solid opaque menus stay at their opening position while you look around. Close and reopen with B/Y to place them in front of you again. Controller-mounted menu/status boxes have been removed. Selecting a planet in Explore opens its facts; close-up is optional. For country information, point at land and press the **right trigger**; the **left trigger** teleports. Information cards open near the selection gaze and stay fixed. Globe Explorer adds 35 cm to the headset's tracked eye height; the desktop lift stays 1.5 m. Opening an Earth menu keeps a playing simulation running; use the clock's Pause to stop time.
 
 Stationary navigation, reduced motion, larger text and mute are available. Physical walking is not required. A room change may require entering VR again.
 
@@ -60,7 +60,7 @@ npm run build
 npm run preview
 ```
 
-The current suite has **109 tests**. The production build includes the selector, three rooms and four retained legacy entry pages. GitHub Actions runs formatting, tests and build on pushes and pull requests, and saves `dist/` as a downloadable build artifact. The separate **Deploy website** workflow publishes validated `main` builds to GitHub Pages.
+The current suite has **115 tests**. The production build includes the selector, three rooms and four retained legacy entry pages. GitHub Actions runs formatting, tests and build on pushes and pull requests, and saves `dist/` as a downloadable build artifact. The separate **Deploy website** workflow publishes validated `main` builds to GitHub Pages.
 
 Run `npm run format` to apply formatting. Country fact edits are regenerated with `npm run build:catalog`. See [Contributing](CONTRIBUTING.md) for the workflow.
 

@@ -1,3 +1,24 @@
+export const MENU_RENDER_ORDER = 2000;
+
+// Draw after world transparency with alpha 1, so clouds and stars cannot bleed
+// through the panel or its gaps. The owning room reuses and disposes this mesh.
+export function createMenuBackdrop(T) {
+  const mesh = new T.Mesh(
+    new T.PlaneGeometry(1, 1),
+    new T.MeshBasicMaterial({
+      color: '#091526',
+      side: T.DoubleSide,
+      transparent: true,
+      opacity: 1,
+      depthTest: false,
+      depthWrite: false,
+    }),
+  );
+  mesh.renderOrder = MENU_RENDER_ORDER;
+  mesh.position.z = -0.025;
+  return mesh;
+}
+
 // A menu is placed once in world space. Content updates never chase the headset.
 export function paintMenuLabel(canvas, text, width, height, color, background) {
   // Match the texture to the physical plane, so glyphs aren't flattened in VR.
@@ -39,18 +60,27 @@ export function paintMenuLabel(canvas, text, width, height, color, background) {
 
 export function createMenuAnchor(readView, writePose) {
   let open = false;
-  function place({ distance = 2.6, lateral = 0, vertical = -0.05 } = {}) {
+  function place({ distance = 2.6, lateral = 0, vertical = -0.05, gaze = false } = {}) {
     const { position, forward } = readView();
     const length = Math.hypot(forward[0], forward[2]);
     const x = length > 0.001 ? forward[0] / length : 0;
     const z = length > 0.001 ? forward[2] / length : -1;
+    // Information opened by looking down at a globe should appear in that view.
+    // Clamp the tilt and discard roll; the captured pose still stays fixed.
+    const pitch = gaze
+      ? Math.max(
+          (-55 * Math.PI) / 180,
+          Math.min((35 * Math.PI) / 180, Math.atan2(forward[1], length)),
+        )
+      : 0;
+    const horizontal = distance * Math.cos(pitch);
     writePose({
       position: [
-        position[0] + x * distance - z * lateral,
-        position[1] + vertical,
-        position[2] + z * distance + x * lateral,
+        position[0] + x * horizontal - z * lateral,
+        position[1] + vertical + distance * Math.sin(pitch),
+        position[2] + z * horizontal + x * lateral,
       ],
-      rotation: [0, (Math.atan2(-x, -z) * 180) / Math.PI, 0],
+      rotation: [(pitch * 180) / Math.PI, (Math.atan2(-x, -z) * 180) / Math.PI, 0],
     });
   }
   return {

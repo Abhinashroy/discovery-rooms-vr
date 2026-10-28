@@ -1,6 +1,6 @@
 # Earth Explorer — Room 3 specification and implementation
 
-Revision R4 · 28 October 2026 · **Implemented in local checkpoint 0.24.0; actual Quest and learner validation pending.**
+Revision R4 · 28 October 2026 · **Implemented in local checkpoint 0.24.1; actual Quest and learner validation pending.**
 
 This is the active specification for Earth Explorer, Room 3. The owner expanded the initial 12-country version to all 195 countries, a larger traveller, supplied movement/completion sounds, a compact shared clock and a decorative star/comet sky. Classroom and Planetarium remain separate preserved rooms.
 
@@ -8,13 +8,13 @@ This is the active specification for Earth Explorer, Room 3. The owner expanded 
 
 All 195 learning countries have distinct authored facts, per-card source links and polygon-interior destinations. The scope is 193 UN member states plus Holy See and Palestine; other mapped territories retain names. Natural Earth v5.1.2 50m supplies 242 map features, including the small countries. Native country destinations paginate ten per page. A gold ring locates tiny countries without enlarging their borders.
 
-Globe radius is 10 m with a 1.5 m lift on desktop only, giving the desktop traveller about 2.86 times the previous size relative to Earth. Desktop travel is 2.5 m/s. Quest uses its natural tracked eye height with no artificial lift, 1.8 m faded steps or point teleport, and no forced headset roll. All actual-device comfort/performance acceptance remains open.
+Globe radius is 10 m with a 1.5 m lift on desktop only, giving the desktop traveller about 2.86 times the previous size relative to Earth. Desktop travel is 2.5 m/s. Quest uses its natural tracked eye height plus a modest 0.35 m lift, 1.8 m faded steps or point teleport, and no forced headset roll. All actual-device comfort/performance acceptance remains open.
 
 The shared UTC clock minimizes to a date/time button and expands in either mode. Globe time stays paused while walking; date/hour changes still update illumination. A 2,400-point star field is visible in both modes. A single occasional distant comet is decorative, unrelated to the date/time model, and stops during menus, quizzes, reduced motion and hidden tabs.
 
 Existing footstep.wav supplies one thud per travelled metre; short Quest steps get one thud, long teleports none. Existing Hooray.m4a plays once after a completed quiz at any score. Mute/menu/blur/hidden/departure cancel audio. No ambient soundtrack or live AI is added.
 
-109 automated checks pass and eight production entries build. Project status records browser journeys and pending hardware/learner checks. Run npm test, npm run build and npm run dev; choose Earth Explorer at the printed URL. After five cards, Country quiz starts five questions. Quest setup is in deployment.md.
+115 automated checks pass and eight production entries build. Project status records browser journeys and pending hardware/learner checks. Run npm test, npm run build and npm run dev; choose Earth Explorer at the printed URL. After five cards, Country quiz starts five questions. Quest setup is in deployment.md.
 
 ## 1. Core idea
 

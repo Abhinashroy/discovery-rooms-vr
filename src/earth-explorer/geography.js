@@ -13,8 +13,8 @@ import {
 // Larger traveller relative to Earth: smaller globe + lift above the tracked eye.
 export const GLOBE_RADIUS = 10;
 export const GLOBE_EYE_LIFT = 1.5;
-// Respect the headset's tracked standing/seated eye height; no artificial VR lift.
-export const globeEyeLift = (immersive) => (immersive ? 0 : GLOBE_EYE_LIFT);
+// A modest lift above the headset's tracked standing/seated eye height.
+export const globeEyeLift = (immersive) => (immersive ? 0.35 : GLOBE_EYE_LIFT);
 export function surfaceFrame(location) {
   const normal = geoVector(location.lat, location.lon),
     candidate = location.north || [
