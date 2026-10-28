@@ -230,7 +230,7 @@ function act(action) {
     open(state.phase === 'explore' ? 'mode' : 'activity');
     return;
   }
-  if (['countries', 'comfort'].includes(type)) {
+  if (['countries', 'comfort', 'controls'].includes(type)) {
     if (state.phase !== 'explore') {
       open('activity');
       return;

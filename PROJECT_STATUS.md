@@ -1,8 +1,16 @@
 # Project status
 
-Updated **28 October 2026**. Current application: **0.23.0**.
+Updated **28 October 2026**. Current application: **0.24.0**.
 
 Public website: [https://abhinashroy.github.io/discovery-rooms-vr/](https://abhinashroy.github.io/discovery-rooms-vr/).
+
+## Latest VR fixes — 0.24.0
+
+- Planetarium and Earth native menu labels retain their textures before A-Frame's asynchronous object attachment. Buttons render one textured face instead of overlapping background/text planes, with correctly proportioned, readable text.
+- Both rooms place menus in world space on opening. Head turns and content redraws do not move them. B/Y closes and reopens at the current view; headset tracking remains active while a menu is open.
+- Removed both controller MENU planes and wrist/status boxes from these two rooms. Controller rays and B/Y still work.
+- Earth VR removes the artificial 1.5 m lift and respects tracked seated/standing eye height. The desktop giant view is preserved. Controller Help explains right-trigger country information, left-trigger teleport, sticks and B/Y.
+- Desktop rendering previews exercise the actual native menu meshes: all eight planet names visible, canvas-ray selection works, used names leave the list, repeated redraws preserve text, head-turn preview leaves world pose unchanged, Earth country/help/card menus render and controller UI child count is zero. This is not an actual Quest pass; the owner's hardware retest remains required.
 
 ## Implemented
 
@@ -18,12 +26,12 @@ Public website: [https://abhinashroy.github.io/discovery-rooms-vr/](https://abhi
 
 ## Verification
 
-- 101 automated tests cover current rooms and retained legacy routes.
+- 109 automated tests cover current rooms and retained legacy routes.
 - Eight production entries build: selector, three current rooms and four legacy pages.
 - Desktop browser journeys cover room navigation, classroom rounds, Planetarium naming/quiz, Earth clock boundaries, globe movement, tiny-country search, country cards, quiz locking and corrections.
 - Latest Earth journey: five opened cards; fact, region, Turkey's paired continents and map prompts; deliberate 4/5 result; exactly one completion Hooray. Walking for 1.8 seconds started five supplied thuds.
 - All 195 country destinations are validated inside their bundled polygon. A visible decorative comet, compact clock and shared-clock editing without leaving Globe mode were checked.
-- Repository preparation: Prettier formatting passes, all 101 tests pass, eight production pages build, Python helpers parse and pass Ruff formatting, and npm audit reports zero known vulnerabilities. The generated country catalog remains unchanged. GitHub Actions repeats the Node formatting/test/build checks.
+- Repository preparation: Prettier formatting passes, all 109 tests pass, eight production pages build, Python helpers parse and pass Ruff formatting, and npm audit reports zero known vulnerabilities. The generated country catalog remains unchanged. GitHub Actions repeats the Node formatting/test/build checks.
 
 ## Remaining acceptance
 

@@ -1,3 +1,4 @@
+import { createMenuAnchor, paintMenuLabel, pruneLabelResources } from '../rooms/xr-menu.js';
 import { PLANETS, BY_ID, LEARNING_FACTS, SOLAR_NOTES } from './content.js';
 import { HALL, SUN, VIEWS, canStand, movePlayer, inspectionPlacement } from './layout.js';
 import { createMaterials } from './materials.js';
@@ -56,43 +57,58 @@ export function createPlanetarium(mount, callbacks) {
   function glow(p, size, color) {
     return mesh(new T.BoxGeometry(...size), new T.MeshBasicMaterial({ color }), p);
   }
-  function sign(text, width = 2, height = 0.3, color = '#cbdde9', bg = '#12233a') {
-    const key = JSON.stringify([text, color, bg]);
+  function sign(text, width = 2, height = 0.3, color = '#cbdde9', bg = '#12233a', overlay = false) {
+    const key = JSON.stringify([
+      text,
+      color,
+      bg,
+      overlay,
+      overlay ? width : null,
+      overlay ? height : null,
+    ]);
     let tex = labels.get(key);
     if (!tex) {
       const c = document.createElement('canvas');
-      c.width = 512;
-      c.height = 128;
-      const x = c.getContext('2d');
-      x.fillStyle = bg;
-      x.fillRect(0, 0, c.width, c.height);
-      x.fillStyle = color;
-      x.textAlign = 'center';
-      x.textBaseline = 'middle';
-      x.font =
-        '600 ' + (text.length > 40 ? 18 : text.length > 25 ? 23 : 33) + 'px Segoe UI, sans-serif';
-      if (text.length > 40) {
-        const lines = [],
-          words = text.split(' ');
-        let line = '';
-        for (const word of words) {
-          const next = line ? line + ' ' + word : word;
-          if (x.measureText(next).width > 480 && line) {
-            lines.push(line);
-            line = word;
-          } else line = next;
-        }
-        if (line) lines.push(line);
-        lines.forEach((line, i) =>
-          x.fillText(line, 256, 64 + (i - (lines.length - 1) / 2) * 28, 490),
-        );
-      } else x.fillText(text, 256, 64, 490);
+      if (overlay) paintMenuLabel(c, text, width, height, color, bg);
+      else {
+        c.width = 512;
+        c.height = 128;
+        const x = c.getContext('2d');
+        x.fillStyle = bg;
+        x.fillRect(0, 0, c.width, c.height);
+        x.fillStyle = color;
+        x.textAlign = 'center';
+        x.textBaseline = 'middle';
+        x.font =
+          '600 ' + (text.length > 40 ? 18 : text.length > 25 ? 23 : 33) + 'px Segoe UI, sans-serif';
+        if (text.length > 40) {
+          const lines = [],
+            words = text.split(' ');
+          let line = '';
+          for (const word of words) {
+            const next = line ? line + ' ' + word : word;
+            if (x.measureText(next).width > 480 && line) {
+              lines.push(line);
+              line = word;
+            } else line = next;
+          }
+          if (line) lines.push(line);
+          lines.forEach((line, i) =>
+            x.fillText(line, 256, 64 + (i - (lines.length - 1) / 2) * 28, 490),
+          );
+        } else x.fillText(text, 256, 64, 490);
+      }
       tex = new T.CanvasTexture(c);
       tex.colorSpace = T.SRGBColorSpace;
       tex.generateMipmaps = false;
       tex.minFilter = T.LinearFilter;
       labels.set(key, tex);
-      const m = new T.MeshBasicMaterial({ map: tex, side: T.DoubleSide });
+      const m = new T.MeshBasicMaterial({
+        map: tex,
+        side: T.DoubleSide,
+        depthTest: !overlay,
+        depthWrite: !overlay,
+      });
       ownMaterial.push(m);
       labelMaterials.set(key, m);
     }
@@ -103,7 +119,9 @@ export function createPlanetarium(mount, callbacks) {
       ownGeometry.push(g);
       labelGeometry.set(shape, g);
     }
-    return new T.Mesh(g, labelMaterials.get(key));
+    const label = new T.Mesh(g, labelMaterials.get(key));
+    label.renderOrder = overlay ? 1000 : 0;
+    return label;
   }
   // A stable observatory shell with cosmic panels and visible architecture.
   const sky = mats.texture('stars'),
@@ -339,23 +357,39 @@ export function createPlanetarium(mount, callbacks) {
     schedule = createSchedule(Date.now()),
     flyRoot = new T.Group();
   root.add(flyRoot);
-  const panel = el('a-entity', { visible: false, position: '0 0 -1.8' });
-  camera.append(panel);
+  const panel = el('a-entity', { id: 'planet-vr-menu', visible: false });
+  scene.append(panel);
+  const menuAnchor = createMenuAnchor(
+    () => {
+      const position = camera.object3D.getWorldPosition(new T.Vector3());
+      const direction = new T.Vector3(0, 0, -1).applyQuaternion(
+        camera.object3D.getWorldQuaternion(new T.Quaternion()),
+      );
+      return { position: position.toArray(), forward: direction.toArray() };
+    },
+    ({ position, rotation }) => {
+      panel.setAttribute('position', position.join(' '));
+      panel.setAttribute('rotation', rotation.join(' '));
+    },
+  );
   function button(text, action, x, y, w = 0.98, h = 0.2) {
-    const b = el('a-plane', {
-      position: `${x} ${y} .01`,
-      width: w,
-      height: h,
-      material: 'shader: flat; color: #182e49',
+    const b = el('a-entity', {
+      position: `${x} ${y} 0`,
+      'aria-label': text,
       ...(action ? { class: 'planet-target', 'data-action': action } : {}),
     });
-    b.setObject3D('label', sign(text, w, h - 0.01, '#e8f1ff'));
+    b.setObject3D('mesh', sign(text, w, h, '#e8f1ff', '#12233a', true));
     panel.append(b);
   }
   function drawPanel() {
     panel.replaceChildren();
     panel.setAttribute('visible', immersive && paused);
-    if (!immersive || !paused || !state) return;
+    if (!immersive || !paused || !state) {
+      menuAnchor.hide();
+      return;
+    }
+    menuAnchor.show();
+    panel.object3D.scale.setScalar(settings.large ? 1.12 : 1);
     const q = activeQuestion(state),
       activity = ['activity', 'learning'].includes(panelMode);
     let title =
@@ -466,7 +500,10 @@ export function createPlanetarium(mount, callbacks) {
     if (!activity && panelMode !== 'menu')
       options.push(['Back to menu', 'menu-home'], ['Continue in room', 'close']);
     const heading = el('a-entity', { position: '0 1.0 0' });
-    heading.setObject3D('title', sign(title, activity ? 2.7 : 2.05, activity ? 0.35 : 0.23));
+    heading.setObject3D(
+      'title',
+      sign(title, activity ? 2.7 : 2.05, activity ? 0.35 : 0.23, '#cbdde9', '#12233a', true),
+    );
     panel.append(heading);
     if (activity) {
       const compact = state.phase === 'naming-review';
@@ -494,29 +531,22 @@ export function createPlanetarium(mount, callbacks) {
             : state.feedback,
           2.1,
           0.25,
+          '#cbdde9',
+          '#12233a',
+          true,
         ),
       );
       panel.append(status);
     }
   }
   function pruneLabels() {
-    const used = new Set();
-    const collect = (o) => {
-      if (o.material?.map) used.add(o.material.map);
-    };
-    root.traverse(collect);
-    rig.object3D.traverse(collect);
-    for (const [key, texture] of labels)
-      if (!used.has(texture)) {
-        const material = labelMaterials.get(key);
-        material.map = null;
-        material.dispose();
-        const i = ownMaterial.indexOf(material);
-        if (i >= 0) ownMaterial.splice(i, 1);
-        texture.dispose();
-        labels.delete(key);
-        labelMaterials.delete(key);
-      }
+    pruneLabelResources({
+      textures: labels,
+      materials: labelMaterials,
+      ownedMaterials: ownMaterial,
+      roots: [root, rig.object3D, panel.object3D],
+      entities: [...panel.querySelectorAll('*')],
+    });
   }
   function position() {
     const v = camera.object3D.getWorldPosition(new T.Vector3());
@@ -598,20 +628,6 @@ export function createPlanetarium(mount, callbacks) {
       inspectionContainer.dataset.planet = s.inspection || '';
       lastInspection = s.inspection;
     }
-    if (wrist) {
-      wrist.clear();
-      const cue =
-        s.phase === 'quiz'
-          ? 'Quiz ' + (s.question + 1) + '/5 · B/Y for controls'
-          : s.phase === 'naming'
-            ? Object.keys(s.assignments).length + '/8 named · Select planet, then name'
-            : ['naming-review', 'result'].includes(s.phase)
-              ? 'Review results · B/Y for controls'
-              : s.focus
-                ? BY_ID[s.focus].name + ' · B/Y for learning notes'
-                : 'B/Y: explore or start naming';
-      wrist.add(sign(cue, 0.48, 0.12));
-    }
     drawPanel();
     pruneLabels();
   }
@@ -620,7 +636,7 @@ export function createPlanetarium(mount, callbacks) {
     panelMode = mode;
     keys.clear();
     callbacks.walk?.(0);
-    camera.setAttribute('look-controls', 'enabled', !paused);
+    camera.setAttribute('look-controls', 'enabled', immersive || !paused);
     if (state) render(state, settings);
   }
   function buildFly(kind) {
@@ -744,7 +760,12 @@ export function createPlanetarium(mount, callbacks) {
         drawCalls: info.render.calls,
         triangles: info.render.triangles,
         textures:
-          mats.estimatedTextureBytes() + labels.size * 512 * 128 * 4 + (512 * 512 * 4 * 4) / 3,
+          mats.estimatedTextureBytes() +
+          [...labels.values()].reduce(
+            (bytes, texture) => bytes + texture.image.width * texture.image.height * 4,
+            0,
+          ) +
+          (512 * 512 * 4 * 4) / 3,
       });
   };
   scene.setAttribute('planetarium-tick', '');
@@ -807,36 +828,29 @@ export function createPlanetarium(mount, callbacks) {
     const target = e.target.closest?.('.planet-target');
     if (target?.dataset.action) callbacks.action(target.dataset.action);
   });
-  let wrist;
+  const controllers = [];
   for (const hand of ['left', 'right']) {
     const controller = el('a-entity', {
       'laser-controls': `hand: ${hand}; model: false`,
       raycaster: 'objects: .planet-target; far: 45; lineColor: #65d5dc',
     });
-    const menu = el('a-plane', {
-      position: '0 .08 -.2',
-      width: 0.2,
-      height: 0.06,
-      class: 'planet-target',
-      'data-action': 'menu',
-    });
-    menu.setObject3D('label', sign('MENU', 0.2, 0.06));
-    controller.append(menu);
-    if (hand === 'left') {
-      const cue = el('a-entity', { position: '0 .18 -.3', rotation: '-35 0 0' });
-      wrist = new T.Group();
-      cue.setObject3D('cue', wrist);
-      controller.append(cue);
-    }
+    controller.object3D.visible = false;
+    controllers.push(controller);
     rig.append(controller);
   }
   listen(scene, 'enter-vr', () => {
     immersive = true;
+    for (const controller of controllers) controller.object3D.visible = true;
+    camera.setAttribute('look-controls', 'enabled', true);
+    menuAnchor.hide();
     callbacks.immersive(true);
     drawPanel();
   });
   listen(scene, 'exit-vr', () => {
     immersive = false;
+    for (const controller of controllers) controller.object3D.visible = false;
+    camera.setAttribute('look-controls', 'enabled', !paused);
+    menuAnchor.hide();
     callbacks.immersive(false);
     drawPanel();
   });

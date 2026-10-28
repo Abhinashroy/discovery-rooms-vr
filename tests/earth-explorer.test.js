@@ -19,6 +19,8 @@ import {
 } from '../src/earth-explorer/astronomy.js';
 import {
   GLOBE_RADIUS,
+  GLOBE_EYE_LIFT,
+  globeEyeLift,
   surfaceFrame,
   moveSurface,
   contains,
@@ -301,4 +303,10 @@ test('global quiz handles Oceania, tiny countries and paired transcontinental an
     }
     assert.ok(found, 'No region question for ' + id);
   }
+});
+
+test('Earth VR respects tracked eye height without the desktop giant viewpoint lift', () => {
+  assert.equal(globeEyeLift(true), 0);
+  assert.equal(globeEyeLift(false), GLOBE_EYE_LIFT);
+  assert.equal(GLOBE_RADIUS + globeEyeLift(false) - (GLOBE_RADIUS + globeEyeLift(true)), 1.5);
 });

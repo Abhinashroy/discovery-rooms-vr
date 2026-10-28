@@ -1,8 +1,19 @@
 # Discovery Rooms — validation R10
 
-## Earth Explorer — 0.23.0
+## Native VR corrections — 0.24.0
 
-101 automated tests and the eight-entry production build pass. Earth tests cover Gregorian/UTC boundaries, approximate orbital/lighting invariants, coordinate mapping, pole/dateline surface travel, polygon holes, all 195 landings and quiz eligibility/guards/scoring/abandonment. Production desktop journeys verify leap day, midnight rollover, mode/country selection, direct E card opening, movement coordinates, all question types, a deliberate 4/5 result, corrections, country revisit and saved review. Evidence and limitations are in PROJECT_STATUS.md.
+The owner reported blank choices, controller boxes obscuring the view and menus following the head. Corrections are implemented in Planetarium and Earth and checked with actual menu meshes in a desktop rendering preview. These checks do not replace hardware validation. On Quest verify:
+
+1. All planet-name choices and country destinations show readable text immediately and after repeated selection/paging/redraw.
+2. Looking left/right/up/down leaves an open menu at its world position; B/Y close/reopen places it in the current view. Head tracking stays natural.
+3. No controller-mounted MENU or status box obscures the scene. Rays and B/Y still work.
+4. Earth height is lower by the removed 1.5 m lift, with natural tracked seated/standing height and no forced roll.
+5. Right-trigger pointing at land opens a country fact; left-trigger pointing teleports. Country destinations remain a precision-free alternative. Controller Help states these actions.
+6. Naming submission, quiz, results, clock and Exit VR remain reachable; menus can close during roaming.
+
+## Earth Explorer — 0.24.0
+
+109 automated tests and the eight-entry production build pass. Earth tests cover Gregorian/UTC boundaries, approximate orbital/lighting invariants, coordinate mapping, pole/dateline surface travel, polygon holes, all 195 landings and quiz eligibility/guards/scoring/abandonment. Production desktop journeys verify leap day, midnight rollover, mode/country selection, direct E card opening, movement coordinates, all question types, a deliberate 4/5 result, corrections, country revisit and saved review. Evidence and limitations are in PROJECT_STATUS.md.
 
 The embedded preview reported about 1000 ms between rendered frames; do not record this as a performance pass. The new desktop journey records five thuds during 1.8 seconds of walking, a 4/5 quiz and exactly one Hooray. No actual Quest, child/usability or learning-benefit pass is claimed. Record device/browser versions, render settings, observed frame stability, session length and any discomfort before closing the following gates:
 
@@ -11,14 +22,14 @@ The embedded preview reported about 1000 ms between rendered frames; do not reco
 | Entry / modes           | Earth card, Enter VR, mode choice, short fades, stationary observer with natural head tracking; mode changes preserve time/discoveries                                                                                             |
 | Surface travel          | Left-stick short faded steps, right 30° snap turns, left-trigger point teleport; upright predictable view, no physical walking or forced roll; stop on release/pause/input loss                                                    |
 | Seated alternative      | All 195 countries reachable through native paginated destination panel with walking disabled                                                                                                                                       |
-| Selection / readability | Right ray opens correct country card; current-country wrist cue and nearby labels readable, no far-side labels; fact/continent controls reachable                                                                                  |
+| Selection / readability | Right ray opens correct country card; nearby country labels and world-space menu text readable, no far-side labels; fact/continent controls reachable                                                                              |
 | Hidden controls         | B/Y opens/closes; hidden panels do not intercept rays; Exit VR and Main room reachable                                                                                                                                             |
-| Larger traveller        | 10 m radius, raised eye-origin, no forced roll; comfortable curvature, controller reach and predictable 1.8 m faded steps                                                                                                          |
+| Larger traveller        | 10 m radius; VR eye-origin has no artificial lift, no forced roll; comfortable curvature, controller reach and predictable 1.8 m faded steps                                                                                       |
 | Clock minimize          | Expanded clock collapses to compact date/time, reopens in either mode without changing views; native Minimize closes its panel                                                                                                     |
 | Sky                     | Stars visible in both views; occasional distant comet, none during quiz/menus/reduced motion; no foreground interception                                                                                                           |
 | Time / lighting         | Native Day/Hour/Year and Play/speed agree with UTC display; leap date, midnight, day/night and Moon geometry agree after changing views                                                                                            |
 | Comfort display         | Map light brightens learning surface without moving Sun/clock; paths/axis, reduced motion and larger text usable                                                                                                                   |
-| Quiz                    | Five cards unlock; five prompts and four choices each; outlined country remains visible beside panel; labels/cards/wrist cue do not reveal answers; Confirm locks; Next scores once                                                |
+| Quiz                    | Five cards unlock; five prompts and four choices each; outlined country remains visible beside panel; labels/cards do not reveal answers; Confirm locks; Next scores once                                                          |
 | Review / abandon        | Deliberate wrong answer corrected in final score; revisit and last result retained; leaving after answering warns and stays unfinished                                                                                             |
 | Lifecycle / sound       | Main room resets run, no continued rendering/timers, all three entries reopen; Earth thuds only for actual walking/short steps; one Hooray per completed quiz, including imperfect scores; mute/menu/departure stop pending sounds |
 

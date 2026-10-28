@@ -1,6 +1,6 @@
 # Earth Explorer — Room 3 specification and implementation
 
-Revision R3 · 15 October 2026 · **Implemented in local checkpoint 0.23.0; actual Quest and learner validation pending.**
+Revision R4 · 28 October 2026 · **Implemented in local checkpoint 0.24.0; actual Quest and learner validation pending.**
 
 This is the active specification for Earth Explorer, Room 3. The owner expanded the initial 12-country version to all 195 countries, a larger traveller, supplied movement/completion sounds, a compact shared clock and a decorative star/comet sky. Classroom and Planetarium remain separate preserved rooms.
 
@@ -8,13 +8,13 @@ This is the active specification for Earth Explorer, Room 3. The owner expanded 
 
 All 195 learning countries have distinct authored facts, per-card source links and polygon-interior destinations. The scope is 193 UN member states plus Holy See and Palestine; other mapped territories retain names. Natural Earth v5.1.2 50m supplies 242 map features, including the small countries. Native country destinations paginate ten per page. A gold ring locates tiny countries without enlarging their borders.
 
-Globe radius is 10 m with a 1.5 m lift above the tracked-eye origin, giving the desktop traveller about 2.86 times the previous size relative to Earth. Desktop travel is 2.5 m/s. Quest uses 1.8 m faded steps or point teleport, with no forced headset roll. All actual-device comfort/performance acceptance remains open.
+Globe radius is 10 m with a 1.5 m lift on desktop only, giving the desktop traveller about 2.86 times the previous size relative to Earth. Desktop travel is 2.5 m/s. Quest uses its natural tracked eye height with no artificial lift, 1.8 m faded steps or point teleport, and no forced headset roll. All actual-device comfort/performance acceptance remains open.
 
 The shared UTC clock minimizes to a date/time button and expands in either mode. Globe time stays paused while walking; date/hour changes still update illumination. A 2,400-point star field is visible in both modes. A single occasional distant comet is decorative, unrelated to the date/time model, and stops during menus, quizzes, reduced motion and hidden tabs.
 
 Existing footstep.wav supplies one thud per travelled metre; short Quest steps get one thud, long teleports none. Existing Hooray.m4a plays once after a completed quiz at any score. Mute/menu/blur/hidden/departure cancel audio. No ambient soundtrack or live AI is added.
 
-101 automated checks pass and eight production entries build. Project status records browser journeys and pending hardware/learner checks. Run npm test, npm run build and npm run dev; choose Earth Explorer at the printed URL. After five cards, Country quiz starts five questions. Quest setup is in deployment.md.
+109 automated checks pass and eight production entries build. Project status records browser journeys and pending hardware/learner checks. Run npm test, npm run build and npm run dev; choose Earth Explorer at the printed URL. After five cards, Country quiz starts five questions. Quest setup is in deployment.md.
 
 ## 1. Core idea
 
@@ -25,7 +25,7 @@ Ages 10–15. One space-themed learning experience, with only three celestial bo
 - **Orbit Observatory:** watch Earth rotate and orbit the Sun, and the Moon orbit Earth. Change date/time and see sunlight move.
 - **Globe Explorer:** become a giant traveller on a miniature spherical Earth, crossing large geographic distances in a few virtual steps. Discover countries and their locations, then take an optional quiz.
 
-This is an abstract educational globe, not realistic street-level travel. Keep the curved globe visibly recognisable. There are no separate country rooms. Both views belong to one new game entry on the existing Main room selector.
+This is an abstract educational globe, not realistic street-level travel. Keep the curved globe visibly recognisable. There are no separate country rooms. Native VR menus stay in world space while the player looks around; B/Y closes/reopens them at the current view. Right trigger on land opens country information, left trigger teleports, and Controller Help explains these actions. Both views belong to one game entry on the existing Main room selector.
 
 ## 2. Player journey
 
@@ -99,7 +99,7 @@ Time is paused on entry so the globe does not move the player while reading or t
 
 ### Labels and selection
 
-Show at most three nearby country labels, depth-occluded by the globe. The mini-globe readout shows the country underfoot; Quest has a left-controller location cue. Selecting a country highlights its shape. Label overlap/readability still needs actual-headset review.
+Show at most three nearby country labels, depth-occluded by the globe. The mini-globe readout shows the country underfoot; Quest uses nearby country labels and a fixed menu; controller-mounted boxes are removed. Selecting a country highlights its shape. Label overlap/readability still needs actual-headset review.
 
 Tiny countries and islands need a selectable label and searchable country list. Preserve their geographic shape rather than enlarging their land area to make them clickable. All learning-enabled countries must be reachable without precision pointing.
 

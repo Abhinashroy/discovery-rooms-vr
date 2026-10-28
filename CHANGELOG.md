@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.24.0 — VR menu fixes — 28 October 2026
+
+- Fixed blank native planet/country options by preserving pending label resources and removing coplanar button layers.
+- Improved menu text resolution/layout and pinned both room menus in world space, with head tracking active.
+- Removed controller-mounted boxes from Planetarium and Earth.
+- Lowered Earth's VR viewpoint by removing its artificial lift; retained the desktop view and added explicit country controller help.
+- Added seven label/anchor regressions plus a VR-height check; 109 tests pass. Actual Quest retest remains pending.
+
 ## Website publication — 28 October 2026
 
 - Added GitHub Pages publication of the latest three-room build, with formatting/tests/build gates and manual re-deployment.

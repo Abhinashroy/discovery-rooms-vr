@@ -1,6 +1,6 @@
 # Planetarium Rescue — Room 2 plan and implementation
 
-Revision R3 · 15 October 2026 · **Room 2 behavior implemented in 0.21.0 and preserved in the 0.23.0 three-room checkpoint; actual Quest/learner validation pending.**
+Revision R4 · 28 October 2026 · **Room 2 behavior implemented in 0.21.0 and preserved in the 0.24.0 three-room checkpoint; actual Quest/learner validation pending.**
 
 This revision incorporates the owner's new size, naming, quiz and sound instructions. It supersedes R1's strict inner-body scale, grouped card-first restoration, assisted adaptive recall and silent room. Classroom Detective remains the accepted implementation. Keep the hall, planet materials, navigation, room selector and fresh-entry behavior. R3 adds grouped Main room menus, compact corner controls and inspection at each planet’s own exhibit.
 
@@ -89,7 +89,7 @@ Use only the user's existing public/audio/footstep.wav and Hooray.m4a in Planeta
 
 WASD/Up/Down movement, drag look, arrow turning, E select, M/Escape controls. Both room menus offer Main room to return to the selector; they no longer offer direct cross-room buttons. The classroom Menu and planetarium viewpoint controls use rounded corner docks. Empty status/feedback areas hide. Stationary mode offers every exhibit viewpoint; menu keyboard actions provide equivalents for selection. Larger text, reduced motion, mute, explicit labels and visible right/wrong words accompany colour. No timer or required sound comprehension.
 
-VR implementation uses left-stick movement, right-stick 30° snap turns, either-controller rays and B/Y controls. Settings are hidden during roaming. Selecting a planet opens name choices; submission/review and quiz have intentional activity panels with equivalent actions. Learning notes are available in the VR menu. Main room return stops audio/work, exits immersion and loads the selector; VR re-entry may be required.
+VR implementation uses left-stick movement, right-stick 30° snap turns, either-controller rays and B/Y controls. Settings are hidden during roaming. Menus stay in world space during head turns; B/Y close/reopen captures a new position. Controller-mounted boxes are removed. Choices use one readable textured face, with pending canvas resources retained through A-Frame initialization. Selecting a planet opens name choices; submission/review and quiz have intentional activity panels with equivalent actions. Learning notes are available in the VR menu. Main room return stops audio/work, exits immersion and loads the selector; VR re-entry may be required.
 
 Actual Quest 3 ergonomics, text/ray readability and frame stability must be measured on hardware. Supervised learner testing is separate from engineering checks. The browser game is a complete input option; no claimed cognitive improvement without evaluation.
 
@@ -105,7 +105,7 @@ Actual Quest 3 ergonomics, text/ray readability and frame stability must be meas
 | R3 menus/inspection   | 0.21.0 complete   | Main room navigation, compact corner controls, empty containers hidden, local inspection without player movement |
 | P5 hardware/learner   | Pending           | Quest controls/readability/comfort, unfamiliar learner observations and fixes                                    |
 
-Run npm test (101 checks across all rooms) and npm run build (eight entries). Browser evidence in PROJECT_STATUS.md covers 6/8 and 8/8 naming, edit/shrinking choices, all eight direct E targets, a complete 4/5 quiz, footsteps/celebration and room departure. Run npm run build for the current production output; Earth Explorer is the separate third room. Local historical packages are excluded from Git. GitHub source publication does not update game hosting.
+Run npm test (109 checks across all rooms) and npm run build (eight entries). Browser evidence in PROJECT_STATUS.md covers 6/8 and 8/8 naming, edit/shrinking choices, all eight direct E targets, a complete 4/5 quiz, footsteps/celebration and room departure. Run npm run build for the current production output; Earth Explorer is the separate third room. Local historical packages are excluded from Git. GitHub source publication does not update game hosting.
 
 ## 8. Commands and checkpoint
 

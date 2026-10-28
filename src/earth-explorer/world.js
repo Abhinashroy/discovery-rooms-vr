@@ -1,10 +1,11 @@
+import { createMenuAnchor, paintMenuLabel, pruneLabelResources } from '../rooms/xr-menu.js';
 import { createCometSchedule } from './ambience.js';
 import { modelAt, geoVector, vectorGeo, dot, scale as scaleVector } from './astronomy.js';
 import {
   surfaceFrame,
   moveSurface,
   GLOBE_RADIUS,
-  GLOBE_EYE_LIFT,
+  globeEyeLift,
   countryAt,
   unwrapRing,
   distanceDegrees,
@@ -249,45 +250,35 @@ export function createEarthWorld(mount, callbacks) {
   const labels = new Map(),
     textCache = new Map(),
     textMaterials = new Map(),
-    labelGeo = [];
+    labelGeometry = new Map();
   function textMesh(text, width = 2, height = 0.3, color = '#d4edf3', bg = '#10283b') {
-    const key = JSON.stringify([text, color, bg]);
+    const key = JSON.stringify([text, color, bg, width, height]);
     let mat = textMaterials.get(key);
     if (!mat) {
       const c = document.createElement('canvas');
-      c.width = 1024;
-      c.height = 256;
-      const x = c.getContext('2d');
-      x.fillStyle = bg;
-      x.fillRect(0, 0, 1024, 256);
-      x.fillStyle = color;
-      x.textAlign = 'center';
-      x.textBaseline = 'middle';
-      x.font = '600 38px Segoe UI';
-      const lines = [];
-      let line = '';
-      for (const word of text.split(' ')) {
-        const next = line ? line + ' ' + word : word;
-        if (x.measureText(next).width > 970 && line) {
-          lines.push(line);
-          line = word;
-        } else line = next;
-      }
-      if (line) lines.push(line);
-      lines.forEach((line, i) =>
-        x.fillText(line, 512, 128 + (i - (lines.length - 1) / 2) * 48, 980),
-      );
+      paintMenuLabel(c, text, width, height, color, bg);
       const t = new T.CanvasTexture(c);
       t.colorSpace = T.SRGBColorSpace;
       t.generateMipmaps = false;
       t.minFilter = T.LinearFilter;
-      mat = new T.MeshBasicMaterial({ map: t, side: T.DoubleSide, depthTest: false });
+      mat = new T.MeshBasicMaterial({
+        map: t,
+        side: T.DoubleSide,
+        depthTest: false,
+        depthWrite: false,
+      });
       textCache.set(key, t);
       textMaterials.set(key, mat);
     }
-    const g = new T.PlaneGeometry(width, height);
-    labelGeo.push(g);
-    return new T.Mesh(g, mat);
+    const shape = width + ':' + height;
+    let g = labelGeometry.get(shape);
+    if (!g) {
+      g = new T.PlaneGeometry(width, height);
+      labelGeometry.set(shape, g);
+    }
+    const label = new T.Mesh(g, mat);
+    label.renderOrder = 1000;
+    return label;
   }
   function sprite(text) {
     const c = document.createElement('canvas');
@@ -504,6 +495,7 @@ export function createEarthWorld(mount, callbacks) {
   }
   function applyView() {
     if (!state) return;
+    menuAnchor.hide();
     keys.clear();
     resetLook();
     camera.setAttribute(
@@ -520,7 +512,7 @@ export function createEarthWorld(mount, callbacks) {
       return;
     }
     if (state.mode === 'globe') {
-      rig.object3D.position.set(0, GLOBE_RADIUS + GLOBE_EYE_LIFT, 0);
+      rig.object3D.position.set(0, GLOBE_RADIUS + globeEyeLift(immersive), 0);
       rig.object3D.rotation.set(0, 0, 0);
       rig.setAttribute('position', rig.object3D.position);
       if (!immersive) {
@@ -578,10 +570,6 @@ export function createEarthWorld(mount, callbacks) {
     lunarPath.position.copy(vec(m.earth));
     const showLabels = surface && !paused;
     for (const controller of controllers) controller.object3D.visible = immersive;
-    if (wristCue) {
-      wristCue.visible = showLabels && immersive;
-      wristCue.scale.setScalar(settings.large ? 1.15 : 1);
-    }
     const nearby = COUNTRIES.map((c) => ({
       id: c.id,
       distance: distanceDegrees(state.location, c),
@@ -616,52 +604,48 @@ export function createEarthWorld(mount, callbacks) {
     if (!immersive && !surface && !quiz) orbitCamera();
   }
 
-  const panel = el('a-entity', { position: '0 0 -2', visible: false });
-  camera.append(panel);
+  const panel = el('a-entity', { id: 'earth-vr-menu', visible: false });
+  scene.append(panel);
+  const menuAnchor = createMenuAnchor(
+    () => {
+      const position = camera.object3D.getWorldPosition(new T.Vector3());
+      const direction = new T.Vector3(0, 0, -1).applyQuaternion(
+        camera.object3D.getWorldQuaternion(new T.Quaternion()),
+      );
+      return { position: position.toArray(), forward: direction.toArray() };
+    },
+    ({ position, rotation }) => {
+      panel.setAttribute('position', position.join(' '));
+      panel.setAttribute('rotation', rotation.join(' '));
+    },
+  );
   function pruneText() {
-    const used = new Set();
-    rig.object3D.traverse((o) => {
-      if (o.material?.map) used.add(o.material.map);
+    pruneLabelResources({
+      textures: textCache,
+      materials: textMaterials,
+      roots: [rig.object3D, panel.object3D],
+      entities: [...panel.querySelectorAll('*')],
     });
-    for (const [key, t] of textCache)
-      if (!used.has(t)) {
-        textMaterials.get(key).dispose();
-        t.dispose();
-        textCache.delete(key);
-        textMaterials.delete(key);
-      }
   }
   function panelButton(text, action, x, y, width = 1.1, height = 0.22) {
-    const b = el('a-plane', {
-      position: `${x} ${y} .01`,
-      width,
-      height,
-      material: 'shader: flat; color: #132f43',
+    const b = el('a-entity', {
+      position: `${x} ${y} 0`,
+      'aria-label': text,
       ...(action ? { class: 'xr-button', 'data-action': action } : {}),
     });
-    b.setObject3D('label', textMesh(text, width, height - 0.01));
+    b.setObject3D('mesh', textMesh(text, width, height));
     panel.append(b);
   }
   function drawPanel() {
-    const side = state?.phase === 'quiz' && panelMode === 'activity',
-      parent = side ? rig : camera;
-    if (panel.parentElement !== parent) parent.append(panel);
-    panel.setAttribute('position', side ? '1.8 1.65 -3' : '0 0 -2');
-    panel.setAttribute('rotation', side ? '0 -30 0' : '0 0 0');
     panel.object3D.scale.setScalar(settings.large ? 1.12 : 1);
-    panel.object3D.traverse((o) => {
-      if (o.geometry) {
-        o.geometry.dispose();
-        const i = labelGeo.indexOf(o.geometry);
-        if (i >= 0) labelGeo.splice(i, 1);
-      }
-    });
     panel.replaceChildren();
     panel.setAttribute('visible', immersive && paused);
     if (!immersive || !paused || !state) {
+      menuAnchor.hide();
       pruneText();
       return;
     }
+    menuAnchor.show(state.phase === 'quiz' ? { distance: 3, lateral: 1.6 } : undefined);
     let title = 'EARTH EXPLORER',
       rows = [],
       full = false;
@@ -669,7 +653,7 @@ export function createEarthWorld(mount, callbacks) {
       q = activeQuestion(state);
     if (panelMode === 'countries') {
       const pages = Math.ceil(COUNTRIES.length / 10);
-      title = 'COUNTRIES · ' + (countryPage + 1) + ' / ' + pages;
+      title = 'VISIT + READ A COUNTRY · ' + (countryPage + 1) + ' / ' + pages;
       rows = COUNTRIES.slice(countryPage * 10, countryPage * 10 + 10).map((c) => [
         c.name + (state.visited.includes(c.id) ? ' · read' : ''),
         'visit:' + c.id,
@@ -679,7 +663,7 @@ export function createEarthWorld(mount, callbacks) {
       title = c.name + ' · ' + c.continent;
       rows = [
         [c.fact, null],
-        ['Visit this country', 'land:' + c.id],
+        ['Travel to ' + c.name, 'land:' + c.id],
         ['Other countries', 'countries'],
         ['Close card', 'close-card'],
       ];
@@ -689,7 +673,19 @@ export function createEarthWorld(mount, callbacks) {
       rows = [
         ['Orbit Observatory', 'mode:orbit'],
         ['Globe Explorer', 'mode:globe'],
+        ['Controller help: triggers and B / Y', 'controls'],
       ];
+    } else if (panelMode === 'controls') {
+      title = 'HOW TO EXPLORE COUNTRIES';
+      rows = [
+        ['Right trigger: point at land to read a country card.', null],
+        ['Left trigger: point at the globe to teleport.', null],
+        ['Left stick: short steps. Right stick: snap turn.', null],
+        ['B / Y: open or close this fixed menu.', null],
+        ['Use Countries, then choose a country to visit and read.', null],
+        ['Explore countries', 'countries'],
+      ];
+      full = true;
     } else if (panelMode === 'time') {
       const d = new Date(state.timestamp);
       title = d.toISOString().slice(0, 10) + ' · ' + d.toISOString().slice(11, 16) + ' UTC';
@@ -760,7 +756,7 @@ export function createEarthWorld(mount, callbacks) {
       rows = [
         ['Continue', 'close'],
         ['Choose view', 'mode-panel'],
-        ['Countries (' + state.visited.length + '/' + COUNTRIES.length + ')', 'countries'],
+        ['Explore countries (' + state.visited.length + '/' + COUNTRIES.length + ')', 'countries'],
         [
           state.phase === 'explore' ? 'Country quiz' : 'Quiz / results',
           state.phase === 'explore' ? 'quiz-start' : 'activity',
@@ -768,6 +764,7 @@ export function createEarthWorld(mount, callbacks) {
         ['Time controls', 'time'],
         ['System view', 'view:system'],
         ['Earth close view', 'view:earth'],
+        ['Controller help', 'controls'],
         ['Comfort & display', 'comfort'],
         ['Main room', 'room:main'],
         ['Exit VR', 'exit-vr'],
@@ -941,40 +938,12 @@ export function createEarthWorld(mount, callbacks) {
     }
   });
   const controllers = [];
-  let wristTexture,
-    wristCanvas,
-    wristCue,
-    wristText = '';
   for (const hand of ['left', 'right']) {
     const controller = el('a-entity', {
-        'laser-controls': `hand: ${hand}; model: false`,
-        raycaster: 'objects: .earth-target, .xr-button; far: 300; lineColor: #90ead0',
-      }),
-      menu = el('a-plane', {
-        position: '0 .08 -.2',
-        width: 0.2,
-        height: 0.06,
-        class: 'xr-button',
-        'data-action': 'menu',
-      });
-    menu.setObject3D('label', textMesh('MENU', 0.2, 0.06));
-    controller.append(menu);
-    if (hand === 'left') {
-      wristCanvas = document.createElement('canvas');
-      wristCanvas.width = 512;
-      wristCanvas.height = 128;
-      wristTexture = new T.CanvasTexture(wristCanvas);
-      wristTexture.colorSpace = T.SRGBColorSpace;
-      textures.push(wristTexture);
-      const g = new T.PlaneGeometry(0.46, 0.115),
-        m = new T.MeshBasicMaterial({ map: wristTexture, side: T.DoubleSide });
-      owned.push(g, m);
-      const cue = new T.Mesh(g, m);
-      cue.position.set(0, 0.18, -0.3);
-      cue.rotation.x = -0.6;
-      controller.object3D.add(cue);
-      wristCue = cue;
-    }
+      'laser-controls': `hand: ${hand}; model: false`,
+      raycaster: 'objects: .earth-target, .xr-button; far: 300; lineColor: #90ead0',
+    });
+    controller.object3D.visible = false;
     controllers.push(controller);
     rig.append(controller);
   }
@@ -1053,23 +1022,6 @@ export function createEarthWorld(mount, callbacks) {
     if (hoverTick > 0.2) {
       hoverTick = 0;
       callbacks.readout?.(state.location, features);
-      if (wristTexture && state.mode === 'globe' && state.phase === 'explore') {
-        const place =
-            countryAt(features, state.location.lat, state.location.lon)?.properties.name || 'Ocean',
-          text = place + ' · ' + state.visited.length + '/' + COUNTRIES.length;
-        if (text !== wristText) {
-          const x = wristCanvas.getContext('2d');
-          x.fillStyle = '#0a2538';
-          x.fillRect(0, 0, 512, 128);
-          x.fillStyle = '#bdeddb';
-          x.font = '600 32px Segoe UI';
-          x.textAlign = 'center';
-          x.textBaseline = 'middle';
-          x.fillText(text, 256, 64, 490);
-          wristTexture.needsUpdate = true;
-          wristText = text;
-        }
-      }
     }
     if (immersive && paused && panelMode === 'time' && panelTick > 0.5) {
       panelTick = 0;
@@ -1123,7 +1075,7 @@ export function createEarthWorld(mount, callbacks) {
       textures.forEach((t) => t.dispose());
       textCache.forEach((t) => t.dispose());
       textMaterials.forEach((m) => m.dispose());
-      labelGeo.forEach((g) => g.dispose());
+      labelGeometry.forEach((g) => g.dispose());
     },
   };
 }
