@@ -82,7 +82,6 @@ Play/replay uses the supplied start.mp3; a newly correct return uses Hooray.m4a.
 | Sound/mute/replay       | Once per new finding; fresh round restores baseline                                      | Implemented; browser checks                            |
 | VR mapping/menu         | Same game actions and hidden-by-default panel                                            | Code present; headset checks pending                   |
 | Photo/help              | Reference must match immutable baseline; support preserves progress                      | Future work                                            |
-| AI/quiz                 | Optional requested support, local scoring, server-side key                               | Future work                                            |
 
 ## Making procedure from this checkpoint
 
@@ -90,7 +89,6 @@ Play/replay uses the supplied start.mp3; a newly correct return uses Hooray.m4a.
 2. Check a new player can explain the goal and explore without being told individual controls. Observe difficulty and boredom; adjust presentation before adding more rules.
 3. Verify actual Quest 3 entry/exit, both rays, thumbsticks, B/Y, hidden panel targets, complete random rounds, readable ceiling/wall objects and motion comfort. Use the existing validation document.
 4. Add on-demand reference photo/help and any further accessibility work only after the roaming game is understandable. Never reveal which four will change during Study.
-5. Add optional bounded AI and a requested quiz later. The game owns answers, disclosed hints and scoring; a provider reply cannot change a round. Authored help survives absent credentials/network failures.
-6. Pilot with supervised learners and record anonymous obstacles/fixes. Publishing needs those release checks and restored access to the original Site. No current release or effectiveness claim follows from code tests alone.
+5. Pilot with supervised learners and record anonymous observations and fixes.
 
-The old fixed four-item and six-object clubhouse designs are superseded. Earlier applications remain preserved routes, not competing specifications. Read PROJECT_STATUS.md for actual evidence and remaining checks.
+Read [PROJECT_STATUS.md](../PROJECT_STATUS.md) for verification evidence and remaining checks.

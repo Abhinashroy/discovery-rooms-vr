@@ -8,7 +8,7 @@ This revision incorporates the owner's new size, naming, quiz and sound instruct
 
 ## 1. Purpose and scope
 
-For ages 10–15, learn eight planet names, their order and a few memorable characteristics through exploration, naming and a separate knowledge quiz. There is one enclosed planetarium and the existing classroom, with no extra hub, timer, lives, branching missions or AI requirement.
+For ages 10–15, learn eight planet names, their order and a few memorable characteristics through exploration, naming and a separate knowledge quiz. The planetarium is one enclosed room, with no timer, lives or branching missions.
 
 Mercury → Venus → Earth → Mars → Jupiter → Saturn → Uranus → Neptune.
 
@@ -107,7 +107,7 @@ Actual Quest 3 ergonomics, text/ray readability and frame stability must be meas
 | R3 menus/inspection   | 0.21.0 complete   | Main room navigation, compact corner controls, empty containers hidden, local inspection without player movement |
 | P5 hardware/learner   | Pending           | Quest controls/readability/comfort, unfamiliar learner observations and fixes                                    |
 
-Run npm test (115 checks across all rooms) and npm run build (eight entries). Browser evidence in PROJECT_STATUS.md covers 6/8 and 8/8 naming, edit/shrinking choices, all eight direct E targets, a complete 4/5 quiz, footsteps/celebration and room departure. Run npm run build for the current production output; Earth Explorer is the separate third room. Local historical packages are excluded from Git. GitHub source publication does not update game hosting.
+Run `npm test` and `npm run build` to validate the current production output. Browser evidence in [PROJECT_STATUS.md](../PROJECT_STATUS.md) covers 6/8 and 8/8 naming, edit/shrinking choices, all eight direct E targets, a complete 4/5 quiz, footsteps/celebration and room departure.
 
 ## 8. Commands and checkpoint
 

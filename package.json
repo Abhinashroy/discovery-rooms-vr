@@ -1,7 +1,7 @@
 {
   "name": "ai-mol-vr",
   "private": true,
-  "version": "0.24.1",
+  "version": "0.24.2",
   "type": "module",
   "scripts": {
     "dev": "node scripts/run.mjs",
@@ -9,7 +9,6 @@
     "preview": "node scripts/run.mjs --preview",
     "test": "node --test --test-isolation=none",
     "analyze": "node scripts/analyze-results.mjs",
-    "check:discovery-ai": "node scripts/check-discovery-ai.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "build:catalog": "node scripts/build-country-catalog.mjs"

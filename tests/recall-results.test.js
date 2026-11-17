@@ -1,17 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import illustrative from '../src/data/illustrative-ai-cues.json' with { type: 'json' };
+import { approveDemoCues } from '../src/data/prepared-demo.js';
 import { LOCI } from '../src/data/loci.js';
 import {
   createDemoSession,
   beginAuthoring,
-  approveCue,
   startStudy,
   visitStudyLocus,
   completeStudy,
   replaceFacts,
 } from '../src/state.js';
-import { importAiResponse } from '../src/ai/import-cues.js';
 import {
   beginDistractor,
   beginRecallOnly,
@@ -46,20 +44,7 @@ function approvedSession(id = 'recall-test') {
   }));
   session = replaceFacts(session, facts).session;
   session = beginAuthoring(session, '2026-09-29T10:00:00.000Z');
-  const response = {
-    schemaVersion: 1,
-    sessionId: session.sessionId,
-    contentRevision: session.contentRevision,
-    cues: illustrative.cues,
-  };
-  session = importAiResponse(
-    session,
-    JSON.stringify(response),
-    { source: 'illustrative-example' },
-    '2026-09-29T10:01:00.000Z',
-  ).session;
-  for (let i = 0; i < 6; i++) session = approveCue(session, i, '2026-09-29T10:02:00.000Z').session;
-  return session;
+  return approveDemoCues(session, '2026-09-29T10:02:00.000Z');
 }
 
 function completedRehearsal(id) {

@@ -44,8 +44,8 @@ complete.timing = {
   preparationStartedAt: '2026-09-29T10:00:00.000Z',
   preparationCompletedAt: '2026-09-29T10:04:00.000Z',
   preparationSeconds: 240,
-  promptExportedAt: '2026-09-29T10:01:00.000Z',
-  generationAndTransferSeconds: 45,
+  promptExportedAt: null,
+  generationAndTransferSeconds: null,
 };
 complete.attempts[0].attemptId = 'SYNTH-A-run1';
 complete.attempts[0].sourcePreparationId = complete.sourcePreparationId;

@@ -1,7 +1,6 @@
 import './game.css';
 import { LESSONS, lessonById, initialExhibit, interact, gradeChoice } from './lessons.js';
 import { createWorld } from './world.js';
-import { validateTutorReply } from './tutor-contract.js';
 
 const $ = (id) => document.getElementById(id);
 const state = {
@@ -11,9 +10,6 @@ const state = {
   visited: new Set(),
   exhibits: Object.fromEntries(LESSONS.map((l) => [l.id, initialExhibit(l.id)])),
   position: { x: 0, z: 5.7 },
-  aiReady: false,
-  busy: false,
-  history: [],
   quiz: null,
   answered: false,
   correct: 0,
@@ -46,23 +42,13 @@ const world = createWorld($('world'), {
       world.scene.exitVR();
       return;
     }
-    if (state.aiReady)
-      askTutor(
-        {
-          explain: 'Explain the current exhibit and suggest an action.',
-          guide: 'Guide me to an exhibit I have not tried.',
-          quiz: 'Give me a quiz question about the current exhibit.',
-        }[action],
-      );
-    else if (action === 'guide') {
+    if (action === 'guide') {
       guideTo(LESSONS.find((l) => !state.visited.has(l.id))?.id ?? LESSONS[0].id);
-      world.setTutor(
-        'Local room guide: follow the lit path or select its floor pad. Live AI is not connected.',
-      );
+      world.setGuide('Follow the lit path or select its floor pad.');
     } else if (action === 'quiz') startPractice();
     else {
       const lesson = lessonById(state.activeId) ?? LESSONS[0];
-      world.setTutor(`Exhibit guide (not live AI): ${lesson.meaning} ${lesson.task}`);
+      world.setGuide(`${lesson.meaning} ${lesson.task}`);
     }
   },
   immersive(value) {
@@ -86,7 +72,7 @@ function enterRoom() {
   );
 }
 function updatePause() {
-  world.pause(!$('tutor-panel').hidden || !$('quiz-panel').hidden);
+  world.pause(!$('quiz-panel').hidden);
 }
 function togglePanel(id, open = $(id).hidden) {
   $(id).hidden = !open;
@@ -121,7 +107,7 @@ function selectExhibit(id) {
       return button;
     }),
   );
-  world.setTutor(`${lesson.title}: ${lesson.meaning} ${lesson.task}`);
+  world.setGuide(`${lesson.title}: ${lesson.meaning} ${lesson.task}`);
 }
 function doAction(id, action) {
   if (world.distance(id) > 3.7)
@@ -131,10 +117,11 @@ function doAction(id, action) {
   state.visited.add(id);
   selectExhibit(id);
   $('exhibit-message').textContent = state.exhibits[id].message;
-  world.setTutor(state.exhibits[id].message);
+  world.setGuide(state.exhibits[id].message);
   $('progress').textContent = `${state.visited.size} / 6 tried`;
   $('progress-bar').style.width = `${(state.visited.size / 6) * 100}%`;
-  if (state.visited.size === 6) $('objective-text').textContent = 'All six tried. Ask for a quiz!';
+  if (state.visited.size === 6)
+    $('objective-text').textContent = 'All six tried. Try the practice quiz!';
   drawMap();
 }
 function drawMap() {
@@ -176,10 +163,10 @@ for (const lesson of LESSONS) {
   $('map-links').append(button);
 }
 
-function showQuiz(question, source) {
+function startPractice() {
+  const question = LESSONS[state.practiceIndex++ % LESSONS.length];
   state.quiz = question;
   state.answered = false;
-  $('quiz-source').textContent = source;
   $('quiz-question').textContent = question.question;
   $('quiz-feedback').textContent = '';
   $('quiz-options').replaceChildren(
@@ -193,11 +180,7 @@ function showQuiz(question, source) {
   $('quiz-score').textContent =
     `This visit: ${state.correct} correct / ${state.attempts} answered. Practice feedback only.`;
   togglePanel('quiz-panel', true);
-  world.setTutor(question.question, question);
-}
-function startPractice() {
-  const lesson = LESSONS[state.practiceIndex++ % LESSONS.length];
-  showQuiz(lesson, 'AUTHORED PRACTICE QUESTION · NO AI REQUIRED');
+  world.setGuide(question.question, question);
 }
 function answerQuiz(index) {
   if (!state.quiz || state.answered) return;
@@ -210,92 +193,7 @@ function answerQuiz(index) {
   for (const button of $('quiz-options').children) button.disabled = true;
   $('quiz-score').textContent =
     `This visit: ${state.correct} correct / ${state.attempts} answered. Practice feedback only.`;
-  world.setTutor(text);
-}
-function addChat(role, text, label = role === 'user' ? 'YOU' : 'ROOM TUTOR') {
-  const entry = document.createElement('div');
-  entry.className = `chat-entry ${role}`;
-  const heading = document.createElement('small');
-  heading.textContent = label;
-  entry.append(heading, document.createTextNode(text));
-  $('chat-log').append(entry);
-  entry.scrollIntoView({ block: 'nearest' });
-  return entry;
-}
-async function askTutor(message) {
-  if (state.busy || !message?.trim()) return;
-  addChat('user', message);
-  if (!state.aiReady) {
-    const text =
-      'Live AI is not connected. Set OPENAI_API_KEY and OPENAI_MODEL in the server .env file, then restart. You can still use the Room map, all six exhibits and the authored Practice quiz.';
-    addChat('assistant', text, 'CONNECTION STATUS');
-    world.setTutor(
-      'Live AI is not connected. The local exhibits, guide and practice questions still work.',
-    );
-    return;
-  }
-  state.busy = true;
-  $('chat-send').disabled = true;
-  world.setTutor('The live tutor is thinking…');
-  try {
-    const response = await fetch('/api/tutor', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      signal: AbortSignal.timeout(50000),
-      body: JSON.stringify({
-        message,
-        activeId: state.activeId,
-        exhibitState: state.activeId ? state.exhibits[state.activeId] : null,
-        visited: [...state.visited],
-        history: state.history.slice(-8),
-      }),
-    });
-    const result = await response.json();
-    if (!response.ok) throw new Error(result.error || 'The tutor request failed.');
-    const answer = validateTutorReply({
-      message: result.message,
-      targetId: result.targetId,
-      quiz: result.quiz,
-    });
-    $('ai-status').textContent = `Live AI connected · ${result.model}`;
-    const entry = addChat('assistant', answer.message, `LIVE AI · ${result.model}`);
-    state.history.push(
-      { role: 'user', content: message },
-      { role: 'assistant', content: answer.message },
-    );
-    state.history = state.history.slice(-8);
-    world.setTutor(answer.message);
-    if (answer.targetId) {
-      guideTo(answer.targetId);
-      const button = document.createElement('button');
-      button.textContent = `Follow path to ${lessonById(answer.targetId).title}`;
-      button.addEventListener('click', () => togglePanel('tutor-panel', false));
-      entry.append(document.createElement('br'), button);
-    }
-    if (answer.quiz) showQuiz(answer.quiz, `AI-GENERATED QUESTION · ${result.model}`);
-  } catch (error) {
-    const text = error.name === 'TimeoutError' ? 'The tutor timed out. Try again.' : error.message;
-    addChat('assistant', text, 'CONNECTION ERROR');
-    world.setTutor(text);
-  } finally {
-    state.busy = false;
-    $('chat-send').disabled = false;
-  }
-}
-async function checkAI() {
-  try {
-    const response = await fetch('/api/tutor/status');
-    if (!response.ok) throw new Error();
-    const info = await response.json();
-    state.aiReady = info.ready === true;
-    $('ai-status').textContent = state.aiReady
-      ? `Live AI configured · ${info.model} · first answer verifies access`
-      : 'Live AI not connected · exhibits and practice quiz are available';
-    $('ai-status').classList.toggle('ready', state.aiReady);
-  } catch {
-    $('ai-status').textContent =
-      'AI server unavailable · start with npm run dev or npm run preview';
-  }
+  world.setGuide(text);
 }
 async function checkVR() {
   let supported = false;
@@ -313,19 +211,8 @@ $('map-toggle').addEventListener('click', () => {
   togglePanel('map-panel');
 });
 $('map-close').addEventListener('click', () => togglePanel('map-panel', false));
-$('tutor-toggle').addEventListener('click', () => {
-  enterRoom();
-  togglePanel('tutor-panel');
-});
-$('tutor-close').addEventListener('click', () => togglePanel('tutor-panel', false));
 $('exhibit-close').addEventListener('click', () => {
   $('exhibit-panel').hidden = true;
-});
-$('exhibit-ask').addEventListener('click', () => {
-  togglePanel('tutor-panel', true);
-  askTutor(
-    `Explain ${lessonById(state.activeId).title} using this exhibit and suggest something to try.`,
-  );
 });
 $('quiz-toggle').addEventListener('click', () => {
   enterRoom();
@@ -335,24 +222,8 @@ $('quiz-next').addEventListener('click', startPractice);
 $('quiz-close').addEventListener('click', () => {
   togglePanel('quiz-panel', false);
   state.quiz = null;
-  world.setTutor('Continue exploring, or ask for another question.');
+  world.setGuide('Continue exploring, or try another practice question.');
 });
-$('quiz-ai').addEventListener('click', () => {
-  togglePanel('quiz-panel', false);
-  togglePanel('tutor-panel', true);
-  askTutor('Give me another quiz question about the room topics.');
-});
-$('chat-form').addEventListener('submit', (event) => {
-  event.preventDefault();
-  const text = $('chat-input').value.trim();
-  if (text) {
-    $('chat-input').value = '';
-    askTutor(text);
-  }
-});
-document
-  .querySelectorAll('[data-prompt]')
-  .forEach((button) => button.addEventListener('click', () => askTutor(button.dataset.prompt)));
 $('mouse-lock').addEventListener('click', () => {
   if (document.pointerLockElement) {
     document.exitPointerLock();
@@ -374,7 +245,7 @@ document.addEventListener('pointerlockchange', () => {
 });
 $('help-button').addEventListener('click', () =>
   hint(
-    'WASD walks; arrows turn; drag mouse looks; E opens the nearest exhibit. Click its buttons to experiment. M opens the map, T the tutor. VR: left stick moves, right stick snap-turns, trigger selects floor pads/buttons, Exit VR leaves immersion.',
+    'Use WASD to walk, arrow keys to turn, or drag the mouse to look around. E opens the nearest exhibit and M opens the map. In VR, use the left stick to move, the right stick to turn, and the trigger to select floor pads or buttons.',
     true,
   ),
 );
@@ -391,18 +262,13 @@ window.addEventListener('keydown', (event) => {
   if (event.code.startsWith('Arrow')) event.preventDefault();
   if (event.repeat) return;
   if (event.code === 'Escape') {
-    togglePanel('tutor-panel', false);
     togglePanel('quiz-panel', false);
     togglePanel('map-panel', false);
     state.quiz = null;
-    world.setTutor('Continue exploring, or ask for another question.');
+    world.setGuide('Continue exploring, or try another practice question.');
     return;
   }
   if (!state.started) return;
-  if (event.code === 'KeyT') {
-    event.preventDefault();
-    togglePanel('tutor-panel');
-  }
   if (event.code === 'KeyM') {
     event.preventDefault();
     togglePanel('map-panel');
@@ -415,11 +281,5 @@ window.addEventListener('keydown', (event) => {
   }
 });
 world.scene.addEventListener('loaded', () => hint('Room ready. Enter to explore.'));
-checkAI();
 checkVR();
 drawMap();
-addChat(
-  'assistant',
-  'Walk up to an exhibit and try its controls. With live AI connected, ask me why something happens, request a guided path, or ask for a quiz.',
-  'WELCOME',
-);

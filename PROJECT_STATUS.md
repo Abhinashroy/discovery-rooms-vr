@@ -1,8 +1,14 @@
 # Project status
 
-Updated **28 October 2026**. Current application: **0.24.1**.
+Updated **18 November 2026**. Current application: **0.24.2**.
 
 Public website: [https://abhinashroy.github.io/discovery-rooms-vr/](https://abhinashroy.github.io/discovery-rooms-vr/).
+
+## Build cleanup — 0.24.2
+
+- The production build contains five pages: the selector, three current rooms and `exploration.html`.
+- The classic, computing and authoring prototypes remain available through the local development server. They use authored game content and manual editing.
+- All 106 automated tests pass, including saved-session compatibility. Browser checks opened all three current rooms and exercised manual cue editing, the Classic guide and the Computing practice quiz. The local production preview serves only the five intended pages.
 
 ## Latest VR fixes — 0.24.1
 
@@ -31,26 +37,24 @@ Public website: [https://abhinashroy.github.io/discovery-rooms-vr/](https://abhi
 | Planetarium Rescue  | Eight exhibits, local inspection, shrinking name choices, submission review and five-of-30 quiz                                                |
 | Earth Explorer      | Two connected views; shared UTC clock; giant spherical travel; 195 sourced country cards; five-question quiz; stars/comets and supplied sounds |
 | Input               | Keyboard/mouse and native WebXR controller controls, with seated/stationary alternatives                                                       |
-| Content             | Local map/textures/audio; no API key required for the current rooms                                                                            |
+| Content             | Local maps, textures, audio, learning content and quiz scoring                                                                                 |
 | Repository          | Formatted source, pinned npm lockfile, CI, contributor guidance and third-party notices                                                        |
 
 ## Verification
 
-- 115 automated tests cover current rooms and retained legacy routes.
-- Eight production entries build: selector, three current rooms and four legacy pages.
+- Automated tests cover the current rooms and retained prototypes.
 - Desktop browser journeys cover room navigation, classroom rounds, Planetarium naming/quiz, Earth clock boundaries, globe movement, tiny-country search, country cards, quiz locking and corrections.
 - Latest Earth journey: five opened cards; fact, region, Turkey's paired continents and map prompts; deliberate 4/5 result; exactly one completion Hooray. Walking for 1.8 seconds started five supplied thuds.
 - All 195 country destinations are validated inside their bundled polygon. A visible decorative comet, compact clock and shared-clock editing without leaving Globe mode were checked.
-- Repository preparation: Prettier formatting passes, all 115 tests pass, eight production pages build, Python helpers parse and pass Ruff formatting, and npm audit reports zero known vulnerabilities. The generated country catalog remains unchanged. GitHub Actions repeats the Node formatting/test/build checks.
+- GitHub Actions checks formatting, runs the automated tests and generates the production build.
 
 ## Remaining acceptance
 
 1. Quest 3: validate controller rays, short steps/teleport, upright tracking, B/Y hiding, native panels, country pagination, audio, Exit VR and room re-entry.
 2. Record actual headset frame stability, readability and comfort; fix observed failures.
 3. Observe an unfamiliar learner aged 10–15 navigating each learning flow. Record confusion/help needed without claiming proven memory improvement.
-4. Live AI remains deferred for the three current rooms. The optional tutor and earlier prototypes are retained legacy code.
 
-Use [the headset checklist](docs/headset-smoke-check.md) for device observations. The **Deploy website** workflow validates and publishes the static build to GitHub Pages after pushes to `main`. The earlier Sites project still returns project-not-found; its original link has not been updated.
+Use [the headset checklist](docs/headset-smoke-check.md) for device observations. The **Deploy website** workflow validates and publishes the static build to GitHub Pages after pushes to `main`.
 
 ## Commands
 

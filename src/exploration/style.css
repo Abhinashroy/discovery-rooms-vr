@@ -160,14 +160,10 @@ select {
   text-align: left;
   padding: 16px;
 }
-.small,
-.classic {
+.small {
   font-size: 12px;
   line-height: 1.8;
   color: #52696b;
-}
-.classic {
-  text-decoration: underline;
 }
 #mission {
   position: fixed;

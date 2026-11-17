@@ -2,7 +2,6 @@ import './styles.css';
 import { LOCI, nextRouteIndex } from './data/loci.js';
 import { PROP_IDS, ANIMATION_IDS, COLOR_IDS, EMPTY_CUE } from './data/props.js';
 import demoFacts from './data/demo-facts.json' with { type: 'json' };
-import illustrativeCues from './data/illustrative-ai-cues.json' with { type: 'json' };
 import {
   createDemoSession,
   replaceFacts,
@@ -14,11 +13,8 @@ import {
   visitStudyLocus,
   interruptStudy,
   completeStudy,
-  recordPromptExport,
   replaceSuggestionManually,
 } from './state.js';
-import { buildAiPrompt } from './ai/build-prompt.js';
-import { importAiResponse, buildRepairPrompt, MAX_AI_RESPONSE_BYTES } from './ai/import-cues.js';
 import {
   beginDistractor,
   beginRecallOnly,
@@ -228,24 +224,12 @@ function renderAuthor({ fillFields = true } = {}) {
     ? 'Approved for rehearsal'
     : 'Needs review and approval';
   byId('cue-approval').dataset.approved = String(cue.approved);
-  byId('ai-prompt').value = buildAiPrompt(appState.session);
-  byId('load-illustrative').disabled = !appState.session.facts.every(
-    (fact, position) =>
-      fact.term === demoFacts.facts[position].term &&
-      fact.meaning === demoFacts.facts[position].meaning,
-  );
   byId('original-suggestion').hidden = !cue.suggestion;
   if (cue.suggestion) {
     byId('suggested-scene').textContent = cue.suggestion.scene;
     byId('suggested-link').textContent = cue.suggestion.meaningLink;
     byId('suggested-symbol').textContent =
       `Supporting symbol: ${cue.suggestion.colorId} ${cue.suggestion.propId}; animation: ${cue.suggestion.animationId}.`;
-    const source =
-      cue.provenance?.source === 'illustrative-example'
-        ? 'Illustrative example, not fresh AI output'
-        : 'Imported AI response';
-    byId('suggestion-source').textContent =
-      `${source} · model: ${cue.provenance?.modelName ?? 'unknown'} · generation date: ${cue.provenance?.generatedAt ?? 'unknown'} · review: ${cue.reviewOutcome ?? (cue.replacementMode ? 'manual replacement in progress' : 'pending')}`;
     byId('replace-suggestion').hidden = cue.replacementMode === true;
   }
   if (fillFields) {
@@ -364,7 +348,7 @@ function renderResults() {
   const timing = attempt?.preparationSnapshot ?? session.timing;
   const duration = (value) => (value === null || value === undefined ? 'unavailable' : `${value}s`);
   byId('results-timing').textContent =
-    `Preparation ${duration(timing.preparationSeconds)} · AI generation and transfer ${duration(timing.generationAndTransferSeconds)} · setup gap ${duration(attempt?.setupGapSeconds)} · rehearsal ${duration(attempt?.rehearsalSeconds)} · distractor ${duration(attempt?.distractorSeconds)} · recall ${duration(attempt?.recallSeconds)}.`;
+    `Preparation ${duration(timing.preparationSeconds)} · setup gap ${duration(attempt?.setupGapSeconds)} · rehearsal ${duration(attempt?.rehearsalSeconds)} · distractor ${duration(attempt?.distractorSeconds)} · recall ${duration(attempt?.recallSeconds)}.`;
   byId('results-warning').textContent =
     attempt?.recallStatus === 'skipped'
       ? 'Recall test skipped: both scores are unavailable (null), not zero.'
@@ -1003,118 +987,6 @@ byId('external-form').addEventListener('submit', (event) => {
   );
 });
 
-function clearAiErrors() {
-  byId('ai-errors').replaceChildren();
-  byId('ai-errors').hidden = true;
-  byId('ai-repair').hidden = true;
-  byId('ai-repair-prompt').value = '';
-}
-
-function showAiErrors(errors) {
-  const list = byId('ai-errors');
-  list.replaceChildren();
-  for (const error of errors) {
-    const item = document.createElement('li');
-    item.textContent = error;
-    list.append(item);
-  }
-  list.hidden = false;
-  byId('ai-repair-prompt').value = buildRepairPrompt(errors, appState.session);
-  byId('ai-repair').hidden = false;
-  message(
-    `AI response rejected: ${errors.length} validation error${errors.length === 1 ? '' : 's'}. The current session was kept.`,
-    'error',
-  );
-}
-
-function notePromptExport() {
-  appState.session = recordPromptExport(appState.session);
-  markDirty();
-}
-
-async function copyFromTextarea(id, successMessage) {
-  const field = byId(id);
-  try {
-    if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
-    await navigator.clipboard.writeText(field.value);
-    message(successMessage, 'success');
-  } catch {
-    field.focus();
-    field.select();
-    message(
-      'Clipboard access failed. The text is selected: copy it manually, or download the prompt.',
-      'info',
-    );
-  }
-}
-
-byId('copy-ai-prompt').addEventListener('click', async () => {
-  notePromptExport();
-  await copyFromTextarea(
-    'ai-prompt',
-    'AI prompt copied. Paste it into an external GPT chat and return with its JSON response.',
-  );
-});
-byId('download-ai-prompt').addEventListener('click', () => {
-  notePromptExport();
-  downloadText('ai-mol-vr-prompt.txt', byId('ai-prompt').value, 'text/plain');
-  message(
-    'Prompt downloaded. Use it in an external GPT chat, then import the full JSON response.',
-    'success',
-  );
-});
-byId('copy-ai-repair').addEventListener('click', () =>
-  copyFromTextarea('ai-repair-prompt', 'Repair prompt copied.'),
-);
-
-function importAiText(text, source = 'external-gpt-import') {
-  const metadata = {
-    source,
-    modelName: source === 'illustrative-example' ? 'unknown' : byId('ai-model-name').value,
-    generatedAt: source === 'illustrative-example' ? 'unknown' : byId('ai-generation-date').value,
-  };
-  const result = importAiResponse(appState.session, text, metadata);
-  if (result.errors.length) return showAiErrors(result.errors);
-  appState.session = result.session;
-  appState.routeIndex = 0;
-  byId('ai-response').value = '';
-  clearAiErrors();
-  markDirty();
-  render();
-  message(
-    source === 'illustrative-example'
-      ? 'Illustrative example loaded for the bundled facts. Review and approve each cue; this is not a fresh AI generation.'
-      : 'Six AI suggestions imported. Review their meaning links against the original facts, edit or replace as needed, and approve each cue.',
-    'success',
-  );
-}
-
-byId('import-ai-response').addEventListener('click', () => importAiText(byId('ai-response').value));
-byId('ai-response-file').addEventListener('change', async (event) => {
-  const file = event.target.files?.[0];
-  if (!file) return;
-  if (file.size > MAX_AI_RESPONSE_BYTES) showAiErrors(['AI response exceeds 100 KB.']);
-  else {
-    try {
-      importAiText(await file.text());
-    } catch (error) {
-      showAiErrors([`AI response file could not be read: ${error.message}`]);
-    }
-  }
-  event.target.value = '';
-});
-byId('load-illustrative').addEventListener('click', () => {
-  if (byId('load-illustrative').disabled) return;
-  importAiText(
-    JSON.stringify({
-      schemaVersion: appState.session.schemaVersion,
-      sessionId: appState.session.sessionId,
-      contentRevision: appState.session.contentRevision,
-      cues: illustrativeCues.cues,
-    }),
-    'illustrative-example',
-  );
-});
 byId('replace-suggestion').addEventListener('click', () => {
   appState.session = replaceSuggestionManually(appState.session, appState.routeIndex);
   markDirty();
@@ -1211,10 +1083,7 @@ byId('load-prepared-demo').addEventListener('click', () => {
     renderFactFields();
     renderEvaluationFields();
     render();
-    message(
-      'Prepared illustrative demonstration loaded. Its cues are preapproved fixture content, not a fresh AI generation or participant work.',
-      'info',
-    );
+    message('Prepared demonstration loaded with six approved sample cues.', 'info');
   } catch (error) {
     message(`Demo load failed: ${error.message}`, 'error');
   }

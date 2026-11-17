@@ -28,11 +28,11 @@ npm run build
 npm run preview
 ```
 
-The eight-entry build writes `dist/`. Preview usually runs at <http://127.0.0.1:4173/>. The static output includes the selector, three current rooms, four retained legacy routes and local map/texture/audio/vendor assets.
+The five-entry build writes `dist/`. Preview usually runs at <http://127.0.0.1:4173/>. The static output includes the selector, three current rooms, `exploration.html` and local map, texture, audio and vendor assets.
 
-Host the **contents of `dist/`** on a static HTTPS service. Preserve `audio/`, `planetarium/`, `earth-explorer/`, `vendor/` and `assets/` together. Do not upload source credentials, `.env`, learner records, backups or downloaded USB tools. The current rooms require no AI provider.
+Host the **contents of `dist/`** on a static HTTPS service. Preserve `audio/`, `planetarium/`, `earth-explorer/`, `vendor/` and `assets/` together. Publish only the generated output to keep local records, credentials and tools private.
 
-GitHub Actions builds on push and pull requests. Its `discovery-rooms-dist` artifact contains the static output. The separate **Deploy website** workflow publishes successful main-branch builds. The earlier separately hosted prototype remains unchanged because its saved Sites project returns project-not-found; its local checkout/hosting metadata is excluded from Git.
+GitHub Actions builds on pushes and pull requests. Its `discovery-rooms-dist` artifact contains the static output. The separate **Deploy website** workflow publishes successful `main` builds.
 
 ## Quest 3 over USB
 
@@ -66,7 +66,3 @@ Remove forwarding when finished:
 ```sh
 adb reverse --remove tcp:4173
 ```
-
-## Optional legacy tutor
-
-The current three rooms use authored local content and grading. Legacy tutor middleware is disabled unless configured. If working on that earlier feature, copy `.env.example` to `.env` and set the key/model locally. Never put a key in frontend files, screenshots, logs or source control. A static build does not provide a protected AI server endpoint.

@@ -1,6 +1,5 @@
 import { loadPreferences, savePreferences } from './preferences.js';
-import { authoredGuidance, guideContent } from './tutor-contract.js';
-import { requestGuide } from './tutor-client.js';
+import { guideContent } from './room-guide.js';
 import { PRESETS, ACCENTS } from './personalization.js';
 import './discovery.css';
 import { DESTINATIONS, SUPPLIES } from './adventure.js';
@@ -38,11 +37,6 @@ let quest = createQuest(freshSeed(), preferences.mode, preferences.adventure, pr
   focusReturn = null;
 let guideId = 'cargo',
   guideMode = 'explain',
-  guideMessage = '',
-  guideBusy = false,
-  guideReady = null,
-  guideSerial = 0,
-  guideAbort = null,
   vrReadingPage = 0,
   vrReadingText = '';
 function persistPreferences() {
@@ -52,61 +46,6 @@ function persistPreferences() {
     mode: quest.mode,
     adventure: quest.adventure,
   });
-}
-function cancelGuide() {
-  guideSerial++;
-  guideAbort?.abort();
-  guideAbort = null;
-  guideBusy = false;
-}
-function guideRequest() {
-  return {
-    adventure: quest.adventure,
-    tableId: guideId,
-    intent: guideMode,
-    phase:
-      (quest.adventure === 'space' && guideId === 'cargo'
-        ? quest.phase
-        : quest.tasks[guideId]?.phase) || 'available',
-  };
-}
-async function checkGuide() {
-  const serial = guideSerial;
-  try {
-    const r = await fetch('/api/discovery-tutor/status', { signal: AbortSignal.timeout(3000) });
-    const v = r.ok ? await r.json() : {};
-    if (serial !== guideSerial || panelId !== 'tutor') return;
-    guideReady = v.ready === true;
-  } catch {
-    if (serial !== guideSerial || panelId !== 'tutor') return;
-    guideReady = false;
-  }
-  renderPanel();
-}
-async function askGuide() {
-  if (guideBusy || guideReady !== true || memoryOpen || panelId !== 'tutor') return;
-  const serial = ++guideSerial;
-  guideAbort = new AbortController();
-  const controller = guideAbort,
-    timer = setTimeout(() => controller.abort(), 18000);
-  guideBusy = true;
-  guideMessage = '';
-  renderPanel();
-  try {
-    const message = await requestGuide(guideRequest(), { signal: controller.signal });
-    if (serial === guideSerial && panelId === 'tutor' && !memoryOpen)
-      guideMessage = 'Optional AI explanation: ' + message;
-  } catch {
-    if (serial === guideSerial && panelId === 'tutor' && !memoryOpen)
-      guideMessage = 'AI could not answer. The room guide below is still available.';
-  } finally {
-    clearTimeout(timer);
-    if (serial === guideSerial) {
-      guideBusy = false;
-      guideAbort = null;
-      if (panelId === 'tutor') renderPanel();
-    }
-  }
 }
 let TABLES = tablesFor(quest),
   DETAILS = detailsFor(quest),
@@ -214,7 +153,6 @@ function enter() {
   document.querySelector('[data-intent="map"]').focus();
 }
 function closePanel() {
-  cancelGuide();
   panelId = null;
   if ($('panel').open) $('panel').close();
   syncSurface();
@@ -223,7 +161,6 @@ function closePanel() {
 }
 function openPanel(id) {
   if (memoryOpen) return;
-  if (panelId !== id) cancelGuide();
   if (!$('panel').open) focusReturn = document.activeElement;
   panelId = id;
   vrReadingPage = 0;
@@ -522,8 +459,11 @@ function renderPanel() {
         'smallprint',
       ),
     );
-  } else if (panelId === 'tutor') {
-    $('panel-title').textContent = 'Guide: ' + guideContent(quest.adventure, guideId).table;
+  } else if (panelId === 'room-guide') {
+    const guide = guideContent(quest.adventure, guideId);
+    const guidance =
+      guideMode === 'explain' ? guide.explanation : `${guide.instruction} ${guide.reference}`;
+    $('panel-title').textContent = 'Guide: ' + guide.table;
     content.append(
       buttons(
         button('Explain this', `guide-choice:explain`, { pressed: guideMode === 'explain' }),
@@ -531,28 +471,11 @@ function renderPanel() {
         button('Show me the next table', 'guide-next'),
       ),
     );
-    content.append(element('h3', 'Room guide'), para(authoredGuidance(guideRequest()), 'note'));
     content.append(
-      para(
-        guideReady === null
-          ? 'Checking optional AI availability…'
-          : guideReady
-            ? 'An optional AI explanation is available. It can make mistakes.'
-            : 'Optional AI is unavailable. The room guide works offline.',
-        'smallprint',
-      ),
+      element('h3', 'Room guide'),
+      para(guidance, 'note'),
+      button('Back to this task', `open:${guideId}`, { primary: true }),
     );
-    if (guideReady)
-      content.append(
-        para(
-          'This sends only the adventure, table, chosen help type and task phase. It sends no name, style, memory answers or chat history.',
-          'smallprint',
-        ),
-        button(guideBusy ? 'Asking AI…' : 'Ask optional AI', 'guide-ai', { disabled: guideBusy }),
-        ...(guideBusy ? [button('Cancel AI request', 'guide-cancel')] : []),
-      );
-    if (guideMessage) content.append(para(guideMessage, 'status'));
-    content.append(button('Back to this task', `open:${guideId}`, { primary: true }));
   } else if (panelId === 'settings') {
     $('panel-title').textContent = 'Make yourself comfortable';
     for (const [key, label] of Object.entries({
@@ -703,7 +626,7 @@ function renderPanel() {
     );
   }
   if (TABLES.some((t) => t.id === panelId) && unlocked(quest, panelId))
-    content.append(button('Ask the room guide', `tutor:${panelId}`));
+    content.append(button('Open the room guide', `room-guide:${panelId}`));
   if (focused) {
     const replacement = [...content.querySelectorAll('[data-intent]')].find(
       (e) => e.dataset.intent === focused && !e.disabled,
@@ -890,7 +813,7 @@ function syncSurface() {
           intent: `open:${quest.fragments === 6 ? 'treasure' : currentTable(quest).id}`,
         },
         { label: drawerName(), intent: 'open:drawer' },
-        { label: 'Room guide', intent: 'tutor' },
+        { label: 'Room guide', intent: 'room-guide' },
         { label: 'Memory journal', intent: 'journal' },
         { label: 'Comfort', intent: 'settings' },
         { label: 'Pause', intent: 'pause' },
@@ -1023,36 +946,19 @@ function handleIntent(intent) {
     syncSurface();
     return;
   }
-  if (name === 'tutor') {
+  if (name === 'room-guide') {
     if (!started) enter();
     guideId =
       TABLES.some((t) => t.id === value) && unlocked(quest, value) ? value : currentTable(quest).id;
     guideMode = 'explain';
-    guideMessage = '';
-    guideReady = null;
-    cancelGuide();
-    openPanel('tutor');
-    checkGuide();
+    openPanel('room-guide');
     return;
   }
   if (name === 'guide-choice') {
     if (['explain', 'hint'].includes(value)) {
-      cancelGuide();
       guideMode = value;
-      guideMessage = '';
       renderPanel();
-      if (guideReady === null) checkGuide();
     }
-    return;
-  }
-  if (name === 'guide-ai') {
-    askGuide();
-    return;
-  }
-  if (name === 'guide-cancel') {
-    cancelGuide();
-    guideMessage = 'AI request cancelled. The room guide is still available.';
-    renderPanel();
     return;
   }
   if (name === 'guide-next') {

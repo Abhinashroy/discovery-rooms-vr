@@ -321,11 +321,11 @@ export function createWorld(mount, callbacks) {
   rig.append(camera);
   // A room-space console follows the player only while immersed. No HTML overlay is required in VR.
   const vrConsole = e('a-entity', {
-    id: 'vr-tutor-console',
+    id: 'vr-room-guide',
     position: '0 -.6 -1.5',
     visible: false,
   });
-  const vrText = panel(['ROOM TUTOR', 'Point at an exhibit or a floor pad.'], '0 .3 0', 1.4, 0.56);
+  const vrText = panel(['ROOM GUIDE', 'Point at an exhibit or a floor pad.'], '0 .3 0', 1.4, 0.56);
   vrConsole.append(vrText);
   for (const [index, label] of ['Explain', 'Guide', 'Quiz', 'Exit VR'].entries())
     vrConsole.append(
@@ -607,7 +607,7 @@ export function createWorld(mount, callbacks) {
     nearest() {
       return [...LESSONS].sort((a, b) => distance(a.id) - distance(b.id))[0];
     },
-    setTutor(text, quiz = null) {
+    setGuide(text, quiz = null) {
       activeQuiz = quiz;
       syncConsoleTargets();
       setPanel(vrText, text.length > 420 ? `${text.slice(0, 417)}…` : text);

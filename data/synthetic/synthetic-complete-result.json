@@ -6,7 +6,7 @@
   "sourcePreparationId": "synthetic-prep-complete",
   "attemptId": "SYNTH-A-run1",
   "dataKind": "pilot",
-  "condition": "ai-assisted",
+  "condition": "manual",
   "displayMode": "desktop",
   "recallMode": "typed",
   "source": "browser",
@@ -31,7 +31,7 @@
   "timing": {
     "preparationStartedAt": "2026-09-29T10:00:00.000Z",
     "preparationSeconds": 240,
-    "generationAndTransferSeconds": 45,
+    "generationAndTransferSeconds": null,
     "setupGapSeconds": 60,
     "rehearsalSeconds": 120,
     "distractorSeconds": 60,
@@ -60,14 +60,8 @@
         "score": 1,
         "scorer": "facilitator"
       },
-      "cueReviewOutcome": "accepted-unchanged",
-      "suggestionProvenance": {
-        "source": "illustrative-example",
-        "modelName": "unknown",
-        "generatedAt": "unknown",
-        "importedAt": "2026-09-29T13:09:57.339Z",
-        "transfer": "manual-json"
-      }
+      "cueReviewOutcome": "manual",
+      "suggestionProvenance": null
     },
     {
       "itemId": "f2",
@@ -84,14 +78,8 @@
         "score": 1,
         "scorer": "facilitator"
       },
-      "cueReviewOutcome": "accepted-unchanged",
-      "suggestionProvenance": {
-        "source": "illustrative-example",
-        "modelName": "unknown",
-        "generatedAt": "unknown",
-        "importedAt": "2026-09-29T13:09:57.339Z",
-        "transfer": "manual-json"
-      }
+      "cueReviewOutcome": "manual",
+      "suggestionProvenance": null
     },
     {
       "itemId": "f3",
@@ -108,14 +96,8 @@
         "score": 1,
         "scorer": "facilitator"
       },
-      "cueReviewOutcome": "accepted-unchanged",
-      "suggestionProvenance": {
-        "source": "illustrative-example",
-        "modelName": "unknown",
-        "generatedAt": "unknown",
-        "importedAt": "2026-09-29T13:09:57.339Z",
-        "transfer": "manual-json"
-      }
+      "cueReviewOutcome": "manual",
+      "suggestionProvenance": null
     },
     {
       "itemId": "f4",
@@ -132,14 +114,8 @@
         "score": 0,
         "scorer": "blank-rule"
       },
-      "cueReviewOutcome": "accepted-unchanged",
-      "suggestionProvenance": {
-        "source": "illustrative-example",
-        "modelName": "unknown",
-        "generatedAt": "unknown",
-        "importedAt": "2026-09-29T13:09:57.339Z",
-        "transfer": "manual-json"
-      }
+      "cueReviewOutcome": "manual",
+      "suggestionProvenance": null
     },
     {
       "itemId": "f5",
@@ -156,14 +132,8 @@
         "score": 0,
         "scorer": "blank-rule"
       },
-      "cueReviewOutcome": "accepted-unchanged",
-      "suggestionProvenance": {
-        "source": "illustrative-example",
-        "modelName": "unknown",
-        "generatedAt": "unknown",
-        "importedAt": "2026-09-29T13:09:57.339Z",
-        "transfer": "manual-json"
-      }
+      "cueReviewOutcome": "manual",
+      "suggestionProvenance": null
     },
     {
       "itemId": "f6",
@@ -180,14 +150,8 @@
         "score": 0,
         "scorer": "blank-rule"
       },
-      "cueReviewOutcome": "accepted-unchanged",
-      "suggestionProvenance": {
-        "source": "illustrative-example",
-        "modelName": "unknown",
-        "generatedAt": "unknown",
-        "importedAt": "2026-09-29T13:09:57.339Z",
-        "transfer": "manual-json"
-      }
+      "cueReviewOutcome": "manual",
+      "suggestionProvenance": null
     }
   ]
 }

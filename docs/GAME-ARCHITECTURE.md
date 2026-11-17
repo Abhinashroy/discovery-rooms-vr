@@ -1,10 +1,10 @@
-# Discovery Rooms — architecture R10 / 0.24.1
+# Discovery Rooms — architecture R10 / 0.24.2
 
 ## Three-room entry and lifecycle
 
 index.html is the selector. classroom.html loads the accepted game; planetarium.html loads Room 2; earth.html loads Earth Explorer. Main room menu actions return to the selector. src/rooms/routes.js validates destinations, stops outgoing work, exits immersion, releases the renderer on pagehide and reloads cached abandoned pages on pageshow. Runs stay in memory; leaving discards them. Shared comfort settings persist. Earth reads existing comfort defaults and stores its own display preferences. VR may need re-entry after changing pages.
 
-Eight production entries include four preserved legacy pages. No live AI endpoint is added to the current rooms.
+The five production entries cover the selector, three rooms and `exploration.html`. The classic, computing and authoring prototypes run through the development server.
 
 ## Earth Explorer modules
 
@@ -28,9 +28,9 @@ The 10 m Globe surface stays centred beneath an upright rig with a 1.5 m eye-ori
 
 Natural Earth 50m polygons retain holes and dateline handling. Border geometry is merged, selected polygons triangulated/subdivided and replaced on selection, labels limited to three nearby countries and occluded by Earth. All 195 landing points are verified against their map feature; source coordinates that miss land are replaced with a validated map-label/interior point. Other mapped names are selectable without inventing learning facts.
 
-Quiz targets come only from opened cards: five distinct countries, 2 location + 2 continent + 1 fact prompt. Four choices, fact/source/version snapshots, question-ID guards and Confirm/Next prevent duplicate/stale scoring. Quiz pauses time and hides answer-bearing cards/labels/location cues. A side panel leaves the outlined globe visible. Completed review survives map revisits; abandoned attempts remain unfinished. There is no AI grading. Earth reuses the tested two-clip audio engine for distance-based thuds, short-step sounds and one quiz-completion Hooray; mute/menu/blur/hidden/departure cancel pending sounds. No music is added.
+Quiz targets come only from opened cards: five distinct countries, 2 location + 2 continent + 1 fact prompt. Four choices, fact/source/version snapshots, question-ID guards and Confirm/Next prevent duplicate/stale scoring. Quiz pauses time and hides answer-bearing cards/labels/location cues. A side panel leaves the outlined globe visible. Completed review survives map revisits; abandoned attempts remain unfinished. Earth reuses the tested two-clip audio engine for distance-based thuds, short-step sounds and one quiz-completion Hooray; mute/menu/blur/hidden/departure cancel pending sounds. No music is added.
 
-Page departure clears transition timers/listeners and disposes textures/geometries/materials; shared room routing exits XR/releases the renderer. Earth state resets on re-entry. Current package passes 115 tests and the eight-entry build; device/learner gates are in the validation document.
+Page departure clears transition timers/listeners and disposes textures/geometries/materials; shared room routing exits XR/releases the renderer. Earth state resets on re-entry. Device and learner checks are in the [validation register](headset-smoke-check.md).
 
 ## Shared native VR menus
 
@@ -56,7 +56,7 @@ Information cards capture a bounded selection-gaze pitch, allowing downward coun
 
 Original diameter = reference km / 1,391,400 × 20 m. Four inner diameters multiply by 12756/4879; Sun/outer bodies and rings retain the base scale. Spacing is arranged for a gallery. Equal-sized proxies are separate from body sizes. Inspection is allowed only during Explore and stays at the selected exhibit. Inner planets enlarge there to 1.1 m; outer planets retain their size. The original hides while inspecting and restores on close. inspectionPlacement supplies its position/radius; there is no central pedestal or automatic camera move.
 
-Naming requires a focused planet before assigning an available name. An assignment releases its previous name and cannot steal another planet's name. Correctness is absent until all eight are submitted; review then freezes. Quiz uses five distinct pool IDs and four choices. Question-ID guards, confirmation and explicit Next reject stale/duplicate events; correctness is shown at the end. There are no adaptive retries or provider grading.
+Naming requires a focused planet before assigning an available name. An assignment releases its previous name and cannot steal another planet's name. Correctness is absent until all eight are submitted; review then freezes. Quiz uses five distinct pool IDs and four choices. Question-ID guards, confirmation and explicit Next reject stale/duplicate events; correctness is shown at the end.
 
 Audio reuses createFootsteps from the unchanged classroom audio module, but loads only Hooray and footstep. world.js reports collision-resolved distance; teleports report zero. main.js celebrates only perfect naming or quiz-completion transitions. Mute/blur/pause/departure cancel active and delayed playback. Classroom behavior remains unchanged.
 
@@ -68,7 +68,7 @@ DOM menus group navigation, viewpoints, comfort/sound and collapsed help/selecti
 
 ## Preserved classroom architecture
 
-The classroom specification is [ROOM-DETECTIVE-PLAN.md](ROOM-DETECTIVE-PLAN.md). It implements a large walkable classroom with four random changes from 13 props. Classroom AI/quiz/reference photo remain future work; Planetarium has its own local multiple-choice quiz.
+The classroom specification is [ROOM-DETECTIVE-PLAN.md](ROOM-DETECTIVE-PLAN.md). It implements a large walkable classroom with four random changes from 13 props.
 
 ## Modules
 
@@ -84,7 +84,7 @@ The classroom specification is [ROOM-DETECTIVE-PLAN.md](ROOM-DETECTIVE-PLAN.md).
 | src/detective/style.css     | Small HUD, full-scene exploration, responsive menu and immersive DOM suppression                                              |
 | tests/detective.test.js     | Randomness/coverage, every return order, gating/reset, collisions and reachability                                            |
 
-classroom.html loads this game. exploration.html preserves the earlier default; classic, computing and authoring remain separate routes. The eight-entry build copies local audio/vendor/planetarium/earth-explorer assets.
+`classroom.html` loads this game. `exploration.html` preserves the earlier room prototype. The build copies local audio, vendor, Planetarium and Earth Explorer assets.
 
 ## Round ownership
 
@@ -106,8 +106,8 @@ The VR rig uses the preserved xr-standard input reader. Left stick translates, r
 
 Names appear only on hover. Found markers appear after a valid return. Fan blades rotate within a child group, so their visual rotation does not change the case's scored position. Reduced motion stops fan animation and returns items statically. Correct return interpolation lasts 450 ms; collisions use the authoritative destination immediately.
 
-## Support and future API work
+## Classroom support
 
-The current helper/menu contains navigation, comfort and all-object keyboard actions, not an answer shortlist. A future photo must freeze the round baseline and record supported practice when used. Future AI needs a separate reviewed server contract, server-side credentials, usage/access controls and local authored fallback. AI cannot pick changes, generate scores or modify a round. Quiz keys must derive from actual resolved observations.
+The room menu contains navigation, comfort settings and keyboard actions for all objects. A future reference photo must show the round's starting layout and record when the learner used it.
 
 See the [validation register](headset-smoke-check.md) for actual evidence and pending checks.

@@ -19,8 +19,7 @@ body {
   margin: 0;
 }
 button,
-a,
-textarea {
+a {
   font: inherit;
 }
 button {
@@ -40,8 +39,7 @@ button:disabled {
   cursor: not-allowed;
 }
 button:focus-visible,
-a:focus-visible,
-textarea:focus-visible {
+a:focus-visible {
   outline: 3px solid #a3f1d3;
   outline-offset: 3px;
 }
@@ -56,12 +54,6 @@ button.primary {
 }
 button.primary:hover {
   background: #c4ffe8;
-}
-button.text-button {
-  padding-left: 0;
-  background: none;
-  border: none;
-  color: var(--mint);
 }
 [hidden] {
   display: none !important;
@@ -366,82 +358,6 @@ kbd {
   font-size: 10px;
   padding: 6px;
 }
-.tutor-panel {
-  right: 25px;
-  top: 95px;
-  bottom: 85px;
-  width: 380px;
-  display: flex;
-  flex-direction: column;
-}
-.connection {
-  font-size: 11px;
-  color: #ffe1a4;
-  border-bottom: 1px solid #314955;
-  padding-bottom: 12px;
-}
-.connection.ready {
-  color: var(--mint);
-}
-#chat-log {
-  overflow: auto;
-  flex: 1;
-  min-height: 70px;
-  padding-right: 4px;
-}
-.chat-entry {
-  font-size: 13px;
-  line-height: 1.5;
-  white-space: pre-wrap;
-  padding: 12px;
-  border-radius: 10px;
-  background: #1c3642;
-  margin-bottom: 10px;
-}
-.chat-entry.user {
-  background: #284945;
-  margin-left: 25px;
-}
-.chat-entry small {
-  display: block;
-  color: var(--mint);
-  font-size: 10px;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-.quick-prompts {
-  display: flex;
-  gap: 6px;
-  margin: 12px 0;
-}
-.quick-prompts button {
-  font-size: 11px;
-  padding: 8px;
-  flex: 1;
-}
-#chat-form {
-  display: flex;
-  gap: 8px;
-}
-textarea {
-  resize: vertical;
-  min-height: 58px;
-  border: 1px solid #496671;
-  background: #0f2531;
-  color: #edf7f7;
-  border-radius: 8px;
-  padding: 10px;
-  font-size: 12px;
-  width: 100%;
-}
-#chat-send {
-  padding: 10px;
-  min-width: 64px;
-}
-.tutor-panel > .fine {
-  margin: 12px 0 0;
-  font-size: 10px;
-}
 .quiz-panel {
   left: 50%;
   top: 50%;
@@ -471,13 +387,6 @@ textarea {
 }
 .quiz-panel .fine {
   margin: 12px 0 0;
-}
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
 }
 body.immersive .hud,
 body.immersive .welcome,
@@ -531,12 +440,6 @@ body.immersive #reticle {
     right: 15px;
     bottom: 75px;
     width: 310px;
-  }
-  .tutor-panel {
-    right: 15px;
-    top: 100px;
-    bottom: 70px;
-    width: min(380px, calc(100vw - 30px));
   }
   .toast {
     bottom: 52px;

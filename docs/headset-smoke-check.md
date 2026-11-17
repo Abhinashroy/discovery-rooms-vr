@@ -8,7 +8,7 @@ In Globe Explorer, look down at land and press the right trigger: a country card
 
 In Orbit Observatory, press Play, open the menu and confirm Earth's rotation/orbit continues. The entire menu, including button gaps, must be opaque; no clouds, stars or objects should show through it. Closing the menu resumes travel without resetting playback. Explicit clock Pause must keep time still even when opening menus.
 
-115 tests pass. Desktop production-app rendering/controller-event checks are recorded in PROJECT_STATUS.md; these do not replace actual headset validation.
+Desktop rendering and controller-event checks are recorded in [PROJECT_STATUS.md](../PROJECT_STATUS.md). The headset checks below remain open.
 
 ## Native VR corrections — 0.24.0
 
@@ -17,13 +17,13 @@ The owner reported blank choices, controller boxes obscuring the view and menus 
 1. All planet-name choices and country destinations show readable text immediately and after repeated selection/paging/redraw.
 2. Looking left/right/up/down leaves an open menu at its world position; B/Y close/reopen places it in the current view. Head tracking stays natural.
 3. No controller-mounted MENU or status box obscures the scene. Rays and B/Y still work.
-4. Earth height is lower by the removed 1.5 m lift, with natural tracked seated/standing height and no forced roll.
+4. Check natural seated and standing head tracking with the current 35 cm VR lift and no forced roll.
 5. Right-trigger pointing at land opens a country fact; left-trigger pointing teleports. Country destinations remain a precision-free alternative. Controller Help states these actions.
 6. Naming submission, quiz, results, clock and Exit VR remain reachable; menus can close during roaming.
 
 ## Earth Explorer — 0.24.0
 
-109 automated tests and the eight-entry production build pass. Earth tests cover Gregorian/UTC boundaries, approximate orbital/lighting invariants, coordinate mapping, pole/dateline surface travel, polygon holes, all 195 landings and quiz eligibility/guards/scoring/abandonment. Production desktop journeys verify leap day, midnight rollover, mode/country selection, direct E card opening, movement coordinates, all question types, a deliberate 4/5 result, corrections, country revisit and saved review. Evidence and limitations are in PROJECT_STATUS.md.
+Earth tests cover Gregorian/UTC boundaries, approximate orbital and lighting behavior, coordinate mapping, pole and dateline travel, polygon holes, all 195 landings and quiz eligibility, scoring and abandonment. Production desktop journeys verified leap day, midnight rollover, mode and country selection, direct E card opening, movement coordinates, all question types, a deliberate 4/5 result, corrections, country revisit and saved review. See [PROJECT_STATUS.md](../PROJECT_STATUS.md) for evidence and limitations.
 
 The embedded preview reported about 1000 ms between rendered frames; do not record this as a performance pass. The new desktop journey records five thuds during 1.8 seconds of walking, a 4/5 quiz and exactly one Hooray. No actual Quest, child/usability or learning-benefit pass is claimed. Record device/browser versions, render settings, observed frame stability, session length and any discomfort before closing the following gates:
 
@@ -34,7 +34,7 @@ The embedded preview reported about 1000 ms between rendered frames; do not reco
 | Seated alternative      | All 195 countries reachable through native paginated destination panel with walking disabled                                                                                                                                       |
 | Selection / readability | Right ray opens correct country card; nearby country labels and world-space menu text readable, no far-side labels; fact/continent controls reachable                                                                              |
 | Hidden controls         | B/Y opens/closes; hidden panels do not intercept rays; Exit VR and Main room reachable                                                                                                                                             |
-| Larger traveller        | 10 m radius; VR eye-origin has no artificial lift, no forced roll; comfortable curvature, controller reach and predictable 1.8 m faded steps                                                                                       |
+| Larger traveller        | 10 m radius, 35 cm VR eye-origin lift and no forced roll. Check curvature, controller reach and predictable 1.8 m faded steps.                                                                                                     |
 | Clock minimize          | Expanded clock collapses to compact date/time, reopens in either mode without changing views; native Minimize closes its panel                                                                                                     |
 | Sky                     | Stars visible in both views; occasional distant comet, none during quiz/menus/reduced motion; no foreground interception                                                                                                           |
 | Time / lighting         | Native Day/Hour/Year and Play/speed agree with UTC display; leap date, midnight, day/night and Moon geometry agree after changing views                                                                                            |
@@ -47,7 +47,7 @@ For an unfamiliar learner aged 10–15, observe understanding of the two views, 
 
 ## Planetarium / room navigation — 0.21.0
 
-87 automated tests and the seven-entry build pass. Production browser evidence is in PROJECT_STATUS.md: enlarged Mercury; all eight E selections; name edit/remove/shrinking list; 6/8 and 8/8 submissions; distinct four-option quiz with change/confirm/locking, accurate 4/5 result; footsteps and the two completion Hoorays; room switch/reset. Latest browser checks additionally verify grouped Main room menus, compact corner controls and local inspection without player movement. No errors in the checked browser journey. Earlier 0.19 screenshots are historical.
+Production desktop checks covered enlarged Mercury, all eight E selections, editing and removing names, 6/8 and 8/8 naming results, a complete 4/5 quiz with locked answers, footsteps, both completion sounds and room resets. They also covered Main room menus, compact corner controls and local inspection without player movement. See [PROJECT_STATUS.md](../PROJECT_STATUS.md) for evidence.
 
 Additional actual Quest checks remain pending:
 
@@ -105,14 +105,13 @@ Physical movement is not constrained by virtual collision. Verify the device's c
 
 ## Release gates
 
-| Gate                                              | State                    |
-| ------------------------------------------------- | ------------------------ |
-| Round/navigation tests and build                  | Passed                   |
-| Recorded production desktop journey               | Passed for listed checks |
-| New-player goal/action understanding              | Pending                  |
-| Actual Quest 3 controls/readability/comfort       | Pending                  |
-| Supervised pilot and fixes                        | Pending                  |
-| Optional AI/reference/quiz                        | Not implemented          |
-| Restored hosting access and matching public build | Pending                  |
+| Gate                                        | State                                                                                                  |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Round/navigation tests and build            | Passed                                                                                                 |
+| Recorded production desktop journey         | Passed for listed checks                                                                               |
+| New-player goal/action understanding        | Pending                                                                                                |
+| Actual Quest 3 controls/readability/comfort | Pending                                                                                                |
+| Supervised pilot and fixes                  | Pending                                                                                                |
+| GitHub Pages deployment                     | [Latest deployment run](https://github.com/Abhinashroy/discovery-rooms-vr/actions/workflows/pages.yml) |
 
-Log concrete reproduction steps, fixes and retests. Never substitute simulated headset/child feedback for an actual result. The public URL is not this current local build.
+Log reproduction steps, fixes and retests. Record the version used and keep desktop observations separate from headset and learner observations.

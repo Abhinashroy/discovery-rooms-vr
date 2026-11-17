@@ -23,7 +23,7 @@ Use **Menu → Main room** to choose another room. Leaving discards the current 
 
 ## Quick start
 
-Requires **Node.js 24–26** and npm. No API key or Python installation is needed to play.
+Requires **Node.js 24–26** and npm.
 
 ```sh
 git clone https://github.com/Abhinashroy/discovery-rooms-vr.git
@@ -60,7 +60,7 @@ npm run build
 npm run preview
 ```
 
-The current suite has **115 tests**. The production build includes the selector, three rooms and four retained legacy entry pages. GitHub Actions runs formatting, tests and build on pushes and pull requests, and saves `dist/` as a downloadable build artifact. The separate **Deploy website** workflow publishes validated `main` builds to GitHub Pages.
+The production build includes the selector, three rooms and `exploration.html`. GitHub Actions runs formatting, tests and build on pushes and pull requests, and saves `dist/` as a downloadable build artifact. The separate **Deploy website** workflow publishes validated `main` builds to GitHub Pages.
 
 Run `npm run format` to apply formatting. Country fact edits are regenerated with `npm run build:catalog`. See [Contributing](CONTRIBUTING.md) for the workflow.
 
@@ -72,12 +72,11 @@ src/
   rooms/              Selector and shared navigation
 public/               Local textures, map, audio and A-Frame
 scripts/              Development, build and asset helpers
-server/               Optional legacy tutor middleware
 tests/               Automated checks
 docs/                 Room specifications, architecture and device checks
 ```
 
-Earlier applications remain at `/exploration.html`, `/classic.html`, `/computing.html` and `/authoring.html` with their source and regression tests. They are not offered by the current room selector. The three current rooms work without a live AI provider; `.env.example` belongs to the optional legacy tutor setup.
+The exploration prototype is available directly at `/exploration.html`. The earlier `/classic.html`, `/computing.html` and `/authoring.html` pages are available through `npm run dev`.
 
 ## Status and documentation
 

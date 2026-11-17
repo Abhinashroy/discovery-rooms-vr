@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#0c1a23" />
-    <title>The Computing Room · AI Learning Lab</title>
+    <title>The Computing Room · Learning Lab</title>
   </head>
   <body>
     <main id="game" aria-label="Interactive computing learning room">
@@ -18,7 +18,6 @@
         </div>
         <nav aria-label="Game controls">
           <button id="map-toggle">Room map <kbd>M</kbd></button
-          ><button id="tutor-toggle">Ask tutor <kbd>T</kbd></button
           ><button id="quiz-toggle">Practice quiz</button
           ><button id="vr-button" disabled>Checking VR…</button>
         </nav>
@@ -35,10 +34,7 @@
           ><span><kbd>E</kbd> Interact</span>
         </div>
         <button id="enter-button" class="primary">Enter the room <span>→</span></button>
-        <p class="fine">
-          Desktop + WebXR · Six interactive exhibits<br />Live tutor connects through your local
-          server.
-        </p>
+        <p class="fine">Desktop + WebXR · Six interactive exhibits</p>
       </div>
       <div id="reticle" aria-hidden="true" hidden>+</div>
       <section id="objective" class="hud objective" hidden>
@@ -78,41 +74,7 @@
         <p id="exhibit-task" class="task"></p>
         <div id="exhibit-actions" class="action-row"></div>
         <p id="exhibit-message" role="status"></p>
-        <button id="exhibit-ask" class="text-button">Ask the tutor about this →</button>
       </section>
-      <aside id="tutor-panel" class="hud floating-panel tutor-panel" aria-label="Room tutor" hidden>
-        <div class="panel-heading">
-          <div>
-            <span class="eyebrow">YOUR LEARNING COMPANION</span>
-            <h2>Room tutor</h2>
-          </div>
-          <button id="tutor-close" aria-label="Close tutor">×</button>
-        </div>
-        <p id="ai-status" class="connection">Checking AI connection…</p>
-        <div id="chat-log" role="log" aria-live="polite"></div>
-        <div class="quick-prompts">
-          <button data-prompt="Guide me to an exhibit I have not tried yet.">Guide me</button
-          ><button data-prompt="Explain the current exhibit and tell me something to try.">
-            Explain this</button
-          ><button data-prompt="Give me one quiz question about these computing concepts.">
-            Quiz me
-          </button>
-        </div>
-        <form id="chat-form">
-          <label for="chat-input" class="sr-only">Question for the tutor</label
-          ><textarea
-            id="chat-input"
-            maxlength="1200"
-            rows="2"
-            placeholder="Why does the last item leave first?"
-          ></textarea
-          ><button id="chat-send" type="submit" class="primary">Ask →</button>
-        </form>
-        <p class="fine">
-          With live AI connected, your question, recent chat and exhibit progress go to the
-          configured provider. Answers can be mistaken.
-        </p>
-      </aside>
       <section
         id="quiz-panel"
         class="hud floating-panel quiz-panel"
@@ -120,22 +82,20 @@
         hidden
       >
         <div class="panel-heading">
-          <span id="quiz-source" class="eyebrow">PRACTICE QUESTION</span
+          <span class="eyebrow">PRACTICE QUESTION</span
           ><button id="quiz-close" aria-label="Close quiz">×</button>
         </div>
         <h2 id="quiz-question"></h2>
         <div id="quiz-options"></div>
         <p id="quiz-feedback" role="status"></p>
         <div class="action-row">
-          <button id="quiz-next">Next practice question →</button
-          ><button id="quiz-ai">Ask AI for another</button>
+          <button id="quiz-next">Next practice question →</button>
         </div>
         <p id="quiz-score" class="fine"></p>
       </section>
       <div class="hud bottom-bar" id="bottom-bar" hidden>
         <p>
-          <kbd>WASD</kbd> move · drag mouse to look · <kbd>← →</kbd> turn · <kbd>E</kbd> interact ·
-          <kbd>T</kbd> tutor
+          <kbd>WASD</kbd> move · drag mouse to look · <kbd>← →</kbd> turn · <kbd>E</kbd> interact
         </p>
         <button id="mouse-lock">Capture mouse</button><button id="help-button">Controls</button
         ><a href="./authoring.html">Legacy study tools</a>

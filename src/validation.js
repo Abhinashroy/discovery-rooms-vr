@@ -82,6 +82,7 @@ export function validateSession(session, { prepared = false } = {}) {
   if (!STAGES.includes(session.stage)) errors.push('stage is invalid.');
   if (!['fixture', 'practice', 'pilot'].includes(session.dataKind))
     errors.push('dataKind is invalid.');
+  // Original session exports still use the historical condition and cue provenance fields.
   if (!['manual', 'ai-assisted'].includes(session.condition)) errors.push('condition is invalid.');
   if (
     typeof session.sourcePreparationId !== 'string' ||

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.24.2 — Build and documentation cleanup — 18 November 2026
+
+- Retained the `ai-mol-vr` package name and removed old tutor integrations, developer setup and prompt transfer from the earlier prototypes.
+- Kept the classic, computing and authoring prototypes available locally through the development server. The public build includes the selector, the three current rooms and the exploration prototype.
+- Removed obsolete setup instructions and corrected the published-build entry in the release checklist.
+
 ## 0.24.1 — VR information and Earth menu corrections — 28 October 2026
 
 - Selecting a planet in VR now opens its facts immediately; a close-up is an optional separate action. Naming and quiz answers stay protected.
@@ -20,7 +26,7 @@
 ## Website publication — 28 October 2026
 
 - Added GitHub Pages publication of the latest three-room build, with formatting/tests/build gates and manual re-deployment.
-- Added the playable website link to the README and deployment documentation. The old Sites project could not be accessed, so its original URL remains unchanged.
+- Added the playable website link to the README and deployment documentation.
 
 ## Repository preparation — 15 October 2026
 
@@ -57,5 +63,3 @@
 ## 0.15.0 — Classroom baseline
 
 - Accepted Classroom Detective: large room, four randomly moved objects, collision-aware movement, fan and supplied sounds.
-
-Earlier memory-locus, computing and treasure-room prototypes remain as legacy routes and regression tests. Their old proposals and build packages are not the current product specification.

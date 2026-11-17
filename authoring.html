@@ -45,7 +45,7 @@
           details.
         </p>
         <form id="evaluation-form">
-          <div class="ai-metadata">
+          <div class="form-grid">
             <label
               >Anonymous participant ID<input id="evaluation-id" maxlength="120" placeholder="P01"
             /></label>
@@ -181,79 +181,14 @@
             <span id="approval-count" class="hint"></span>
           </div>
           <p class="section-note">
-            Write cues yourself, or use AI-assisted cue authoring with manual transfer below. Check
-            each scene against the original meaning. The 3D object is a supporting symbol, not a
-            rendering of the whole sentence.
+            Write a cue for each fact and check it against the original meaning. Use the 3D object
+            as a supporting symbol.
           </p>
           <div class="form-actions">
             <button id="preparation-cap-button" type="button" class="secondary">
               Record incomplete preparation at 6-minute cap
             </button>
           </div>
-          <details id="ai-transfer" class="ai-transfer">
-            <summary>AI-assisted cue authoring with manual transfer</summary>
-            <p>
-              Copy this prompt into an external GPT chat. Paste its complete six-cue JSON response
-              here or choose a JSON file. Import replaces the current cue drafts only after the
-              entire response validates; you must review and approve every cue.
-            </p>
-            <label for="ai-prompt">Prompt for the current six facts and revision</label>
-            <textarea id="ai-prompt" rows="8" readonly></textarea>
-            <div class="form-actions">
-              <button id="copy-ai-prompt" type="button">Copy AI prompt</button
-              ><button id="download-ai-prompt" type="button" class="secondary">
-                Download prompt
-              </button>
-            </div>
-            <label for="ai-response">AI response JSON</label>
-            <textarea
-              id="ai-response"
-              rows="6"
-              placeholder="Paste one complete JSON object for all six cues"
-            ></textarea>
-            <div class="ai-metadata">
-              <label
-                >Model name (optional; unknown if blank)<input
-                  id="ai-model-name"
-                  type="text"
-                  maxlength="120"
-                  placeholder="unknown"
-              /></label>
-              <label
-                >Generation date (optional; unknown if blank)<input
-                  id="ai-generation-date"
-                  type="date"
-              /></label>
-            </div>
-            <div class="form-actions">
-              <button id="import-ai-response" type="button">Import AI response</button
-              ><label class="file-label"
-                >Choose AI JSON file<input
-                  id="ai-response-file"
-                  type="file"
-                  accept=".json,application/json"
-              /></label>
-            </div>
-            <ul id="ai-errors" class="ai-errors" aria-live="polite" hidden></ul>
-            <div id="ai-repair" hidden>
-              <label for="ai-repair-prompt"
-                >Repair prompt with validation errors and expected schema</label
-              >
-              <textarea id="ai-repair-prompt" rows="6" readonly></textarea>
-              <div class="form-actions">
-                <button id="copy-ai-repair" type="button">Copy repair prompt</button>
-              </div>
-            </div>
-            <p class="fixture-note">
-              Offline demonstration only: the illustrative example below is authored sample content
-              for the bundled facts, not fresh AI output.
-            </p>
-            <div class="form-actions">
-              <button id="load-illustrative" type="button" class="secondary">
-                Load illustrative example
-              </button>
-            </div>
-          </details>
           <div class="author-grid">
             <div>
               <div class="fact-reference">
@@ -261,11 +196,10 @@
                 <p id="author-fact-meaning"></p>
               </div>
               <div id="original-suggestion" class="suggestion-card" hidden>
-                <h3>Original suggestion for review</h3>
+                <h3>Original saved cue</h3>
                 <p><strong>Scene:</strong> <span id="suggested-scene"></span></p>
                 <p><strong>Meaning link:</strong> <span id="suggested-link"></span></p>
                 <p id="suggested-symbol"></p>
-                <p id="suggestion-source" class="symbol-note"></p>
                 <button id="replace-suggestion" type="button" class="secondary">
                   Replace this suggestion manually
                 </button>
@@ -423,7 +357,7 @@
           Unavailable durations may stay blank.
         </p>
         <form id="external-form">
-          <div class="ai-metadata">
+          <div class="form-grid">
             <label
               >Anonymous attempt ID<input
                 id="external-attempt-id"
@@ -546,8 +480,7 @@
         </p>
         <p>
           For a headset demonstration without file transfer, load the bundled prepared example. Its
-          six cues are preapproved illustrative fixture content; no preparation time, fresh AI
-          generation, or participant outcome is claimed.
+          six cues are preapproved sample content for practicing the route.
         </p>
         <div class="form-actions">
           <button id="load-prepared-demo" type="button">Load prepared illustrative demo</button>
@@ -565,13 +498,6 @@
           /></label>
         </div>
       </details>
-
-      <footer>
-        <p>
-          AI-assisted cue authoring uses manual transfer to an external GPT chat; this page does not
-          call a live AI API. Imported suggestions require learner review.
-        </p>
-      </footer>
     </div>
     <script src="./vendor/aframe-1.8.0.min.js"></script>
     <script type="module" src="/src/main.js"></script>

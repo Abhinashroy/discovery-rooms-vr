@@ -12,9 +12,9 @@ Globe radius is 10 m with a 1.5 m lift on desktop only, giving the desktop trave
 
 The shared UTC clock minimizes to a date/time button and expands in either mode. Globe time stays paused while walking; date/hour changes still update illumination. A 2,400-point star field is visible in both modes. A single occasional distant comet is decorative, unrelated to the date/time model, and stops during menus, quizzes, reduced motion and hidden tabs.
 
-Existing footstep.wav supplies one thud per travelled metre; short Quest steps get one thud, long teleports none. Existing Hooray.m4a plays once after a completed quiz at any score. Mute/menu/blur/hidden/departure cancel audio. No ambient soundtrack or live AI is added.
+Existing footstep.wav supplies one thud per travelled metre; short Quest steps get one thud, long teleports none. Existing Hooray.m4a plays once after a completed quiz at any score. Mute/menu/blur/hidden/departure cancel audio.
 
-115 automated checks pass and eight production entries build. Project status records browser journeys and pending hardware/learner checks. Run npm test, npm run build and npm run dev; choose Earth Explorer at the printed URL. After five cards, Country quiz starts five questions. Quest setup is in deployment.md.
+Project status records browser journeys and pending hardware/learner checks. Run `npm test`, `npm run build` and `npm run dev`. Choose Earth Explorer at the printed URL. After five cards, Country quiz starts five questions. Quest setup is in [deployment.md](deployment.md).
 
 ## 1. Core idea
 
@@ -148,7 +148,7 @@ At completion show score out of five and each answer/correction. A **Show on glo
 - Desktop and VR share the same actions and clock/state.
 - Switching views retains the current visit, clock and explored countries. Leaving for Main room resets the room's run, consistent with the existing project.
 - Keep Classroom Detective and Planetarium Rescue functioning as their existing separate experiences.
-- The base room works offline from local assets/content after loading. Live AI is not required for the authored facts or quiz. Audio uses the existing footstep and Hooray recordings as specified in the current checkpoint.
+- The room works offline from local assets and content after loading. Audio uses the existing footstep and Hooray recordings.
 
 ## 8. Making procedure and acceptance stages
 
@@ -182,7 +182,7 @@ Engineering checks should cover calendar boundaries, clock-to-lighting consisten
 
 ## 9. Scope boundaries and later improvements
 
-First implementation includes the two views, three bodies, shared date/time, globe traversal, country learning and country quiz. Additional facts per country, exact civil time zones, population/statistics feeds, advanced eclipse lessons, detailed terrain/cities and AI conversation are later improvements. No claim of perfect astronomical prediction or proven memory improvement is made.
+First implementation includes the two views, three bodies, shared date/time, globe traversal, country learning and country quiz. Possible additions include more facts per country, exact civil time zones, population/statistics feeds, advanced eclipse lessons and detailed terrain/cities. No claim of perfect astronomical prediction or proven memory improvement is made.
 
 ## 10. Reference basis
 
