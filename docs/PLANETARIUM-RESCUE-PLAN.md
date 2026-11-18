@@ -107,7 +107,7 @@ Actual Quest 3 ergonomics, text/ray readability and frame stability must be meas
 | R3 menus/inspection   | 0.21.0 complete   | Main room navigation, compact corner controls, empty containers hidden, local inspection without player movement |
 | P5 hardware/learner   | Pending           | Quest controls/readability/comfort, unfamiliar learner observations and fixes                                    |
 
-Run `npm test` and `npm run build` to validate the current production output. Browser evidence in [PROJECT_STATUS.md](../PROJECT_STATUS.md) covers 6/8 and 8/8 naming, edit/shrinking choices, all eight direct E targets, a complete 4/5 quiz, footsteps/celebration and room departure.
+Run `npm test` and `npm run build` to validate the current production output. See the [README development section](../README.md#development) for current build and startup commands.
 
 ## 8. Commands and checkpoint
 
@@ -118,4 +118,4 @@ npm run build
 npm run dev
 ```
 
-Open the printed URL (normally http://127.0.0.1:5173/) and refresh any old tab. Choose Planetarium and follow Explore → Name → Submit → Start quiz → Confirm/Next → Final score. For the packaged build run npm run preview after build. Stop with Ctrl+C. Quest USB forwarding is in [deployment.md](deployment.md); hardware acceptance is in [headset-smoke-check.md](headset-smoke-check.md).
+Open the printed URL (normally http://127.0.0.1:5173/) and refresh any old tab. Choose Planetarium and follow Explore → Name → Submit → Start quiz → Confirm/Next → Final score. For the packaged build run npm run preview after build. Stop with Ctrl+C. Quest USB forwarding is in [deployment.md](deployment.md); remaining hardware and learner checks are listed in [implementation stages and acceptance](#7-implementation-stages-and-acceptance).

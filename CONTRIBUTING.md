@@ -28,4 +28,4 @@ Commit the generated `catalog.json` alongside its source facts. The generator va
 
 Prettier formats application code, tests, HTML, CSS, JSON and Markdown. Vendored libraries, map geometry and the generated catalog are excluded. Optional Python asset scripts use four-space indentation and Ruff formatting. Asset regeneration requires Python with Pillow, NumPy and soundfile; playing and building the app does not require Python.
 
-Never commit `.env`, learner records, personal data, downloaded device tools, caches or old build archives. Report device observations in `docs/headset-smoke-check.md`.
+Never commit `.env`, learner records, personal data, downloaded device tools, caches or old build archives. When reporting a device issue, include the room, controller action, expected result and observed result. See [deployment](docs/deployment.md) for Quest setup.

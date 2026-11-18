@@ -87,8 +87,8 @@ Play/replay uses the supplied start.mp3; a newly correct return uses Hooray.m4a.
 
 1. Finish recorded desktop verification for direct selection, collisions, replay, generic instructions, stationary controls and all four returns. Fix concrete failures.
 2. Check a new player can explain the goal and explore without being told individual controls. Observe difficulty and boredom; adjust presentation before adding more rules.
-3. Verify actual Quest 3 entry/exit, both rays, thumbsticks, B/Y, hidden panel targets, complete random rounds, readable ceiling/wall objects and motion comfort. Use the existing validation document.
+3. Verify actual Quest 3 entry/exit, both rays, thumbsticks, B/Y, hidden panel targets, complete random rounds, readable ceiling/wall objects and motion comfort. Record device observations and any failures.
 4. Add on-demand reference photo/help and any further accessibility work only after the roaming game is understandable. Never reveal which four will change during Study.
 5. Pilot with supervised learners and record anonymous observations and fixes.
 
-Read [PROJECT_STATUS.md](../PROJECT_STATUS.md) for verification evidence and remaining checks.
+See the [README development section](../README.md#development) for current verification and startup commands.

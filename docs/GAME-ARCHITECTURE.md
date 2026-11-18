@@ -30,7 +30,7 @@ Natural Earth 50m polygons retain holes and dateline handling. Border geometry i
 
 Quiz targets come only from opened cards: five distinct countries, 2 location + 2 continent + 1 fact prompt. Four choices, fact/source/version snapshots, question-ID guards and Confirm/Next prevent duplicate/stale scoring. Quiz pauses time and hides answer-bearing cards/labels/location cues. A side panel leaves the outlined globe visible. Completed review survives map revisits; abandoned attempts remain unfinished. Earth reuses the tested two-clip audio engine for distance-based thuds, short-step sounds and one quiz-completion Hooray; mute/menu/blur/hidden/departure cancel pending sounds. No music is added.
 
-Page departure clears transition timers/listeners and disposes textures/geometries/materials; shared room routing exits XR/releases the renderer. Earth state resets on re-entry. Device and learner checks are in the [validation register](headset-smoke-check.md).
+Page departure clears transition timers/listeners and disposes textures/geometries/materials; shared room routing exits XR/releases the renderer. Earth state resets on re-entry. Device and learner checks are listed in the [room specifications](../README.md#status-and-documentation).
 
 ## Shared native VR menus
 
@@ -110,4 +110,4 @@ Names appear only on hover. Found markers appear after a valid return. Fan blade
 
 The room menu contains navigation, comfort settings and keyboard actions for all objects. A future reference photo must show the round's starting layout and record when the learner used it.
 
-See the [validation register](headset-smoke-check.md) for actual evidence and pending checks.
+See the [development commands](../README.md#development) for automated verification and the room specifications for remaining device and learner checks.

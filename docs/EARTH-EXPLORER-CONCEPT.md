@@ -14,7 +14,7 @@ The shared UTC clock minimizes to a date/time button and expands in either mode.
 
 Existing footstep.wav supplies one thud per travelled metre; short Quest steps get one thud, long teleports none. Existing Hooray.m4a plays once after a completed quiz at any score. Mute/menu/blur/hidden/departure cancel audio.
 
-Project status records browser journeys and pending hardware/learner checks. Run `npm test`, `npm run build` and `npm run dev`. Choose Earth Explorer at the printed URL. After five cards, Country quiz starts five questions. Quest setup is in [deployment.md](deployment.md).
+Run `npm test`, `npm run build` and `npm run dev`; current commands are listed in the [README development section](../README.md#development). Choose Earth Explorer at the printed URL. After five cards, Country quiz starts five questions. Quest setup is in [deployment.md](deployment.md).
 
 ## 1. Core idea
 

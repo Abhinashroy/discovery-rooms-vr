@@ -96,5 +96,6 @@ Runtime assets are bundled locally with source/license manifests. See [Third-par
 Generated builds, dependencies, local learner records, credentials, downloaded device tools, old release archives and duplicate hosting checkouts are ignored. Install dependencies with `npm ci` and create fresh output with `npm run build`; no historical ZIP is required.
 
 ## Team Members:
+
 - Vyankatesh Deshpande (B23CS1079)
 - Abhinash Roy (B23CS1003)
