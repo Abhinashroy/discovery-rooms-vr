@@ -59,8 +59,6 @@ On the original development computer, the ignored local copy of platform-tools c
 - Earth: left stick takes short faded steps, right stick snap-turns, left trigger on Earth teleports, right trigger opens country information and B/Y toggles controls. Paginated destinations support seated/stationary play.
 - Main room ends the run. Enter VR again if needed after changing rooms.
 
-Follow [the headset checklist](headset-smoke-check.md) and record readability, comfort and actual frame stability. Existing desktop checks are not a hardware pass.
-
 Remove forwarding when finished:
 
 ```sh
