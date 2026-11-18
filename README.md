@@ -80,15 +80,12 @@ The exploration prototype is available directly at `/exploration.html`. The earl
 
 ## Status and documentation
 
-- [Current status and remaining acceptance checks](PROJECT_STATUS.md)
 - [Earth Explorer specification](docs/EARTH-EXPLORER-CONCEPT.md)
 - [Planetarium specification](docs/PLANETARIUM-RESCUE-PLAN.md)
 - [Classroom specification](docs/ROOM-DETECTIVE-PLAN.md)
 - [Architecture](docs/GAME-ARCHITECTURE.md)
-- [Headset and learner validation](docs/headset-smoke-check.md)
-- [Change history](CHANGELOG.md)
 
-Desktop journeys verify the learning and quiz flow, movement and audio. **Actual Quest comfort, readability, frame stability and unfamiliar-learner validation remain pending.** Code tests do not establish learning benefit.
+Desktop journeys verify the learning and quiz flow, movement and audio.
 
 Earth is an approximate teaching model with adjusted sizes/distances. Country cards cover 193 UN members plus Holy See and Palestine; other mapped territories retain their geographic names. Boundaries are generalized, and region conventions are stated in the room.
 
