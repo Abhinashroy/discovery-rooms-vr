@@ -4,7 +4,7 @@ Interactive learning games for ages **10–15**, playable with keyboard and mous
 
 [![Checks](https://github.com/Abhinashroy/discovery-rooms-vr/actions/workflows/ci.yml/badge.svg)](https://github.com/Abhinashroy/discovery-rooms-vr/actions/workflows/ci.yml)
 
-## Play online
+## Play online:
 
 [**Open Discovery Rooms**](https://abhinashroy.github.io/discovery-rooms-vr/) — keyboard/mouse or Quest Browser.
 
@@ -97,3 +97,7 @@ Earth is an approximate teaching model with adjusted sizes/distances. Country ca
 Runtime assets are bundled locally with source/license manifests. See [Third-party notices](THIRD_PARTY_NOTICES.md). A project-wide open-source license has not yet been selected.
 
 Generated builds, dependencies, local learner records, credentials, downloaded device tools, old release archives and duplicate hosting checkouts are ignored. Install dependencies with `npm ci` and create fresh output with `npm run build`; no historical ZIP is required.
+
+## Team Members:
+- Vyankatesh Deshpande (B23CS1079)
+- Abhinash Roy (B23CS1003)
